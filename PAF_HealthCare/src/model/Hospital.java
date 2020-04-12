@@ -24,8 +24,9 @@ public class Hospital {
 		output = "<table border=\"1\"><tr><th>Hospital Name</th>"    +""
 				+ "<th>Hospital Address</th><th>Hospital City</th>"    + ""
 				+ "<th>Hospital Phone</th><th>Hospital Email</th>"    + ""
-				+ "<th>Hospital Description</th><th>Open Hours</th>"    + ""
-						+ "<th>Update</th><th>Remove</th></tr>"; 
+				+ "<th>Hospital Description</th><th>Open Hours</th>";
+//		+ ""
+//						+ "<th>Update</th><th>Remove</th></tr>"; 
 
 		  String query = "select * from hospitals";   
 		  Statement stmt = con.createStatement();   
