@@ -17,4 +17,11 @@ import org.jsoup.nodes.Document;
 @Path("/Hospital") 
 public class HospitalService {  
 	Hospital hospitalObj = new Hospital();
+	
+	@GET  
+	@Path("/")  
+	@Produces(MediaType.TEXT_HTML)  
+	public String readHospitals()  {   
+		return hospitalObj.readHospitals();
+	}
 }
