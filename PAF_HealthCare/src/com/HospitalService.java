@@ -46,7 +46,7 @@ public class HospitalService {
 	
 	@POST
 	@Path("/")
-	@Consumes(MediaType.APPLICATION_JSON) 
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertHospitals(String HospitalData) {
 		// Convert the input string to a JSON object
