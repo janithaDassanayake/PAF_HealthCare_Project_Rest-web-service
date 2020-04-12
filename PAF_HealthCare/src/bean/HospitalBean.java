@@ -63,7 +63,7 @@ public class HospitalBean {
 		this.Hospital_Phone = Hospital_Phone;
 	}
 	
-	public void setAppointment_Id(String Hospital_Email) {
+	public void setHospital_Email(String Hospital_Email) {
 		this.Hospital_Email = Hospital_Email;
 	}
 	
