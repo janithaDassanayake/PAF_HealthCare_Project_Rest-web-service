@@ -157,4 +157,35 @@ public class Hospital {
 	 
 	  return output;  
 	  }
+	
+	public String deleteHospitals(String hos_id) {  
+		String output = ""; 
+	 
+	 try  {   
+		 Connection con = dbObj.connect();
+	 
+	  if (con == null)   {    
+		  return "Error while connecting to the database for deleting.";   
+	  } 
+	 
+	  // create a prepared statement   
+	  String query = "delete from hospitals where Hospital_ID=?"; 
+	 
+	  PreparedStatement preparedStmt = con.prepareStatement(query); 
+	 
+	  // binding values   
+	  preparedStmt.setInt(1, Integer.parseInt(hos_id));       
+	  // execute the statement   
+	  preparedStmt.execute();   
+	  con.close(); 
+	 
+	  output = "Deleted successfully";  
+	  }  catch (Exception e)  {   
+		  output = "Error while deleting the hospital.";   
+		  System.err.println(e.getMessage());  
+		  
+	 } 
+	 
+	 return output; 
+	 }
 }
