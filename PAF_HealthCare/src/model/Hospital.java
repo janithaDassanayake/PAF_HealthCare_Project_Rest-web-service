@@ -117,4 +117,44 @@ public class Hospital {
 
 		 return output; 
 	}
+	
+	//Update hospitals
+	public String updateHospitals(String hos_id, String name, String address, String city, String phone, String email, String desc, String hours)  {   
+		String output = ""; 
+	 
+	  try   {   
+		  Connection con = dbObj.connect();
+	 
+		  if (con == null)    {
+			  return "Error while connecting to the database for updating."; 
+		  } 
+	 
+	   // create a prepared statement    
+	   String query = "UPDATE hospitals SET Hospital_Name=?,Hospital_Address=?,Hospital_City=?,Hospital_Phone=?,Hospital_Email=?,Hospital_Description=?,Open_Hours=?      "
+	   		+ "			WHERE Hospital_ID=?"; 
+	 
+	   PreparedStatement preparedStmt = con.prepareStatement(query); 
+	 
+	   // binding values    
+	   preparedStmt.setString(1, name);    
+	   preparedStmt.setString(2, address);    
+	   preparedStmt.setString(3, city);
+	   preparedStmt.setString(4, phone);
+	   preparedStmt.setString(5, email);
+	   preparedStmt.setString(6, desc);
+	   preparedStmt.setInt(7, Integer.parseInt(hours));
+	   preparedStmt.setInt(8, Integer.parseInt(hos_id));
+	 
+	   // execute the statement    
+	   preparedStmt.execute();    
+	   con.close(); 
+	 
+	   output = "Updated successfully";   
+	   }   catch (Exception e)   {    
+		   output = "Error while updating the Hospitals.";    
+		   System.err.println(e.getMessage());   
+	   } 
+	 
+	  return output;  
+	  }
 }
