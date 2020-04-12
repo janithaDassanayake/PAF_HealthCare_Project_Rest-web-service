@@ -1,9 +1,11 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import bean.HospitalBean;
 import util.DBConnection;
 
 public class Hospital {
@@ -74,5 +76,45 @@ public class Hospital {
 		}
 
 		return output;
-	}	
+	}
+	
+	//Insert Hospitals
+	public String insertHospitals(HospitalBean hos_bean) {
+		String output = "";
+
+		try {
+			Connection con = dbObj.connect();
+
+			if (con == null) {
+				return "Error while connecting to the database";
+			}
+
+			// create a prepared statement   
+			String query = " insert into hospitals (`Hospital_ID`,`Hospital_Name`,`Hospital_Address`,`Hospital_City`,`Hospital_Phone`,`Hospital_Email`,`Hospital_Description`,`Open_Hours`)"+" values (?, ?, ?, ?, ?, ?, ?, ?)";
+
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			// binding values 
+			preparedStmt.setInt(1, 0);   
+			preparedStmt.setString(2, hos_bean.getHospital_Name());   
+			preparedStmt.setString(3, hos_bean.getHospital_Address());    
+			preparedStmt.setString(4, hos_bean.getHospital_City());
+			preparedStmt.setString(5, hos_bean.getHospital_Phone());
+			preparedStmt.setString(6, hos_bean.getHospital_Email());
+			preparedStmt.setString(7, hos_bean.getHospital_Description());
+			preparedStmt.setInt(8, hos_bean.getOpen_Hours());  
+
+			//execute the statement   
+			preparedStmt.execute();   
+			con.close(); 
+
+			output = "Inserted successfully";
+		}
+		catch (Exception e) {   
+			output = "Error while inserting the Hospitals.";   
+			System.err.println(e.getMessage());  
+		} 
+
+		 return output; 
+	}
 }
