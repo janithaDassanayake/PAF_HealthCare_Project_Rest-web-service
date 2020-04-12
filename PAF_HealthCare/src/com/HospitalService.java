@@ -66,5 +66,28 @@ public class HospitalService {
 		String output = hospitalObj.insertHospitals(hosBean);
 		return output;
 
-	}	
+	}
+	
+	@PUT 
+	@Path("/") 
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.TEXT_PLAIN) 
+	public String updateHospitals(String HospitalsData) { 
+		//Convert the input string to a JSON object  
+		JsonObject hospitalObject = new JsonParser().parse(HospitalsData).getAsJsonObject(); 
+		 
+		 //Read the values from the JSON object  
+		String Hospital_ID = hospitalObject.get("Hospital_ID").getAsString();  
+		String Hospital_Name = hospitalObject.get("Hospital_Name").getAsString();  
+		String Hospital_Address = hospitalObject.get("Hospital_Address").getAsString();  
+		String Hospital_City = hospitalObject.get("Hospital_City").getAsString();  
+		String Hospital_Phone = hospitalObject.get("Hospital_Phone").getAsString();
+		String Hospital_Email = hospitalObject.get("Hospital_Email").getAsString();  
+		String Hospital_Description = hospitalObject.get("Hospital_Description").getAsString();  
+		String Open_Hours = hospitalObject.get("Open_Hours").getAsString(); 
+		 
+		String output = hospitalObj.updateHospitals(Hospital_ID, Hospital_Name, Hospital_Address, Hospital_City, Hospital_Phone, Hospital_Email, Hospital_Description, Open_Hours); 
+		 
+		return output; 
+	}
 }
