@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import bean.DepartmentBean;
+import bean.HospitalBean;
 import util.DBConnection;
 
 public class Department {
@@ -16,6 +17,8 @@ public class Department {
 		String output = "";  
 
 		DepartmentBean depReadbean = new DepartmentBean();
+		HospitalBean hospReadbean = new HospitalBean();
+		
 		try {  
 			Connection con = dbObj.connect();
 			if (con == null)  {   
@@ -40,13 +43,18 @@ public class Department {
 //			  String Hospital_Name = rs1.getString("Hospital_Name");
 //			  String Head = rs1.getString("Head");
 //			  String Staff_Vacancies = Integer.toString(rs1.getInt("Staff_Vacancies")); 
+			  depReadbean.setDepartment_ID(rs1.getInt("Department_ID"));
+			  depReadbean.setDepartment_Name(rs1.getString("Department_Name"));
+			  hospReadbean.setHospital_Name(rs1.getString("Hospital_Name"));
+			  depReadbean.setHead(rs1.getString("Head"));
+			  depReadbean.setStaff_Vacancies(rs1.getInt("Staff_Vacancies"));
 			  
 
 		   // Add into the html table    
-		  output += "<tr><td>" + Department_Name + "</td>";    
-		  output += "<td>" + Hospital_Name + "</td>";
-		  output += "<td>" + Head + "</td>";
-		  output += "<td>" + Staff_Vacancies + "</td>";
+		  output += "<tr><td>" + depReadbean.getDepartment_Name() + "</td>";    
+		  output += "<td>" + hospReadbean.getHospital_Name() + "</td>";
+		  output += "<td>" + depReadbean.getHead() + "</td>";
+		  output += "<td>" + depReadbean.getStaff_Vacancies() + "</td>";
 		   
 
 //		   // buttons    
