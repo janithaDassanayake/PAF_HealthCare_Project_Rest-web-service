@@ -10,7 +10,7 @@ import util.DBConnection;
 
 public class Hospital {
 	DBConnection dbObj = new DBConnection();
-	
+	HospitalBean hosReadbean = new HospitalBean();
 	//Read Hospitals Details
 	public String readHospitals() {  
 		String output = "";  
@@ -35,24 +35,24 @@ public class Hospital {
 		  ResultSet rs = stmt.executeQuery(query); 
 
 		  // iterate through the rows in the result set   
-		  while (rs.next())   {    
-			  String Hospital_ID = Integer.toString(rs.getInt("Hospital_ID"));    
-			  String Hospital_Name = rs.getString("Hospital_Name");    
-			  String Hospital_Address = rs.getString("Hospital_Address");    
-			  String Hospital_City = rs.getString("Hospital_City");    
-			  String Hospital_Phone = rs.getString("Hospital_Phone"); 
-			  String Hospital_Email = rs.getString("Hospital_Email");
-			  String Hospital_Description = rs.getString("Hospital_Description");
-			  String Open_Hours = Integer.toString(rs.getInt("Open_Hours"));  
+		  while (rs.next())   {  
+			  hosReadbean.setHospital_ID(rs.getInt("Hospital_ID"));
+			  hosReadbean.setHospital_Name(rs.getString("Hospital_Name"));
+			  hosReadbean.setHospital_Address(rs.getString("Hospital_Address"));
+			  hosReadbean.setHospital_City(rs.getString("Hospital_City"));
+			  hosReadbean.setHospital_Phone(rs.getString("Hospital_Phone"));
+			  hosReadbean.setHospital_Email(rs.getString("Hospital_Email"));
+			  hosReadbean.setHospital_Description(rs.getString("Hospital_Description"));
+			  hosReadbean.setOpen_Hours(rs.getInt("Open_Hours"));
 
 		   // Add into the html table    
-		  output += "<tr><td>" + Hospital_Name + "</td>";    
-		  output += "<td>" + Hospital_Address + "</td>";
-		  output += "<td>" + Hospital_City + "</td>";    
-		  output += "<td>" + Hospital_Phone + "</td>"; 
-		  output += "<td>" + Hospital_Email + "</td>";    
-		  output += "<td>" + Hospital_Description + "</td>";
-		  output += "<td>" + Open_Hours + "</td>"; 
+		  output += "<tr><td>" + hosReadbean.getHospital_ID() + "</td>";    
+		  output += "<td>" + hosReadbean.getHospital_Name() + "</td>";
+		  output += "<td>" + hosReadbean.getHospital_Address() + "</td>";    
+		  output += "<td>" + hosReadbean.getHospital_City() + "</td>"; 
+		  output += "<td>" + hosReadbean.getHospital_Phone() + "</td>";    
+		  output += "<td>" + hosReadbean.getHospital_Email() + "</td>";
+		  output += "<td>" + hosReadbean.getOpen_Hours() + "</td>"; 
 
 //		   // buttons    
 //		  output += "<td><input name=\"btnUpdate\" "     + " "
