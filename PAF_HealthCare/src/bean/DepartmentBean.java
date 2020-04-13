@@ -28,8 +28,8 @@ public class DepartmentBean {
 		return Staff_Vacancies;
 	}
 	
-	public void setDepartment_ID(int Department_ID) {
-		this.Department_ID = Department_ID;
+	public void setHospital_ID(int Hospital_ID) {
+		this.Hospital_ID = Hospital_ID;
 	}
 	
 	public void setDepartment_Name(String Department_Name) {
