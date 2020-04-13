@@ -33,9 +33,13 @@ public class AppoinmentService {
 	@Path("/appointment-type")
 	@Produces(MediaType.TEXT_HTML)
 	public String readAllTypes() {
+	
 		return aObj.viewAppointmentTypes();
+
 	}
 
+	
+	
 	// get all Schedules
 	@GET
 	@Path("/appointment-schedule")

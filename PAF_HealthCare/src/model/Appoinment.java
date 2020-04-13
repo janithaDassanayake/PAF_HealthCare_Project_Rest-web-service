@@ -23,6 +23,9 @@ public class Appoinment {
 	public String viewAppointmentTypes() {
 
 		String output = "";
+		
+		AppoinmentTypeBean appRead = new AppoinmentTypeBean();
+		
 		try {
 			Connection con = dbObj.connect();
 			if (con == null) {
@@ -38,19 +41,22 @@ public class Appoinment {
 
 			// iterate through the rows in the result set
 			while (rs.next()) {
-				String app_id = rs.getString("appointment_Id");
-				String app_type = rs.getString("Appointment_Type");
-				String app_name = rs.getString("Appointment_Name");
-				String app_desc = rs.getString("Appointment_Desc");
+//				String app_id = rs.getString("appointment_Id");
+//				String app_type = rs.getString("Appointment_Type");
+//				String app_name = rs.getString("Appointment_Name");
+//				String app_desc = rs.getString("Appointment_Desc");
+				
+				appRead.setAppointment_Id(rs.getInt("Appointment_Id"));
+				appRead.setAppointment_Type(rs.getString("Appointment_Type"));
+				appRead.setAppointment_Name(rs.getString("Appointment_Name"));
+				appRead.setAppointment_Desc(rs.getString("Appointment_Desc"));
 
 				// Add into the html table
-				output += "<tr><td>" + app_id + "</td>";
-				output += "<td>" + app_type + "</td>";
-				output += "<td>" + app_name + "</td>";
-				output += "<td>" + app_desc + "</td>";
-
+				output += "<tr><td>" + appRead.getAppointment_Id() + "</td>";
+				output += "<td>" + appRead.getAppointment_Type() + "</td>";
+				output += "<td>" + appRead.getAppointment_Name() + "</td>";
+				output += "<td>" + appRead.getAppointment_Desc() + "</td>";
 			}
-
 			con.close();
 			// Complete the html table
 			output += "</table>";
