@@ -77,14 +77,6 @@ public class HospitalService {
 		HospitalBean hosUpdate_bean = new HospitalBean();
 		
 		 //Read the values from the JSON object  
-//		String Hospital_ID = hospitalObject.get("Hospital_ID").getAsString();  
-//		String Hospital_Name = hospitalObject.get("Hospital_Name").getAsString();  
-//		String Hospital_Address = hospitalObject.get("Hospital_Address").getAsString();  
-//		String Hospital_City = hospitalObject.get("Hospital_City").getAsString();  
-//		String Hospital_Phone = hospitalObject.get("Hospital_Phone").getAsString();
-//		String Hospital_Email = hospitalObject.get("Hospital_Email").getAsString();  
-//		String Hospital_Description = hospitalObject.get("Hospital_Description").getAsString();  
-//		String Open_Hours = hospitalObject.get("Open_Hours").getAsString();
 		hosUpdate_bean.setHospital_ID(hospitalObject.get("Hospital_ID").getAsInt());
 		hosUpdate_bean.setHospital_Name(hospitalObject.get("Hospital_Name").getAsString());
 		hosUpdate_bean.setHospital_Address(hospitalObject.get("Hospital_Address").getAsString());
@@ -105,12 +97,14 @@ public class HospitalService {
 	@Produces(MediaType.TEXT_PLAIN) 
 	public String deleteHospitals(String HospitalsData) {  
 		//Convert the input string to an XML document  
-		Document doc = Jsoup.parse(HospitalsData, "", Parser.xmlParser());     
+		JsonObject doc = new JsonParser().parse(HospitalsData).getAsJsonObject();   
+		HospitalBean hosDel_bean = new HospitalBean();
 		
 		//Read the value from the element <Hospital_ID>  
-		String Hospital_ID = doc.select("Hospital_ID").text(); 
-		 
-		 String output = hospitalObj.deleteHospitals(Hospital_ID); 
+		//String Hospital_ID = doc.select("Hospital_ID").text(); 
+		hosDel_bean.setHospital_ID(doc.get("Hospital_ID").getAsInt());
+		
+		 String output = hospitalObj.deleteHospitals(hosDel_bean); 
 		 
 		 return output; 
 		 }
