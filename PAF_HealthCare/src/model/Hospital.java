@@ -153,7 +153,7 @@ public class Hospital {
 	 
 	   output = "Updated successfully "+hosUpdateBean.getHospital_Name()+" Hospital Details";   
 	   }   catch (Exception e)   {    
-		   output = "Error while updating the Hospitals.";    
+		   output = "Error while updating the Hospital.";    
 		   System.err.println(e.getMessage());   
 	   } 
 	 
