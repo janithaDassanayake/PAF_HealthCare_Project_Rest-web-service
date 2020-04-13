@@ -8,23 +8,23 @@ public class DepartmentBean {
 	private String Head;
 	private int Staff_Vacancies;
 	
-	public int Department_ID() {
+	public int getDepartment_ID() {
 		return Department_ID;
 	}
 	
-	public int Hospital_ID() {
+	public int getHospital_ID() {
 		return Hospital_ID;
 	}
 	
-	public String Department_Name() {
+	public String getDepartment_Name() {
 		return Department_Name;
 	}
 	
-	public String Head() {
+	public String getHead() {
 		return Head;
 	}
 	
-	public int Staff_Vacancies() {
+	public int getStaff_Vacancies() {
 		return Staff_Vacancies;
 	}
 	
