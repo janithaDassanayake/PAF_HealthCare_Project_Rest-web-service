@@ -264,9 +264,10 @@ public class Appoinment {
 	}
 	
 
+
 	//============================= Delete Appointment Type ==============================	
 	
-	public String deleteAppointmentTypes(String app_id) {
+	public String deleteAppointmentTypes(AppoinmentTypeBean appBean) {
 		String output = "";
 		try {
 
@@ -280,16 +281,16 @@ public class Appoinment {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			preparedStmt.setString(1, app_id);
-
+			 preparedStmt.setInt(1, appBean.getAppointment_Id());
+			//preparedStmt.setInt(4, appBean.getAppointment_Id());
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully [ Appointment Id : "+app_id +" ]";
+			output = "Deleted successfully [ Appointment Id : "+appBean.getAppointment_Id()+" ]";
 
 		} catch (Exception e) {
 
-			output = "Error while deleting the Doctor" + app_id;
+			output = "Error while deleting the appoinmentType" + appBean.getAppointment_Id();
 			System.err.println(e.getMessage());
 		}
 

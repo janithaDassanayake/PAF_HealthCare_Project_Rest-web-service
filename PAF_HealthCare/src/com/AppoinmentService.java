@@ -239,12 +239,17 @@ public class AppoinmentService {
 		// Convert the input string to a JSON object
 		JsonObject doc = new JsonParser().parse(TypeData).getAsJsonObject();
 
+//		JsonObject djosnObj = new JsonParser().parse(TypeData).getAsJsonObject();
+    	AppoinmentTypeBean	appTypeBean = new AppoinmentTypeBean();
+		
 		// Read the value from the element <ID>
-		String id = doc.get("appointment_Id").getAsString();
-		String output = aObj.deleteAppointmentTypes(id);
+    	appTypeBean.setAppointment_Id(doc.get("Appointment_Id").getAsInt());
+		//String id = doc.get("appointment_Id").getAsString();
+		String output = aObj.deleteAppointmentTypes(appTypeBean);
 		return output;
 	}
 
+	
 	
 	// delete Schedules
 	@DELETE
