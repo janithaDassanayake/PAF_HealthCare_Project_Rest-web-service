@@ -93,13 +93,14 @@ public class DepartmentService {
 	@Produces(MediaType.TEXT_PLAIN) 
 	public String deleteDepartments(String DepartmentsData) {  
 		//Convert the input string to an XML document  
-		Document doc = Jsoup.parse(DepartmentsData, "", Parser.xmlParser());     
+		JsonObject doc = new JsonParser().parse(DepartmentsData).getAsJsonObject();
+		DepartmentBean depDel_bean = new DepartmentBean();
 		
 		//Read the value from the elements  
-		String Department_ID = doc.select("Department_ID").text();
-		String Hospital_ID = doc.select("Hospital_ID").text();
-		 
-		String output = departmentObj.deleteDepartments(Department_ID,Hospital_ID); 
+		depDel_bean.setDepartment_ID(doc.get("Department_ID").getAsInt());
+		depDel_bean.setHospital_ID(doc.get("Hospital_ID").getAsInt());
+		
+		String output = departmentObj.deleteDepartments(depDel_bean); 
 		 
 		return output; 
 		}
