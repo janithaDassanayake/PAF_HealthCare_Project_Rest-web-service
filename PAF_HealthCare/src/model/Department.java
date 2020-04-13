@@ -155,7 +155,7 @@ public class Department {
 	  return output;  
 	  }
 	
-	public String deleteDepartments(String dep_id, String hos_id) {  
+	public String deleteDepartments(DepartmentBean depDeleteBean) {  
 		String output = ""; 
 	 
 	 try  {   
@@ -171,8 +171,8 @@ public class Department {
 	  PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
 	  // binding values   
-	  preparedStmt.setInt(1, Integer.parseInt(dep_id));
-	  preparedStmt.setInt(2, Integer.parseInt(hos_id));
+	  preparedStmt.setInt(1, depDeleteBean.getDepartment_ID());
+	  preparedStmt.setInt(2, depDeleteBean.getHospital_ID());
 	  
 	  // execute the statement   
 	  preparedStmt.execute();   
