@@ -119,7 +119,7 @@ public class Department {
 		 return output; 
 	}
 	
-	public String updateDepartments(String dep_id, String hos_id, String dep_name, String head, String staff_vacon)  {   
+	public String updateDepartments(DepartmentBean depUpdateBean)  {   
 		String output = ""; 
 	 
 	  try   {   
@@ -136,11 +136,11 @@ public class Department {
 	   PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
 	   // binding values    
-	   preparedStmt.setInt(1, Integer.parseInt(hos_id));
-	   preparedStmt.setString(2, dep_name);    
-	   preparedStmt.setString(3, head);
-	   preparedStmt.setInt(4, Integer.parseInt(staff_vacon));
-	   preparedStmt.setInt(5, Integer.parseInt(dep_id));
+	   preparedStmt.setInt(1, depUpdateBean.getHospital_ID());
+	   preparedStmt.setString(2, depUpdateBean.getDepartment_Name());    
+	   preparedStmt.setString(3, depUpdateBean.getHead());
+	   preparedStmt.setInt(4, depUpdateBean.getStaff_Vacancies());
+	   preparedStmt.setInt(5, depUpdateBean.getDepartment_ID());
 	 
 	   // execute the statement    
 	   preparedStmt.execute();    
