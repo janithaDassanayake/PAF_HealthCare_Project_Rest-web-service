@@ -17,4 +17,11 @@ import org.jsoup.nodes.Document;
 @Path("/Department") 
 public class DepartmentService {
 	Department departmentObj = new Department();
+	
+	@GET  
+	@Path("/")  
+	@Produces(MediaType.TEXT_HTML)  
+	public String readDepartments()  {   
+		return departmentObj.readDepartments();
+	}
 }
