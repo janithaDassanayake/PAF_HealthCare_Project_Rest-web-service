@@ -197,35 +197,36 @@ public class Appoinment {
 	
 	//============================= Update Appointment Type ==============================
 	
-	public String updateAppointmentType(int appointment_id, String appointment_type, String appointment_name, String appointment_desc) {
+		public String updateAppointmentType(AppoinmentTypeBean appBean) {
 
-		String output = "";
+			String output = "";
 
-		try {
-			Connection con = dbObj.connect();
-			if (con == null) {
-				return "Error while connecting to the database for updating.";
+			try {
+				Connection con = dbObj.connect();
+				if (con == null) {
+					return "Error while connecting to the database for updating.";
+				}
+				// create a prepared statement
+				String query = "UPDATE appointment_type SET Appointment_Type=?,Appointment_Name=?,Appointment_Desc=? WHERE appointment_Id =?";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+
+				// binding values
+
+				preparedStmt.setString(1, appBean.getAppointment_Type());
+				preparedStmt.setString(2, appBean.getAppointment_Name());
+				preparedStmt.setString(3, appBean.getAppointment_Desc());
+				preparedStmt.setInt(4, appBean.getAppointment_Id());
+				// execute the statement
+				preparedStmt.execute();
+				con.close();
+				output = "Updated successfully [ ID : "+appBean.getAppointment_Id()+" ]";
+			} catch (Exception e) {
+				output = "Error while updating the Appoinment type " + appBean.getAppointment_Id();
+				System.err.println(e.getMessage());
 			}
-			// create a prepared statement
-			String query = "UPDATE appointment_type SET Appointment_Type=?,Appointment_Name=?,Appointment_Desc=? WHERE appointment_Id =?";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-
-			// binding values
-
-			preparedStmt.setString(1, appointment_type);
-			preparedStmt.setString(2, appointment_name);
-			preparedStmt.setString(3, appointment_desc);
-			preparedStmt.setInt(4, appointment_id);
-			// execute the statement
-			preparedStmt.execute();
-			con.close();
-			output = "Updated successfully [ ID : "+appointment_id+" ]";
-		} catch (Exception e) {
-			output = "Error while updating the Doctor " + appointment_id;
-			System.err.println(e.getMessage());
+			return output;
 		}
-		return output;
-	}
+
 
 	//============================= Update Appointment Scheduling ==============================
 	

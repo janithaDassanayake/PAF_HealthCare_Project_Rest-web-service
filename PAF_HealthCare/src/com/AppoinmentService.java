@@ -153,17 +153,24 @@ public class AppoinmentService {
 
 		// Convert the input string to a JSON object
 		JsonObject djosnObj = new JsonParser().parse(TypeData).getAsJsonObject();
+		AppoinmentTypeBean	appTypeBean = new AppoinmentTypeBean();
 
 		// Read the values from the JSON object
-		int appId = djosnObj.get("appointment_Id").getAsInt();
-		String appType = djosnObj.get("appointment_Type").getAsString();
-		String appName = djosnObj.get("appointment_Name").getAsString();
-		String appDesc = djosnObj.get("appointment_Desc").getAsString();
-
-		String output = aObj.updateAppointmentType(appId, appType, appName, appDesc);
+//		int appId = djosnObj.get("appointment_Id").getAsInt();
+//		String appType = djosnObj.get("appointment_Type").getAsString();
+//		String appName = djosnObj.get("appointment_Name").getAsString();
+//		String appDesc = djosnObj.get("appointment_Desc").getAsString();
+		appTypeBean.setAppointment_Id(djosnObj.get("Appointment_Id").getAsInt());
+		appTypeBean.setAppointment_Type(djosnObj.get("Appointment_Type").getAsString());
+		appTypeBean.setAppointment_Name(djosnObj.get("Appointment_Name").getAsString());
+		appTypeBean.setAppointment_Desc(djosnObj.get("Appointment_Desc").getAsString());
+		
+		String output = aObj.updateAppointmentType(appTypeBean);
 		return output;
 	}
-
+	
+	
+	
 	// update Schedules
 	@PUT
 	@Path("/appointment-schedule")
