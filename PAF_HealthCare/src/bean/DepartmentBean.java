@@ -3,12 +3,17 @@ package bean;
 public class DepartmentBean {
 
 	private int Department_ID;
+	private int Hospital_ID;
 	private String Department_Name;
 	private String Head;
 	private int Staff_Vacancies;
 	
 	public int Department_ID() {
 		return Department_ID;
+	}
+	
+	public int Hospital_ID() {
+		return Hospital_ID;
 	}
 	
 	public String Department_Name() {
