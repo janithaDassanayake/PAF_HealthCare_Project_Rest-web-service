@@ -9,7 +9,6 @@ import javax.ws.rs.core.MediaType;
 //For JSON 
 import com.google.gson.*;
 
-import bean.AppoinmentTypeBean;
 import bean.HospitalBean;
 
 //For XML 
