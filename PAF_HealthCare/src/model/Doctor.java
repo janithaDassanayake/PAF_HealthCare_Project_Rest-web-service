@@ -11,7 +11,7 @@ public class Doctor {
 
 	DBConnection dbObj = new DBConnection();
 	
-	public String insertItem(String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept)  
+	public String insertDoctor(String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept)  
 	{   
 		String output = ""; 
 	 
@@ -57,7 +57,7 @@ public class Doctor {
 		return output;  
 	}
 	
-	public String readItems()  
+	public String readDoctor()  
 	{   
 		String output = ""; 
 	
@@ -125,7 +125,7 @@ public class Doctor {
 	  return output;  
 	}
 	
-	public String updateItem(String docID, String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept)  
+	public String updateDoctor(String docID, String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept)  
 	{   
 		String output = ""; 
 	 
@@ -170,7 +170,7 @@ public class Doctor {
 		return output;  
 	}
 	
-	public String deleteItem(String itemID)  
+	public String deleteDoctor(String itemID)  
 	{   
 		String output = ""; 
 	 
