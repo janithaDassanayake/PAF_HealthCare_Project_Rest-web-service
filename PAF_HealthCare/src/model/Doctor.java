@@ -73,7 +73,8 @@ public class Doctor {
 			}
 	 
 			// Prepare the html table to be displayed    
-			output = "<table border=\"1\"><tr><th>Doctor Name</th><th>NIC</th><th>Address</th><th>Email</th><th>Specialization</th><th>Hospital Name</th><th>Department Name</th><th>Update</th><th>Remove</th></tr>"; 
+			output = "<table border=\"1\"><tr><th>Doctor Name</th><th>NIC</th><th>Address</th><th>Email</th><th>Specialization</th><th>Hospital Name</th>"
+					+ "<th>Department Name</th><th>Update</th><th>Remove</th></tr>"; 
 	 
 			String query = "select * from doctors";    
 			Statement stmt = con.createStatement();    
