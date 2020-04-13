@@ -36,14 +36,14 @@ public class OnlineAppointmentService {
 	OnlineAppointment appObj = new OnlineAppointment();
 
 	@GET
-	@Path("/")
+	@Path("/appointment-doctor")
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems() {
 		return  appObj.readDetails();
 	}
 	
 	@POST
-	@Path("/")
+	@Path("/appointment-doctor")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertDetails(@FormParam("patientId") int PatientID,
@@ -74,7 +74,7 @@ public class OnlineAppointmentService {
 		}
 	
 	@PUT
-	@Path("/")
+	@Path("/appointment-doctor")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateDetails(String details)
@@ -114,7 +114,7 @@ public class OnlineAppointmentService {
 			}
 	
 	@DELETE
-	@Path("/")
+	@Path("/appointment-doctor")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteDetails(String details)
@@ -126,5 +126,13 @@ public class OnlineAppointmentService {
 	 String AppointmentID = doc.select("appointmentId").text();
 	 String output = appObj.deleteDetails(AppointmentID);
 	return output;
+	}
+	
+	// get doctors' Schedules
+	@GET
+	@Path("/ShowSchedule")
+	@Produces(MediaType.TEXT_HTML)
+	public String readAllSchedules() {
+		return appObj.viewAllSchedule();
 	}
 }
