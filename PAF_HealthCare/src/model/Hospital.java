@@ -160,7 +160,7 @@ public class Hospital {
 	  return output;  
 	  }
 	
-	public String deleteHospitals(String hos_id) {  
+	public String deleteHospitals(HospitalBean hosDeleteBean) {  
 		String output = ""; 
 	 
 	 try  {   
@@ -176,7 +176,7 @@ public class Hospital {
 	  PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
 	  // binding values   
-	  preparedStmt.setInt(1, Integer.parseInt(hos_id));       
+	  preparedStmt.setInt(1, hosDeleteBean.getHospital_ID());       
 	  // execute the statement   
 	  preparedStmt.execute();   
 	  con.close(); 
