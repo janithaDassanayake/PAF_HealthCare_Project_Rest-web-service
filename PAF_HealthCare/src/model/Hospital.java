@@ -10,6 +10,7 @@ import util.DBConnection;
 
 public class Hospital {
 	DBConnection dbObj = new DBConnection();
+	
 	HospitalBean hosReadbean = new HospitalBean();
 	//Read Hospitals Details
 	public String readHospitals() {  

@@ -15,7 +15,7 @@ public class Department {
 	public String readDepartments() {  
 		String output = "";  
 
-
+		DepartmentBean depReadbean = new DepartmentBean();
 		try {  
 			Connection con = dbObj.connect();
 			if (con == null)  {   
@@ -35,11 +35,12 @@ public class Department {
 		  
 		  // iterate through the rows in the result set   
 		  while (rs1.next())   {
-			  String Department_ID = Integer.toString(rs1.getInt("Department_ID"));   
-			  String Department_Name = rs1.getString("Department_Name");
-			  String Hospital_Name = rs1.getString("Hospital_Name");
-			  String Head = rs1.getString("Head");
-			  String Staff_Vacancies = Integer.toString(rs1.getInt("Staff_Vacancies"));  
+//			  String Department_ID = Integer.toString(rs1.getInt("Department_ID"));   
+//			  String Department_Name = rs1.getString("Department_Name");
+//			  String Hospital_Name = rs1.getString("Hospital_Name");
+//			  String Head = rs1.getString("Head");
+//			  String Staff_Vacancies = Integer.toString(rs1.getInt("Staff_Vacancies")); 
+			  
 
 		   // Add into the html table    
 		  output += "<tr><td>" + Department_Name + "</td>";    
