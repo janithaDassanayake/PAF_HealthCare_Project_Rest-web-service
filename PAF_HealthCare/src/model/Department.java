@@ -71,4 +71,42 @@ public class Department {
 
 		return output;
 	}
+	
+	//Insert departments
+	
+	public String insertDepartments(DepartmentBean depBean) {
+		String output = "";
+
+		try {
+			Connection con = dbObj.connect();
+
+			if (con == null) {
+				return "Error while connecting to the database";
+			}
+
+			// create a prepared statement   
+			String query = " insert into departments (`Department_ID`,`Hospital_ID`,`Department_Name`,`Head`,`Staff_Vacancies`)"+" values (?, ?, ?, ?, ?)";
+
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+
+			// binding values 
+			preparedStmt.setInt(1, 0);   
+			preparedStmt.setInt(2, depBean.getHospital_ID());
+			preparedStmt.setString(3, depBean.getDepartment_Name());    
+			preparedStmt.setString(4, depBean.getHead());
+			preparedStmt.setInt(5, depBean.getStaff_Vacancies());  
+
+			//execute the statement   
+			preparedStmt.execute();   
+			con.close(); 
+
+			output = "Inserted successfully";
+		}
+		catch (Exception e) {   
+			output = "Error while inserting Departments to the hospitals.";   
+			System.err.println(e.getMessage());  
+		} 
+
+		 return output; 
+	}
 }
