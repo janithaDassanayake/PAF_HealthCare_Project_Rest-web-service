@@ -2,15 +2,16 @@ package bean;
 
 public class AppoinmentTypeBean {
 
-	private String Appointment_Id;
+	private int Appointment_Id;
 	private String Appointment_Type;
 	private String Appointment_Name;
 	private String Appointment_Desc;
 	
-	public String getAppointment_Id() {
+	
+	public int getAppointment_Id() {
 		return Appointment_Id;
 	}
-	public void setAppointment_Id(String appointment_Id) {
+	public void setAppointment_Id(int appointment_Id) {
 		Appointment_Id = appointment_Id;
 	}
 	public String getAppointment_Type() {

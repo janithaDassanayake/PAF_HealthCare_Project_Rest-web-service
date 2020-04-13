@@ -22,16 +22,16 @@ import com.google.gson.JsonParser;
 
 import model.Schedule;
 
-@Path("/Appoinments")
+//@Path("/Appoinments")
 
 public class ViewAppointmentService {
-	Schedule aObj = new Schedule();
-
-	// get all Schedules
-	@GET
-	@Path("/")
-	@Produces(MediaType.TEXT_HTML)
-	public String readAllSchedules() {
-		return aObj.viewAllSchedule();
-	}
+//	Schedule aObj = new Schedule();
+//
+//	// get all Schedules
+//	@GET
+//	@Path("/")
+//	@Produces(MediaType.TEXT_HTML)
+//	public String readAllSchedules() {
+//		return aObj.viewAllSchedule();
+//	}
 }

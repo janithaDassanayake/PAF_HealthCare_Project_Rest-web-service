@@ -54,6 +54,7 @@ import com.google.gson.*;
 @Path("/Appointment")
 
 public class OnlineAppointmentService {
+	
 	OnlineAppointment appObj = new OnlineAppointment();
 
 	@GET
@@ -147,6 +148,7 @@ public class OnlineAppointmentService {
 	 String AppointmentID = doc.select("appointmentId").text();
 	 String output = appObj.deleteDetails(AppointmentID);
 	return output;
+<<<<<<< HEAD
 	}
 	
 	
@@ -158,4 +160,7 @@ public class OnlineAppointmentService {
 	public String readAllSchedules() {
 		return appObj.viewAllSchedule();
 	}
+=======
+	} 
+>>>>>>> branch 'master' of https://github.com/janithaDassanayake/PAF_HealthCare_Project.git
 }

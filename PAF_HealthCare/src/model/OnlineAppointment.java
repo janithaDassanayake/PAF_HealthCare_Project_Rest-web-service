@@ -150,6 +150,7 @@ public class OnlineAppointment {
 		return output;
 	}
 	
+<<<<<<< HEAD
 	// View Doctor Schedule
 	public String viewAllSchedule() {
 
@@ -204,4 +205,6 @@ public class OnlineAppointment {
 
 		return output;
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/janithaDassanayake/PAF_HealthCare_Project.git
 }
