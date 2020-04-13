@@ -96,12 +96,11 @@ public class HospitalService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteHospitals(String HospitalsData) {  
-		//Convert the input string to an XML document  
+		// Convert the input string to a JSON object 
 		JsonObject doc = new JsonParser().parse(HospitalsData).getAsJsonObject();   
 		HospitalBean hosDel_bean = new HospitalBean();
 		
 		//Read the value from the element <Hospital_ID>  
-		//String Hospital_ID = doc.select("Hospital_ID").text(); 
 		hosDel_bean.setHospital_ID(doc.get("Hospital_ID").getAsInt());
 		
 		 String output = hospitalObj.deleteHospitals(hosDel_bean); 
