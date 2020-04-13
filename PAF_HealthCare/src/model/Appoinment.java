@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
 
+import bean.AppoinmentSchedulingBean;
 import bean.AppoinmentTypeBean;
 import util.DBConnection;
 
@@ -23,6 +24,9 @@ public class Appoinment {
 	public String viewAppointmentTypes() {
 
 		String output = "";
+		
+		AppoinmentTypeBean appRead = new AppoinmentTypeBean();
+		
 		try {
 			Connection con = dbObj.connect();
 			if (con == null) {
@@ -38,19 +42,22 @@ public class Appoinment {
 
 			// iterate through the rows in the result set
 			while (rs.next()) {
-				String app_id = rs.getString("appointment_Id");
-				String app_type = rs.getString("Appointment_Type");
-				String app_name = rs.getString("Appointment_Name");
-				String app_desc = rs.getString("Appointment_Desc");
+//				String app_id = rs.getString("appointment_Id");
+//				String app_type = rs.getString("Appointment_Type");
+//				String app_name = rs.getString("Appointment_Name");
+//				String app_desc = rs.getString("Appointment_Desc");
+				
+				appRead.setAppointment_Id(rs.getInt("Appointment_Id"));
+				appRead.setAppointment_Type(rs.getString("Appointment_Type"));
+				appRead.setAppointment_Name(rs.getString("Appointment_Name"));
+				appRead.setAppointment_Desc(rs.getString("Appointment_Desc"));
 
 				// Add into the html table
-				output += "<tr><td>" + app_id + "</td>";
-				output += "<td>" + app_type + "</td>";
-				output += "<td>" + app_name + "</td>";
-				output += "<td>" + app_desc + "</td>";
-
+				output += "<tr><td>" + appRead.getAppointment_Id() + "</td>";
+				output += "<td>" + appRead.getAppointment_Type() + "</td>";
+				output += "<td>" + appRead.getAppointment_Name() + "</td>";
+				output += "<td>" + appRead.getAppointment_Desc() + "</td>";
 			}
-
 			con.close();
 			// Complete the html table
 			output += "</table>";
@@ -68,6 +75,10 @@ public class Appoinment {
 	public String viewAllSchedule() {
 
 		String output = "";
+		
+		AppoinmentSchedulingBean appScheduling = new AppoinmentSchedulingBean();
+		AppoinmentTypeBean appRead = new AppoinmentTypeBean();
+		
 		try {
 			Connection con = dbObj.connect();
 			if (con == null) {
@@ -89,25 +100,45 @@ public class Appoinment {
 
 			// iterate through the rows in the result set
 			while (rs.next()) {
-				String schedule_id = rs.getString("Schedule_id");
+				
+				/*String schedule_id = rs.getString("Schedule_id");
 				String appointment_name = rs.getString("Appointment_Name");
 				String date = rs.getString("Date");
 				String start_time = rs.getString("Start_Time");
 				String end_time = rs.getString("End_Time");
 				String d_id = rs.getString("D_id");
 				String h_id = rs.getString("H_id");
-				String app_id = rs.getString("App_id");
+				String app_id = rs.getString("App_id");*/
+				
+//				appRead.setAppointment_Id(rs.getInt("Appointment_Id"));
+//				appRead.setAppointment_Type(rs.getString("Appointment_Type"));
+//				
+				
+				appScheduling.setSchedule_id(rs.getInt("Schedule_id"));
+				
+				appRead.setAppointment_Name(rs.getString("Appointment_Name"));
+				
+				appScheduling.setDate(rs.getDate("Date"));
+				appScheduling.setStart_Time(rs.getTime("Start_Time"));
+				appScheduling.setEnd_Time(rs.getTime("End_Time"));
+				appScheduling.setD_id(rs.getInt("D_id"));
+				appScheduling.setH_id(rs.getInt("H_id"));
+				appScheduling.setApp_id(rs.getInt("App_id"));
 
 				// Add into the html table
-				output += "<tr><td>" + schedule_id + "</td>";
-				output += "<td>" + appointment_name+ "</td>";
-				output += "<td>" + date + "</td>";
-				output += "<td>" + start_time + "</td>";
-				output += "<td>" + end_time + "</td>";
-				output += "<td>" + d_id + "</td>";
-				output += "<td>" + h_id + "</td>";
-				output += "<td>" + app_id + "</td>";
-
+            	output += "<tr><td>" + appScheduling.getSchedule_id() + "</td>";
+ 				output += "<td>" + appRead.getAppointment_Name()+ "</td>";
+				output += "<td>" + appScheduling.getDate() + "</td>";
+				output += "<td>" + appScheduling.getStart_Time() + "</td>";
+				output += "<td>" + appScheduling.getEnd_Time()+ "</td>";
+				output += "<td>" + appScheduling.getD_id()+ "</td>";
+				output += "<td>" + appScheduling.getH_id()+ "</td>";
+				output += "<td>" + appScheduling.getApp_id()+ "</td>";
+//				output += "<td>" + start_time + "</td>";
+//				output += "<td>" + end_time + "</td>";
+//				output += "<td>" + d_id + "</td>";
+//				output += "<td>" + h_id + "</td>";
+//				output += "<td>" + app_id + "</td>";
 			}
 
 			con.close();
@@ -197,35 +228,36 @@ public class Appoinment {
 	
 	//============================= Update Appointment Type ==============================
 	
-	public String updateAppointmentType(int appointment_id, String appointment_type, String appointment_name, String appointment_desc) {
+		public String updateAppointmentType(AppoinmentTypeBean appBean) {
 
-		String output = "";
+			String output = "";
 
-		try {
-			Connection con = dbObj.connect();
-			if (con == null) {
-				return "Error while connecting to the database for updating.";
+			try {
+				Connection con = dbObj.connect();
+				if (con == null) {
+					return "Error while connecting to the database for updating.";
+				}
+				// create a prepared statement
+				String query = "UPDATE appointment_type SET Appointment_Type=?,Appointment_Name=?,Appointment_Desc=? WHERE appointment_Id =?";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+
+				// binding values
+
+				preparedStmt.setString(1, appBean.getAppointment_Type());
+				preparedStmt.setString(2, appBean.getAppointment_Name());
+				preparedStmt.setString(3, appBean.getAppointment_Desc());
+				preparedStmt.setInt(4, appBean.getAppointment_Id());
+				// execute the statement
+				preparedStmt.execute();
+				con.close();
+				output = "Updated successfully [ ID : "+appBean.getAppointment_Id()+" ]";
+			} catch (Exception e) {
+				output = "Error while updating the Appoinment type " + appBean.getAppointment_Id();
+				System.err.println(e.getMessage());
 			}
-			// create a prepared statement
-			String query = "UPDATE appointment_type SET Appointment_Type=?,Appointment_Name=?,Appointment_Desc=? WHERE appointment_Id =?";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-
-			// binding values
-
-			preparedStmt.setString(1, appointment_type);
-			preparedStmt.setString(2, appointment_name);
-			preparedStmt.setString(3, appointment_desc);
-			preparedStmt.setInt(4, appointment_id);
-			// execute the statement
-			preparedStmt.execute();
-			con.close();
-			output = "Updated successfully [ ID : "+appointment_id+" ]";
-		} catch (Exception e) {
-			output = "Error while updating the Doctor " + appointment_id;
-			System.err.println(e.getMessage());
+			return output;
 		}
-		return output;
-	}
+
 
 	//============================= Update Appointment Scheduling ==============================
 	
@@ -263,9 +295,10 @@ public class Appoinment {
 	}
 	
 
+
 	//============================= Delete Appointment Type ==============================	
 	
-	public String deleteAppointmentTypes(String app_id) {
+	public String deleteAppointmentTypes(AppoinmentTypeBean appBean) {
 		String output = "";
 		try {
 
@@ -279,16 +312,16 @@ public class Appoinment {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values
-			preparedStmt.setString(1, app_id);
-
+			 preparedStmt.setInt(1, appBean.getAppointment_Id());
+			//preparedStmt.setInt(4, appBean.getAppointment_Id());
 			// execute the statement
 			preparedStmt.execute();
 			con.close();
-			output = "Deleted successfully [ Appointment Id : "+app_id +" ]";
+			output = "Deleted successfully [ Appointment Id : "+appBean.getAppointment_Id()+" ]";
 
 		} catch (Exception e) {
 
-			output = "Error while deleting the Doctor" + app_id;
+			output = "Error while deleting the appoinmentType" + appBean.getAppointment_Id();
 			System.err.println(e.getMessage());
 		}
 
