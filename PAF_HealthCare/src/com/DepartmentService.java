@@ -60,4 +60,24 @@ public class DepartmentService {
 		return output;
 
 	}
+	
+	@PUT 
+	@Path("/") 
+	@Consumes(MediaType.APPLICATION_JSON) 
+	@Produces(MediaType.TEXT_PLAIN) 
+	public String updateDeps(String DepData) { 
+		//Convert the input string to a JSON object  
+		JsonObject dep_Object = new JsonParser().parse(DepData).getAsJsonObject(); 
+		 
+		 //Read the values from the JSON object  
+		String Department_ID = dep_Object.get("Department_ID").getAsString();  
+		String Hospital_ID = dep_Object.get("Hospital_ID").getAsString();  
+		String Department_Name = dep_Object.get("Department_Name").getAsString();  
+		String Head = dep_Object.get("Head").getAsString();  
+		String Staff_Vacancies = dep_Object.get("Staff_Vacancies").getAsString();
+		 
+		String output = departmentObj.updateDepartments(Department_ID, Hospital_ID, Department_Name, Head, Staff_Vacancies); 
+		 
+		return output; 
+	}
 }
