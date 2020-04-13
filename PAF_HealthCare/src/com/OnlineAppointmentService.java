@@ -34,6 +34,7 @@ import com.google.gson.*;
 @Path("/Appointment")
 
 public class OnlineAppointmentService {
+	
 	OnlineAppointment appObj = new OnlineAppointment();
 
 	@GET
@@ -127,5 +128,5 @@ public class OnlineAppointmentService {
 	 String AppointmentID = doc.select("appointmentId").text();
 	 String output = appObj.deleteDetails(AppointmentID);
 	return output;
-	}
+	} 
 }
