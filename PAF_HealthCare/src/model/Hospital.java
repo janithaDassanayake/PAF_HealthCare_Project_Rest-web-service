@@ -12,6 +12,7 @@ public class Hospital {
 	DBConnection dbObj = new DBConnection();
 	
 	HospitalBean hosReadbean = new HospitalBean();
+	
 	//Read Hospitals Details
 	public String readHospitals() {  
 		String output = "";  
@@ -120,7 +121,7 @@ public class Hospital {
 	}
 	
 	//Update hospitals
-	public String updateHospitals(String hos_id, String name, String address, String city, String phone, String email, String desc, String hours)  {   
+	public String updateHospitals(HospitalBean hosUpdateBean)  {   
 		String output = ""; 
 	 
 	  try   {   
@@ -137,20 +138,20 @@ public class Hospital {
 	   PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
 	   // binding values    
-	   preparedStmt.setString(1, name);    
-	   preparedStmt.setString(2, address);    
-	   preparedStmt.setString(3, city);
-	   preparedStmt.setString(4, phone);
-	   preparedStmt.setString(5, email);
-	   preparedStmt.setString(6, desc);
-	   preparedStmt.setInt(7, Integer.parseInt(hours));
-	   preparedStmt.setInt(8, Integer.parseInt(hos_id));
+	   preparedStmt.setString(1, hosUpdateBean.getHospital_Name());    
+	   preparedStmt.setString(2, hosUpdateBean.getHospital_Address());    
+	   preparedStmt.setString(3, hosUpdateBean.getHospital_City());
+	   preparedStmt.setString(4, hosUpdateBean.getHospital_Phone());
+	   preparedStmt.setString(5, hosUpdateBean.getHospital_Email());
+	   preparedStmt.setString(6, hosUpdateBean.getHospital_Description());
+	   preparedStmt.setInt(7, hosUpdateBean.getOpen_Hours());
+	   preparedStmt.setInt(8, hosUpdateBean.getHospital_ID());
 	 
 	   // execute the statement    
 	   preparedStmt.execute();    
 	   con.close(); 
 	 
-	   output = "Updated successfully";   
+	   output = "Updated successfully "+hosUpdateBean.getHospital_Name()+" Hospital Details";   
 	   }   catch (Exception e)   {    
 		   output = "Error while updating the Hospitals.";    
 		   System.err.println(e.getMessage());   
