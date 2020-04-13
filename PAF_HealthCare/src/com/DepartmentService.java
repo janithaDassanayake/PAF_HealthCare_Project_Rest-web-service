@@ -68,15 +68,21 @@ public class DepartmentService {
 	public String updateDeps(String DepData) { 
 		//Convert the input string to a JSON object  
 		JsonObject dep_Object = new JsonParser().parse(DepData).getAsJsonObject(); 
-		 
+		DepartmentBean dep_bean = new DepartmentBean();
+		
 		 //Read the values from the JSON object  
-		String Department_ID = dep_Object.get("Department_ID").getAsString();  
-		String Hospital_ID = dep_Object.get("Hospital_ID").getAsString();  
-		String Department_Name = dep_Object.get("Department_Name").getAsString();  
-		String Head = dep_Object.get("Head").getAsString();  
-		String Staff_Vacancies = dep_Object.get("Staff_Vacancies").getAsString();
-		 
-		String output = departmentObj.updateDepartments(Department_ID, Hospital_ID, Department_Name, Head, Staff_Vacancies); 
+//		String Department_ID = dep_Object.get("Department_ID").getAsString();  
+//		String Hospital_ID = dep_Object.get("Hospital_ID").getAsString();  
+//		String Department_Name = dep_Object.get("Department_Name").getAsString();  
+//		String Head = dep_Object.get("Head").getAsString();  
+//		String Staff_Vacancies = dep_Object.get("Staff_Vacancies").getAsString();
+		dep_bean.setDepartment_ID(dep_Object.get("Department_ID").getAsInt());
+		dep_bean.setHospital_ID(dep_Object.get("Hospital_ID").getAsInt());
+		dep_bean.setDepartment_Name(dep_Object.get("Department_Name").getAsString());
+		dep_bean.setHead(dep_Object.get("Head").getAsString());
+		dep_bean.setStaff_Vacancies(dep_Object.get("Staff_Vacancies").getAsInt());
+		
+		String output = departmentObj.updateDepartments(dep_bean); 
 		 
 		return output; 
 	}
