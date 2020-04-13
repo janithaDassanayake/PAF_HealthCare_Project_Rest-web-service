@@ -109,4 +109,40 @@ public class Department {
 
 		 return output; 
 	}
+	
+	public String updateDepartments(String dep_id, String hos_id, String dep_name, String head, String staff_vacon)  {   
+		String output = ""; 
+	 
+	  try   {   
+		  Connection con = dbObj.connect();
+	 
+		  if (con == null)    {
+			  return "Error while connecting to the database for updating."; 
+		  } 
+	 
+	   // create a prepared statement    
+	   String query = "UPDATE departments SET Hospital_ID=?,Department_Name=?,Head=?,Staff_Vacancies=?      "
+	   		+ "			WHERE Department_ID=?"; 
+	 
+	   PreparedStatement preparedStmt = con.prepareStatement(query); 
+	 
+	   // binding values    
+	   preparedStmt.setInt(1, Integer.parseInt(hos_id));
+	   preparedStmt.setString(2, dep_name);    
+	   preparedStmt.setString(3, head);
+	   preparedStmt.setInt(4, Integer.parseInt(staff_vacon));
+	   preparedStmt.setInt(5, Integer.parseInt(dep_id));
+	 
+	   // execute the statement    
+	   preparedStmt.execute();    
+	   con.close(); 
+	 
+	   output = "Updated successfully";   
+	   }   catch (Exception e)   {    
+		   output = "Error while updating the Departments Details.";    
+		   System.err.println(e.getMessage());   
+	   } 
+	 
+	  return output;  
+	  }
 }
