@@ -69,8 +69,8 @@ public class HospitalService {
 	
 	@PUT 
 	@Path("/") 
-	@Consumes(MediaType.APPLICATION_JSON) 
-	@Produces(MediaType.TEXT_PLAIN) 
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String updateHospitals(String HospitalsData) { 
 		//Convert the input string to a JSON object  
 		JsonObject hospitalObject = new JsonParser().parse(HospitalsData).getAsJsonObject(); 
@@ -93,8 +93,8 @@ public class HospitalService {
 
 	@DELETE 
 	@Path("/") 
-	@Consumes(MediaType.APPLICATION_XML) 
-	@Produces(MediaType.TEXT_PLAIN) 
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteHospitals(String HospitalsData) {  
 		//Convert the input string to an XML document  
 		JsonObject doc = new JsonParser().parse(HospitalsData).getAsJsonObject();   

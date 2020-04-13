@@ -89,8 +89,8 @@ public class DepartmentService {
 	
 	@DELETE 
 	@Path("/") 
-	@Consumes(MediaType.APPLICATION_XML) 
-	@Produces(MediaType.TEXT_PLAIN) 
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteDepartments(String DepartmentsData) {  
 		//Convert the input string to an XML document  
 		JsonObject doc = new JsonParser().parse(DepartmentsData).getAsJsonObject();
