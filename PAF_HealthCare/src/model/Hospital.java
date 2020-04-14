@@ -55,6 +55,7 @@ public class Hospital {
 		  output += "<td>" + hosReadbean.getHospital_City() + "</td>"; 
 		  output += "<td>" + hosReadbean.getHospital_Phone() + "</td>";    
 		  output += "<td>" + hosReadbean.getHospital_Email() + "</td>";
+		  output += "<td>" + hosReadbean.getHospital_Description() + "</td>";		  
 		  output += "<td>" + hosReadbean.getOpen_Hours() + "</td>"; 
 
 //		   // buttons    
