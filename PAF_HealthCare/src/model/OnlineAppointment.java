@@ -99,59 +99,59 @@ public class OnlineAppointment {
 			return output;
 		}
 
-//		//method to update details
-//		public String updateDetails(String AppointmentID, String PatientID,  String DueDate, String ScheduleId)
-//		 {
-//		 String output = "";
-//		 try
-//		 {
-//		 Connection con = connect();
-//		 if (con == null)
-//		 {return "Error while connecting to the database for updating."; }
-//		 // create a prepared statement
-//		 String query = "UPDATE appointment_doctor SET patientId=?,dueDate=?,ScheduleId=?WHERE appointmentId=?"; 
-//		 PreparedStatement preparedStmt = con.prepareStatement(query);
-//		 // binding values
-//		 preparedStmt.setInt(1, Integer.parseInt(PatientID));
-//		 preparedStmt.setString(2, DueDate);
-//		 preparedStmt.setString(3, ScheduleId); 
-//		 preparedStmt.setInt(4, Integer.parseInt(AppointmentID));
-//		 // execute the statement
-//		 preparedStmt.execute();
-//		 con.close();
-//		 output = "Updated successfully";
-//		 }
-//		 catch (Exception e)
-//		 {
-//		 output = "Error while updating the details.";
-//		 System.err.println(e.getMessage());
-//		 }
-//		 return output;
-//		 }
-//
-//		//method to delete details
-//		public String deleteDetails(String AppointmentID) {
-//			String output = "";
-//			try {
-//				Connection con = connect();
-//				if (con == null) {
-//					return "Error while connecting to the database for deleting.";
-//				}
-//				// create a prepared statement
-//				String query = "delete from appointment_doctor where AppointmentID=?";
-//				PreparedStatement preparedStmt = con.prepareStatement(query);
-//				// binding values
-//				preparedStmt.setInt(1, Integer.parseInt(AppointmentID));
-//				// execute the statement
-//				preparedStmt.execute();
-//				con.close();
-//				output = "Deleted successfully";
-//			} catch (Exception e) {
-//				output = "Error while deleting the details.";
-//				System.err.println(e.getMessage());
-//			}
-//			return output;
-//		}
+		//method to update details
+		public String updateDetails(String AppointmentID, String PatientID,  String DueDate, String ScheduleId)
+		 {
+		 String output = "";
+		 try
+		 {
+		 Connection con = dbObj.connect();
+		 if (con == null)
+		 {return "Error while connecting to the database for updating."; }
+		 // create a prepared statement
+		 String query = "UPDATE appointment_doctor SET patientId=?,dueDate=?,ScheduleId=?WHERE appointmentId=?"; 
+		 PreparedStatement preparedStmt = con.prepareStatement(query);
+		 // binding values
+		 preparedStmt.setInt(1, Integer.parseInt(PatientID));
+		 preparedStmt.setString(2, DueDate);
+		 preparedStmt.setString(3, ScheduleId); 
+		 preparedStmt.setInt(4, Integer.parseInt(AppointmentID));
+		 // execute the statement
+		 preparedStmt.execute();
+		 con.close();
+		 output = "Updated successfully";
+		 }
+		 catch (Exception e)
+		 {
+		 output = "Error while updating the details.";
+		 System.err.println(e.getMessage());
+		 }
+		 return output;
+		 }
+
+		//method to delete details
+		public String deleteDetails(String AppointmentID) {
+			String output = "";
+			try {
+				Connection con = dbObj.connect();
+				if (con == null) {
+					return "Error while connecting to the database for deleting.";
+				}
+				// create a prepared statement
+				String query = "delete from appointment_doctor where AppointmentID=?";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				// binding values
+				preparedStmt.setInt(1, Integer.parseInt(AppointmentID));
+				// execute the statement
+				preparedStmt.execute();
+				con.close();
+				output = "Deleted successfully";
+			} catch (Exception e) {
+				output = "Error while deleting the details.";
+				System.err.println(e.getMessage());
+			}
+			return output;
+		}
 
 //	// View Doctor Schedule
 //	public String viewAllSchedule() {
