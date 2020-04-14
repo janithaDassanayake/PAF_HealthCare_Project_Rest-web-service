@@ -93,7 +93,7 @@ public class Hospital {
 			}
 
 			// create a prepared statement   
-			String query = " insert into hospitals (`Hospital_ID`,`Hospital_Name`,`Hospital_Address`,`Hospital_City`,`Hospital_Phone`,`Hospital_Email`,`Hospital_Description`,`Open_Hours`)"+" values (?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = " insert into hospitals (`Hospital_Name`,`Hospital_Address`,`Hospital_City`,`Hospital_Phone`,`Hospital_Email`,`Hospital_Description`,`Open_Hours`)"+" values (?, ?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
@@ -172,7 +172,7 @@ public class Hospital {
 	  } 
 	 
 	  // create a prepared statement   
-	  String query = "delete from hospitals where Hospital_ID=?"; 
+	  String query = "DELETE FROM hospitals WHERE Hospital_ID=?"; 
 	 
 	  PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 

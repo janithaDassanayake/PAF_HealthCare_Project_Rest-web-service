@@ -96,16 +96,16 @@ public class Department {
 			}
 
 			// create a prepared statement   
-			String query = " insert into departments (`Department_ID`,`Hospital_ID`,`Department_Name`,`Head`,`Staff_Vacancies`)"+" values (?, ?, ?, ?, ?)";
+			String query = " insert into departments (`Hospital_ID`,`Department_Name`,`Head`,`Staff_Vacancies`)"+" values (?, ?, ?, ?)";
 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values 
-			preparedStmt.setInt(1, 0);   
-			preparedStmt.setInt(2, depBean.getHospital_ID());
-			preparedStmt.setString(3, depBean.getDepartment_Name());    
-			preparedStmt.setString(4, depBean.getHead());
-			preparedStmt.setInt(5, depBean.getStaff_Vacancies());  
+			//preparedStmt.setInt(1, 0);   
+			preparedStmt.setInt(1, depBean.getHospital_ID());
+			preparedStmt.setString(2, depBean.getDepartment_Name());    
+			preparedStmt.setString(3, depBean.getHead());
+			preparedStmt.setInt(4, depBean.getStaff_Vacancies());  
 
 			//execute the statement   
 			preparedStmt.execute();   
@@ -168,7 +168,7 @@ public class Department {
 	  } 
 	 
 	  // create a prepared statement   
-	  String query = "delete from departments where Department_ID=? && Hospital_ID=?"; 
+	  String query = "DELETE FROM departments WHERE Department_ID=? && Hospital_ID=?"; 
 	 
 	  PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
