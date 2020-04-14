@@ -132,9 +132,9 @@ public class Hospital {
 		  } 
 	 
 	   // create a prepared statement    
-	   String query = "UPDATE hospitals SET Hospital_Name=?,Hospital_Address=?,Hospital_City=?,Hospital_Phone=?,Hospital_Email=?,Hospital_Description=?,Open_Hours=?      "
-	   		+ "			WHERE Hospital_ID=?"; 
-	 
+		   String query = "UPDATE hospitals SET Hospital_Name=?,Hospital_Address=?,Hospital_City=?,Hospital_Phone=?,Hospital_Email=?,Hospital_Description=?,Open_Hours=?      "
+			   		+ "			WHERE Hospital_ID=?"; 
+			 
 	   PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
 	   // binding values    
@@ -151,7 +151,7 @@ public class Hospital {
 	   preparedStmt.execute();    
 	   con.close(); 
 	 
-	   output = "Updated successfully "+hosUpdateBean.getHospital_Name()+" Hospital Details";   
+	   output = "Updated successfully "+hosUpdateBean.getHospital_Name()+" Details";   
 	   }   catch (Exception e)   {    
 		   output = "Error while updating the Hospital.";    
 		   System.err.println(e.getMessage());   
