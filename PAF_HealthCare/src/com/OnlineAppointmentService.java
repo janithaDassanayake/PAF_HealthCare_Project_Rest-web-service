@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Timer;
 import model.OnlineAppointment;
+import bean.DoctorAppoinmentBean;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -75,61 +76,61 @@ public class OnlineAppointmentService {
 			}
 			return result;
 		}
-	
-	@PUT
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateDetails(String details)
-	{
-	 String result = null;
-	//Convert the input string to a JSON object
-	 JsonObject detailsObject = new JsonParser().parse(details).getAsJsonObject();
-	//Read the values from the JSON object
-	 String AppointmentID = detailsObject.get("AppointmentID").getAsString();
-	 String PatientID = detailsObject.get("PatientID").getAsString();
-	 String DueDate = detailsObject.get("DueDate").getAsString();
-	 String ScheduleId = detailsObject.get("ScheduleId").getAsString();
-			 
-	 // ==================convert util time to sql time=====================
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-			DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
-
-			try {
-				java.util.Date date = (java.util.Date) format.parse(DueDate);
-				java.sql.Date sDate = convertUtilToSql(date);
-
-				 String output = appObj.updateDetails(AppointmentID, PatientID, DueDate, ScheduleId);
-				
-				result=output;
-
-			} catch (ParseException e) {
-				e.printStackTrace();
-				result = e.toString();
-			}
-			return result;
-		}
+//	
+//	@PUT
+//	@Path("/")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.TEXT_PLAIN)
+//	public String updateDetails(String details)
+//	{
+//	 String result = null;
+//	//Convert the input string to a JSON object
+//	 JsonObject detailsObject = new JsonParser().parse(details).getAsJsonObject();
+//	//Read the values from the JSON object
+//	 String AppointmentID = detailsObject.get("AppointmentID").getAsString();
+//	 String PatientID = detailsObject.get("PatientID").getAsString();
+//	 String DueDate = detailsObject.get("DueDate").getAsString();
+//	 String ScheduleId = detailsObject.get("ScheduleId").getAsString();
+//			 
+//	 // ==================convert util time to sql time=====================
+//			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+//
+//			DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
+//
+//			try {
+//				java.util.Date date = (java.util.Date) format.parse(DueDate);
+//				java.sql.Date sDate = convertUtilToSql(date);
+//
+//				 String output = appObj.updateDetails(AppointmentID, PatientID, DueDate, ScheduleId);
+//				
+//				result=output;
+//
+//			} catch (ParseException e) {
+//				e.printStackTrace();
+//				result = e.toString();
+//			}
+//			return result;
+//		}
 	// =================== return sql date and time======================
 			private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
 				java.sql.Date sDate = new java.sql.Date(uDate.getTime());
 				return sDate;
 			}
 	
-	@DELETE
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteDetails(String details)
-	{
-	//Convert the input string to an XML document
-	 Document doc = Jsoup.parse(details, "", Parser.xmlParser());
-
-	//Read the value from the element <itemID>
-	 String AppointmentID = doc.select("appointmentId").text();
-	 String output = appObj.deleteDetails(AppointmentID);
-	return output;
-	}
+//	@DELETE
+//	@Path("/")
+//	@Consumes(MediaType.APPLICATION_XML)
+//	@Produces(MediaType.TEXT_PLAIN)
+//	public String deleteDetails(String details)
+//	{
+//	//Convert the input string to an XML document
+//	 Document doc = Jsoup.parse(details, "", Parser.xmlParser());
+//
+//	//Read the value from the element <itemID>
+//	 String AppointmentID = doc.select("appointmentId").text();
+//	 String output = appObj.deleteDetails(AppointmentID);
+//	return output;
+//	}
 //	
 //	// get doctors' Schedules
 //	@GET
