@@ -147,8 +147,7 @@ public class OnlineAppointment {
 			}
 			return output;
 		}
-//	
-//	
+
 //	// View Doctor Schedule
 //	public String viewAllSchedule() {
 //
