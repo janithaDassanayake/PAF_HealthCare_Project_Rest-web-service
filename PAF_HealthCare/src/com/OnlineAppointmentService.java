@@ -31,19 +31,22 @@ import org.jsoup.nodes.Document;
 
 //for json
 import com.google.gson.*;
+
 @Path("/Appointment")
 public class OnlineAppointmentService {
+
 	OnlineAppointment appObj = new OnlineAppointment();
 
 	@GET
-	@Path("/appointment-doctor")
+	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	public String readItems() {
 		return  appObj.readDetails();
 	}
+
 	
 	@POST
-	@Path("/appointment-doctor")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertDetails(@FormParam("patientId") int PatientID,
@@ -74,7 +77,7 @@ public class OnlineAppointmentService {
 		}
 	
 	@PUT
-	@Path("/appointment-doctor")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateDetails(String details)
@@ -114,7 +117,7 @@ public class OnlineAppointmentService {
 			}
 	
 	@DELETE
-	@Path("/appointment-doctor")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deleteDetails(String details)
@@ -127,12 +130,12 @@ public class OnlineAppointmentService {
 	 String output = appObj.deleteDetails(AppointmentID);
 	return output;
 	}
-	
-	// get doctors' Schedules
-	@GET
-	@Path("/ShowSchedule")
-	@Produces(MediaType.TEXT_HTML)
-	public String readAllSchedules() {
-		return appObj.viewAllSchedule();
-	}
+//	
+//	// get doctors' Schedules
+//	@GET
+//	@Path("/ShowSchedule")
+//	@Produces(MediaType.TEXT_HTML)
+//	public String readAllSchedules() {
+//		return onlineAppObj.viewAllSchedule();
+//	}
 }
