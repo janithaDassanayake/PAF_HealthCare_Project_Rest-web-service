@@ -25,7 +25,8 @@ public class Hospital {
 			} 
 
 		// Prepare the html table to be displayed   
-		output = "<table border=\"1\"><tr><th>Hospital Name</th>"    +""
+		output = "<table border=\"1\"><tr><th>Hospital ID</th>"    +""
+				+ "<th>Hospital Name</th>"    + ""
 				+ "<th>Hospital Address</th><th>Hospital City</th>"    + ""
 				+ "<th>Hospital Phone</th><th>Hospital Email</th>"    + ""
 				+ "<th>Hospital Description</th><th>Open Hours</th>";
@@ -97,14 +98,14 @@ public class Hospital {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values 
-			preparedStmt.setInt(1, 0);   
-			preparedStmt.setString(2, hos_bean.getHospital_Name());   
-			preparedStmt.setString(3, hos_bean.getHospital_Address());    
-			preparedStmt.setString(4, hos_bean.getHospital_City());
-			preparedStmt.setString(5, hos_bean.getHospital_Phone());
-			preparedStmt.setString(6, hos_bean.getHospital_Email());
-			preparedStmt.setString(7, hos_bean.getHospital_Description());
-			preparedStmt.setInt(8, hos_bean.getOpen_Hours());  
+			//preparedStmt.setInt(1, 0);   
+			preparedStmt.setString(1, hos_bean.getHospital_Name());   
+			preparedStmt.setString(2, hos_bean.getHospital_Address());    
+			preparedStmt.setString(3, hos_bean.getHospital_City());
+			preparedStmt.setString(4, hos_bean.getHospital_Phone());
+			preparedStmt.setString(5, hos_bean.getHospital_Email());
+			preparedStmt.setString(6, hos_bean.getHospital_Description());
+			preparedStmt.setInt(7, hos_bean.getOpen_Hours());  
 
 			//execute the statement   
 			preparedStmt.execute();   

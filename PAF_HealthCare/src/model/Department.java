@@ -26,8 +26,9 @@ public class Department {
 			} 
 
 		// Prepare the html table to be displayed   
-		output = "<table border=\"1\"><tr><th>Department Name</th>"    +""
-				+ "<th>Hospital Name</th><th>Head of Department</th>"    + ""
+		output = "<table border=\"1\"><tr><th>Department ID</th>"    +""
+				+ "<th>Department Name</th><th>Hospital Name</th>"    + ""
+				+ "<th>Head of Department</th>"    + ""
 				+ "<th>Number of Staff Vaconcies</th>";
 		//+ ""
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
@@ -51,7 +52,8 @@ public class Department {
 			  
 
 		   // Add into the html table    
-		  output += "<tr><td>" + depReadbean.getDepartment_Name() + "</td>";    
+		  output += "<tr><td>" + depReadbean.getDepartment_ID() + "</td>"; 
+		  output += "<td>" + depReadbean.getDepartment_Name() + "</td>";
 		  output += "<td>" + hospReadbean.getHospital_Name() + "</td>";
 		  output += "<td>" + depReadbean.getHead() + "</td>";
 		  output += "<td>" + depReadbean.getStaff_Vacancies() + "</td>";
