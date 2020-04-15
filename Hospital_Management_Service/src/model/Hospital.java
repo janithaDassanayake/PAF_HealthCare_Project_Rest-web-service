@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import bean.HospitalDepartmentBean;
+import bean.HospitalBean;
 
-public class Hospital_Department {
+public class Hospital {
 	//A common method to connect to the DB 
 	private Connection connect() {
 		Connection con = null;
@@ -31,7 +31,7 @@ public class Hospital_Department {
 	public String readHospitals() {  
 		String output = "";  
 		
-		HospitalDepartmentBean hosReadbean = new HospitalDepartmentBean();
+		HospitalBean hosReadbean = new HospitalBean();
 
 		try {  
 			Connection con = connect();  
@@ -98,7 +98,7 @@ public class Hospital_Department {
 		}
 	
 	//Insert Hospitals
-	public String insertHospitals(HospitalDepartmentBean hos_bean) {
+	public String insertHospitals(HospitalBean hos_bean) {
 		String output = "";
 
 		try {
@@ -138,7 +138,7 @@ public class Hospital_Department {
 	}
 	
 	//Update hospitals
-	public String updateHospitals(HospitalDepartmentBean hosUpdateBean)  {   
+	public String updateHospitals(HospitalBean hosUpdateBean)  {   
 		String output = ""; 
 	 
 	  try   {   
@@ -177,7 +177,7 @@ public class Hospital_Department {
 	  return output;  
 	  }
 	
-	public String deleteHospitals(HospitalDepartmentBean hosDeleteBean) {  
+	public String deleteHospitals(HospitalBean hosDeleteBean) {  
 		String output = ""; 
 	 
 	 try  {   
@@ -208,5 +208,3 @@ public class Hospital_Department {
 	 return output; 
 	 }
 }
-
-
