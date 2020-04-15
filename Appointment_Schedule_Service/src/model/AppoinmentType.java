@@ -22,7 +22,7 @@ public class AppoinmentType {
 
 		String output = "";
 		
-		beans.AppoinmentTypeBean  TypeRead = new AppoinmentTypeBean();
+		AppoinmentTypeBean  TypeRead = new AppoinmentTypeBean();
 		
 		try {
 			Connection con = dbObj.connect();
@@ -39,11 +39,7 @@ public class AppoinmentType {
 
 			// iterate through the rows in the result set
 			while (rs.next()) {
-//				String app_id = rs.getString("appointment_Id");
-//				String app_type = rs.getString("Appointment_Type");
-//				String app_name = rs.getString("Appointment_Name");
-//				String app_desc = rs.getString("Appointment_Desc");
-				
+
 				TypeRead.setAppointment_Id(rs.getInt("Appointment_Id"));
 				TypeRead.setAppointment_Type(rs.getString("Appointment_Type"));
 				TypeRead.setAppointment_Name(rs.getString("Appointment_Name"));
