@@ -52,7 +52,7 @@ public class Department {
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
 		 // String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE (d.Hospital_ID = h.Hospital_ID) AND (d.Head = s.DoctorID)";
-		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d inner join doctor s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID ";
+		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctor s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID ";
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs1 = stmt.executeQuery(query1); 
 		  
