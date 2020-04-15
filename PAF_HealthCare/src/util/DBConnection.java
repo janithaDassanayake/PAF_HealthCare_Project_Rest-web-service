@@ -12,15 +12,15 @@ public class DBConnection {
 
 		try {
 
-			Class.forName("com.mysql.jdbc.Driver");
-			//Class.forName("com.mysql.cj.jdbc.Driver");
+			//Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 //			con = DriverManager.getConnection("jdbc:mysql://localhost/health-system", "root", "");
 //			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 			// For testing
-			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb", "root", "");
-//			con = DriverManager.getConnection(
-//					"jdbc:mysql://127.0.0.1:3306/healthcaredb?useTimezone=true&serverTimezone=UTC",
-//					"root", "");
+			//con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb", "root", "");
+			con = DriverManager.getConnection(
+					"jdbc:mysql://127.0.0.1:3306/healthcaredb?useTimezone=true&serverTimezone=UTC",
+					"root", "");
 			System.out.print("Successfully connected");
 
 		} catch (Exception e) {
