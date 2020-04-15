@@ -60,7 +60,8 @@ public class Department {
 			  depReadbean.setDepartment_ID(rs1.getInt("Department_ID"));
 			  depReadbean.setDepartment_Name(rs1.getString("Department_Name"));
 			  hospReadbean.setHospital_Name(rs1.getString("Hospital_Name"));
-			  depReadbean.setHead(rs1.getInt("DoctorName"));
+			  //depReadbean.setHead(rs1.getString("DoctorName"));
+			  String Head = rs1.getString("DoctorName");
 			  depReadbean.setStaff_Vacancies(rs1.getInt("Staff_Vacancies"));
 			  
 
