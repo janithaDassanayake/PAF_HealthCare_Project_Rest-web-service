@@ -8,38 +8,20 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
 
+import util.DBconnection;
+
+
 
 public class AppoinmentType {
-	public Connection connect() {
-		Connection con = null;
-
-		try {
-
-			Class.forName("com.mysql.jdbc.Driver");
-			//con = DriverManager.getConnection("jdbc:mysql://localhost/health-system", "root", "");
-			//con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
-			// For testing
-			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/heathcarepaf", "root", "");
-			System.out.print("Successfully connected");
-
-		} catch (Exception e) {
-
-			System.out.print("connection fail");
-			e.printStackTrace();
-			System.out.print(e);
-		}
-
-		return con;
-	}
 	
-
+	DBconnection dbObj = new DBconnection();
 	//===================== View Appointment Types ==========================
 	
 	public String viewAppointmentTypes() {
 
 		String output = "";
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for reading.";
 			}
@@ -78,13 +60,14 @@ public class AppoinmentType {
 		return output;
 	}
 	
+	
 	//========================= View All Schedule ==========================
 	
 	public String viewAllSchedule() {
 
 		String output = "";
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for reading.";
 			}
@@ -142,7 +125,7 @@ public class AppoinmentType {
 		String output = "";
 		try {
 
-			Connection con = connect();
+			Connection con = dbObj.connect();
 
 			if (con == null) {
 				return "Error while connecting to the database";
@@ -180,7 +163,7 @@ public class AppoinmentType {
 		String output = "";
 		try {
 
-			Connection con = connect();
+			Connection con = dbObj.connect();
 
 			if (con == null) {
 				return "Error while connecting to the database";
@@ -215,7 +198,7 @@ public class AppoinmentType {
 		String output = "";
 
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for updating.";
 			}
@@ -247,7 +230,7 @@ public class AppoinmentType {
 		String output = "";
 
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for updating.";
 			}
@@ -282,7 +265,7 @@ public class AppoinmentType {
 		String output = "";
 		try {
 
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for deleting.";
 			}
@@ -314,7 +297,7 @@ public class AppoinmentType {
 		String output = "";
 		try {
 
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for deleting.";
 			}
