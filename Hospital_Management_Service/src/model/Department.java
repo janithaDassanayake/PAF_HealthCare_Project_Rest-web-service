@@ -51,7 +51,8 @@ public class Department {
 		//+ ""
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
-		  String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE (d.Hospital_ID = h.Hospital_ID) AND (d.Head = s.DoctorID)";
+		 // String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE (d.Hospital_ID = h.Hospital_ID) AND (d.Head = s.DoctorID)";
+		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,d.Head,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE d.Hospital_ID = h.Hospital_ID ";
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs1 = stmt.executeQuery(query1); 
 		  
@@ -60,8 +61,8 @@ public class Department {
 			  depReadbean.setDepartment_ID(rs1.getInt("Department_ID"));
 			  depReadbean.setDepartment_Name(rs1.getString("Department_Name"));
 			  hospReadbean.setHospital_Name(rs1.getString("Hospital_Name"));
-			  //depReadbean.setHead(rs1.getString("DoctorName"));
-			  String DoctorName = rs1.getString("DoctorName");
+			  depReadbean.setHead(rs1.getInt("Head"));
+			  //String DoctorName = rs1.getString("DoctorName");
 			  depReadbean.setStaff_Vacancies(rs1.getInt("Staff_Vacancies"));
 			  
 
