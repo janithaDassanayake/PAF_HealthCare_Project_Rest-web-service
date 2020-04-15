@@ -51,7 +51,7 @@ public class Department {
 		//+ ""
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
-		  String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE d.Hospital_ID = h.Hospital_ID AND s.DoctorID = d.Head ";
+		  String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE d.Hospital_ID = h.Hospital_ID , s.DoctorID = d.Head ";
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs1 = stmt.executeQuery(query1); 
 		  
