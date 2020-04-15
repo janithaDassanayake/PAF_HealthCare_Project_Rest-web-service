@@ -19,7 +19,7 @@ public class Hospital_DepartmentService {
 	Hospital_Department hospitalObj = new Hospital_Department();
 	
 	@GET  
-	@Path("/")  
+	@Path("/Hospital")  
 	@Produces(MediaType.TEXT_HTML)  
 	public String readHospitals()  {   
 		return hospitalObj.readHospitals();
