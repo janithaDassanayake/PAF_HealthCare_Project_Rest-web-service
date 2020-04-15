@@ -65,7 +65,7 @@ public class AppoinmentType {
 	
 	//========================== Add In To Appointment Types =========================
 	
-		public String addAppointmentType(AppoinmentTypeBean appBean) {
+		public String addAppointmentType(AppoinmentTypeBean TypeBean) {
 
 			String output = "";
 			try {
@@ -80,9 +80,9 @@ public class AppoinmentType {
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 
 				// binding values
-				preparedStmt.setString(1, appBean.getAppointment_Type());
-				preparedStmt.setString(2, appBean.getAppointment_Name());
-				preparedStmt.setString(3, appBean.getAppointment_Desc());
+				preparedStmt.setString(1, TypeBean.getAppointment_Type());
+				preparedStmt.setString(2, TypeBean.getAppointment_Name());
+				preparedStmt.setString(3, TypeBean.getAppointment_Desc());
 
 				// execute the statement
 				preparedStmt.execute();
@@ -98,39 +98,39 @@ public class AppoinmentType {
 		}
 	
 	
-	//============================= Update Appointment Type ==============================
-	
-	public String updateAppointmentType(int appointment_id, String appointment_type, String appointment_name, String appointment_desc) {
+		//============================= Update Appointment Type ==============================
+		
+			public String updateAppointmentType(AppoinmentTypeBean TypeBean) {
 
-		String output = "";
+				String output = "";
 
-		try {
-			Connection con = dbObj.connect();
-			if (con == null) {
-				return "Error while connecting to the database for updating.";
+				try {
+					Connection con = dbObj.connect();
+					if (con == null) {
+						return "Error while connecting to the database for updating.";
+					}
+					// create a prepared statement
+					String query = "UPDATE appointment_type SET Appointment_Type=?,Appointment_Name=?,Appointment_Desc=? WHERE appointment_Id =?";
+					PreparedStatement preparedStmt = con.prepareStatement(query);
+
+					// binding values
+
+					preparedStmt.setString(1, TypeBean.getAppointment_Type());
+					preparedStmt.setString(2, TypeBean.getAppointment_Name());
+					preparedStmt.setString(3, TypeBean.getAppointment_Desc());
+					preparedStmt.setInt(4, TypeBean.getAppointment_Id());
+					// execute the statement
+					preparedStmt.execute();
+					con.close();
+					output = "Updated successfully [ ID : "+TypeBean.getAppointment_Id()+" ]";
+				} catch (Exception e) {
+					output = "Error while updating the Appoinment type " + TypeBean.getAppointment_Id();
+					System.err.println(e.getMessage());
+				}
+				return output;
 			}
-			// create a prepared statement
-			String query = "UPDATE appointment_type SET Appointment_Type=?,Appointment_Name=?,Appointment_Desc=? WHERE appointment_Id =?";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
 
-			// binding values
 
-			preparedStmt.setString(1, appointment_type);
-			preparedStmt.setString(2, appointment_name);
-			preparedStmt.setString(3, appointment_desc);
-			preparedStmt.setInt(4, appointment_id);
-			// execute the statement
-			preparedStmt.execute();
-			con.close();
-			output = "Updated successfully [ ID : "+appointment_id+" ]";
-		} catch (Exception e) {
-			output = "Error while updating the Appoinmet Type " + appointment_id;
-			System.err.println(e.getMessage());
-		}
-		return output;
-	}
-
-	
 	//============================= Delete Appointment Type ==============================	
 	
 	public String deleteAppointmentTypes(String app_id) {

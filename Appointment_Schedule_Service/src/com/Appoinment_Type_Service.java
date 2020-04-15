@@ -93,29 +93,36 @@ public class Appoinment_Type_Service {
 
 	
 	
-	/*
-
-	// update Types
-	@PUT
-	@Path("/appointment-type")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String updateAppType(String TypeData) {
-
-		// Convert the input string to a JSON object
-		JsonObject djosnObj = new JsonParser().parse(TypeData).getAsJsonObject();
-
-		// Read the values from the JSON object
-		int appId = djosnObj.get("appointment_Id").getAsInt();
-		String appType = djosnObj.get("appointment_Type").getAsString();
-		String appName = djosnObj.get("appointment_Name").getAsString();
-		String appDesc = djosnObj.get("appointment_Desc").getAsString();
-
-		String output = aObj.updateAppointmentType(appId, appType, appName, appDesc);
-		return output;
-	}
-
 	
+	// update Types
+		@PUT
+		@Path("/appointment-type")
+		@Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.TEXT_PLAIN)
+		public String updateAppType(String TypeData) {
+
+			// Convert the input string to a JSON object
+			JsonObject djosnObj = new JsonParser().parse(TypeData).getAsJsonObject();
+			AppoinmentTypeBean	appTypeBean = new AppoinmentTypeBean();
+
+			// Read the values from the JSON object
+//			int appId = djosnObj.get("appointment_Id").getAsInt();
+//			String appType = djosnObj.get("appointment_Type").getAsString();
+//			String appName = djosnObj.get("appointment_Name").getAsString();
+//			String appDesc = djosnObj.get("appointment_Desc").getAsString();
+			appTypeBean.setAppointment_Id(djosnObj.get("Appointment_Id").getAsInt());
+			appTypeBean.setAppointment_Type(djosnObj.get("Appointment_Type").getAsString());
+			appTypeBean.setAppointment_Name(djosnObj.get("Appointment_Name").getAsString());
+			appTypeBean.setAppointment_Desc(djosnObj.get("Appointment_Desc").getAsString());
+			
+			String output = appoinmentType.updateAppointmentType(appTypeBean);
+			return output;
+		}
+	
+	
+	
+
+	/*
 	
 	// delete Types
 	@DELETE
