@@ -27,8 +27,6 @@ public class Schedule{
 	}
 	
 	// View Doctor Schedule
-	//public int d_id;
-	
 	public String viewAllSchedule() {
 
 		String output = "";

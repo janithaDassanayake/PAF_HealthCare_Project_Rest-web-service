@@ -23,11 +23,11 @@ import com.google.gson.JsonParser;
 import model.Schedule;
 
 @Path("/Appoinments")
-public class AppointmentService {
+public class DoctorSchedule {
 
 	Schedule aObj = new Schedule();
 
-	// get all Schedules
+	// get doctors' Schedules
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
