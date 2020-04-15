@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import bean.HospitalDepartmentBean;
+import bean.HospitalBean;
 import model.Hospital_Department;
 
 public class Hospital_DepartmentService {
@@ -49,7 +49,7 @@ public class Hospital_DepartmentService {
 		// Convert the input string to a JSON object
 		JsonObject hosjosnObj = new JsonParser().parse(HospitalData).getAsJsonObject();
 	
-		HospitalDepartmentBean hosBean = new HospitalDepartmentBean();
+		HospitalBean hosBean = new HospitalBean();
 		
 		hosBean.setHospital_Name(hosjosnObj.get("Hospital_Name").getAsString());
 		hosBean.setHospital_Address(hosjosnObj.get("Hospital_Address").getAsString());
@@ -72,7 +72,7 @@ public class Hospital_DepartmentService {
 	public String updateHospitals(String HospitalsData) { 
 		//Convert the input string to a JSON object  
 		JsonObject hospitalObject = new JsonParser().parse(HospitalsData).getAsJsonObject(); 
-		HospitalDepartmentBean hosUpdate_bean = new HospitalDepartmentBean();
+		HospitalBean hosUpdate_bean = new HospitalBean();
 		
 		 //Read the values from the JSON object  
 		hosUpdate_bean.setHospital_ID(hospitalObject.get("Hospital_ID").getAsInt());
@@ -96,7 +96,7 @@ public class Hospital_DepartmentService {
 	public String deleteHospitals(String HospitalsData) {  
 		// Convert the input string to a JSON object 
 		JsonObject doc = new JsonParser().parse(HospitalsData).getAsJsonObject();   
-		HospitalDepartmentBean hosDel_bean = new HospitalDepartmentBean();
+		HospitalBean hosDel_bean = new HospitalBean();
 		
 		//Read the value from the element <Hospital_ID>  
 		hosDel_bean.setHospital_ID(doc.get("Hospital_ID").getAsInt());
