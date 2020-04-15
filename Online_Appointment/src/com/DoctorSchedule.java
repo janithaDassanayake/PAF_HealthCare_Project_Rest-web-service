@@ -22,7 +22,7 @@ import com.google.gson.JsonParser;
 
 import model.Schedule;
 
-@Path("/Appoinments")
+@Path("/Schedule")
 public class DoctorSchedule {
 
 	Schedule aObj = new Schedule();
