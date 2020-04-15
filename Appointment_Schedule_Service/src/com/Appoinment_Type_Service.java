@@ -19,13 +19,14 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import beans.AppoinmentTypeBean;
 import model.AppoinmentSchedule;
 import model.AppoinmentType;
 
 @Path("/AppoinmentTypes")
 public class Appoinment_Type_Service {
 	
-	AppoinmentType aObj = new AppoinmentType();
+	AppoinmentType appoinmentType = new AppoinmentType();
 
 	
 	// get all types
@@ -33,7 +34,7 @@ public class Appoinment_Type_Service {
 	@Path("/appointment-type")
 	@Produces(MediaType.TEXT_HTML)
 	public String readAllTypes() {
-		return aObj.viewAppointmentTypes();
+		return appoinmentType.viewAppointmentTypes();
 	}
 
 	
@@ -68,6 +69,7 @@ public class Appoinment_Type_Service {
 //		return output;
 //	}
 
+
 	// add types
 	@POST
 	@Path("/appointment-type")
@@ -76,20 +78,22 @@ public class Appoinment_Type_Service {
 	public String enterType(String TypeData) {
 		// Convert the input string to a JSON object
 		JsonObject djosnObj = new JsonParser().parse(TypeData).getAsJsonObject();
-
+	
+		AppoinmentTypeBean	appTypeBean = new AppoinmentTypeBean();
+		
+		appTypeBean.setAppointment_Type(djosnObj.get("Appointment_Type").getAsString());
+		appTypeBean.setAppointment_Name(djosnObj.get("Appointment_Name").getAsString());
+		appTypeBean.setAppointment_Desc(djosnObj.get("Appointment_Desc").getAsString());
 		// Read the values from the JSON object
-		String appType = djosnObj.get("appointment_Type").getAsString();
-		String appName = djosnObj.get("appointment_Name").getAsString();
-		String appDesc = djosnObj.get("appointment_Desc").getAsString();
-
-		String output = aObj.addAppointmentType(appType, appName, appDesc);
+	
+		String output = appoinmentType.addAppointmentType(appTypeBean);
 		return output;
 
 	}
 
 	
 	
-	
+	/*
 
 	// update Types
 	@PUT
@@ -128,6 +132,6 @@ public class Appoinment_Type_Service {
 		return output;
 	}
 
-	
+	*/
 	
 }

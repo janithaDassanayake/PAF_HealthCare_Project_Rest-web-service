@@ -65,38 +65,37 @@ public class AppoinmentType {
 	
 	//========================== Add In To Appointment Types =========================
 	
-	public String addAppointmentType(String appointment_type, String appointment_name, String appointment_desc) {
+		public String addAppointmentType(AppoinmentTypeBean appBean) {
 
-		String output = "";
-		try {
+			String output = "";
+			try {
 
-			Connection con = dbObj.connect();
+				Connection con = dbObj.connect();
+				if (con == null) {
+					return "Error while connecting to the database";
+				}
 
-			if (con == null) {
-				return "Error while connecting to the database";
+				// create a prepared statement
+				String query = " INSERT INTO appointment_type (Appointment_Type, Appointment_Name, Appointment_Desc) VALUES (?, ?, ?)";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+
+				// binding values
+				preparedStmt.setString(1, appBean.getAppointment_Type());
+				preparedStmt.setString(2, appBean.getAppointment_Name());
+				preparedStmt.setString(3, appBean.getAppointment_Desc());
+
+				// execute the statement
+				preparedStmt.execute();
+				con.close();
+				output = "Inserted successfully";
+
+			} catch (Exception e) {
+				output = "Error while inserting";
+				System.err.println(e.getMessage());
 			}
 
-			// create a prepared statement
-			String query = " INSERT INTO appointment_type (Appointment_Type, Appointment_Name, Appointment_Desc) VALUES (?, ?, ?)";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-
-			// binding values
-			preparedStmt.setString(1, appointment_type);
-			preparedStmt.setString(2, appointment_name);
-			preparedStmt.setString(3, appointment_desc);
-
-			// execute the statement
-			preparedStmt.execute();
-			con.close();
-			output = "Inserted successfully";
-
-		} catch (Exception e) {
-			output = "Error while inserting";
-			System.err.println(e.getMessage());
+			return output;
 		}
-
-		return output;
-	}
 	
 	
 	//============================= Update Appointment Type ==============================
