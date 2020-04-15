@@ -5,7 +5,7 @@ public class DepartmentBean {
 	private int Department_ID;
 	private int Hospital_ID;
 	private String Department_Name;
-	private String Head;
+	private int Head;
 	private int Staff_Vacancies;
 	
 	public int getDepartment_ID() {
@@ -20,7 +20,7 @@ public class DepartmentBean {
 		return Department_Name;
 	}
 	
-	public String getHead() {
+	public int getHead() {
 		return Head;
 	}
 	
@@ -40,7 +40,7 @@ public class DepartmentBean {
 		this.Department_Name = Department_Name;
 	}
 	
-	public void setHead(String Head) {
+	public void setHead(int Head) {
 		this.Head = Head;
 	}
 	

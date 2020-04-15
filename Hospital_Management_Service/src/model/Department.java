@@ -51,7 +51,7 @@ public class Department {
 		//+ ""
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
-		  String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,d.Head,d.Staff_Vacancies from departments d,hospitals h where d.Hospital_ID = h.Hospital_ID";
+		  String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.Head,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE d.Hospital_ID = h.Hospital_ID ";
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs1 = stmt.executeQuery(query1); 
 		  
@@ -60,7 +60,7 @@ public class Department {
 			  depReadbean.setDepartment_ID(rs1.getInt("Department_ID"));
 			  depReadbean.setDepartment_Name(rs1.getString("Department_Name"));
 			  hospReadbean.setHospital_Name(rs1.getString("Hospital_Name"));
-			  depReadbean.setHead(rs1.getString("Head"));
+			  depReadbean.setHead(rs1.getInt("Head"));
 			  depReadbean.setStaff_Vacancies(rs1.getInt("Staff_Vacancies"));
 			  
 
@@ -97,7 +97,6 @@ public class Department {
 	}
 	
 	//Insert departments
-	
 	public String insertDepartments(DepartmentBean depBean) {
 		String output = "";
 
@@ -117,7 +116,7 @@ public class Department {
 			//preparedStmt.setInt(1, 0);   
 			preparedStmt.setInt(1, depBean.getHospital_ID());
 			preparedStmt.setString(2, depBean.getDepartment_Name());    
-			preparedStmt.setString(3, depBean.getHead());
+			preparedStmt.setInt(3, depBean.getHead());
 			preparedStmt.setInt(4, depBean.getStaff_Vacancies());  
 
 			//execute the statement   
@@ -153,7 +152,7 @@ public class Department {
 	   // binding values    
 	   preparedStmt.setInt(1, depUpdateBean.getHospital_ID());
 	   preparedStmt.setString(2, depUpdateBean.getDepartment_Name());    
-	   preparedStmt.setString(3, depUpdateBean.getHead());
+	   preparedStmt.setInt(3, depUpdateBean.getHead());
 	   preparedStmt.setInt(4, depUpdateBean.getStaff_Vacancies());
 	   preparedStmt.setInt(5, depUpdateBean.getDepartment_ID());
 	 
