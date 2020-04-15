@@ -19,13 +19,15 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import model.AppoinmentSchedule;
 import model.AppoinmentType;
 
-@Path("/Appoinments")
+@Path("/AppoinmentTypes")
 public class Appoinment_Type_Service {
 	
 	AppoinmentType aObj = new AppoinmentType();
 
+	
 	// get all types
 	@GET
 	@Path("/appointment-type")
@@ -34,14 +36,7 @@ public class Appoinment_Type_Service {
 		return aObj.viewAppointmentTypes();
 	}
 
-	// get all Schedules
-	@GET
-	@Path("/appointment-schedule")
-	@Produces(MediaType.TEXT_HTML)
-	public String readAllSchedules() {
-		return aObj.viewAllSchedule();
-	}
-
+	
 ////	//add types
 //	@POST
 //	@Path("/appointment-type")
