@@ -49,18 +49,18 @@ public class DoctorService {
     public String updateDoctor(String docData) {  
 
     	//Convert the input string to a JSON object  
-    	JsonObject itemObject = new JsonParser().parse(docData).getAsJsonObject(); 
+    	JsonObject docObject = new JsonParser().parse(docData).getAsJsonObject(); 
      
     	//Read the values from the JSON object  
-    	String DoctorID = itemObject.get("DoctorID").getAsString();  
-    	String DoctorName = itemObject.get("DoctorName").getAsString();  
-    	String NIC = itemObject.get("NIC").getAsString();  
-    	String Address = itemObject.get("Address").getAsString();  
-    	String MobileNo = itemObject.get("MobileNo").getAsString(); 
-    	String Email = itemObject.get("Email").getAsString(); 
-    	String Specialization = itemObject.get("Specialization").getAsString(); 
-    	String HospitalName = itemObject.get("HospitalName").getAsString(); 
-    	String DepartmentName = itemObject.get("DepartmentName").getAsString(); 
+    	String DoctorID = docObject.get("DoctorID").getAsString();  
+    	String DoctorName = docObject.get("DoctorName").getAsString();  
+    	String NIC = docObject.get("NIC").getAsString();  
+    	String Address = docObject.get("Address").getAsString();  
+    	String MobileNo = docObject.get("MobileNo").getAsString(); 
+    	String Email = docObject.get("Email").getAsString(); 
+    	String Specialization = docObject.get("Specialization").getAsString(); 
+    	String HospitalName = docObject.get("HospitalName").getAsString(); 
+    	String DepartmentName = docObject.get("DepartmentName").getAsString(); 
      
         String output = docObj.updateDoctor(DoctorID, DoctorName, NIC, Address, MobileNo, Email, Specialization, HospitalName, DepartmentName); 
      

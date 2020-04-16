@@ -142,13 +142,13 @@ public class Doctor {
 				// binding values
 				preparedStmt.setString(1, docName);
 				preparedStmt.setString(2, nic);
-				preparedStmt.setString(2, address);
-				preparedStmt.setInt(3, Integer.parseInt(mobNo));
-				preparedStmt.setString(4, email);
-				preparedStmt.setString(4, spec);
-				preparedStmt.setString(4, hosp);
-				preparedStmt.setString(4, dept);
-				preparedStmt.setInt(5, Integer.parseInt(ID));
+				preparedStmt.setString(3, address);
+				preparedStmt.setInt(4, Integer.parseInt(mobNo));
+				preparedStmt.setString(5, email);
+				preparedStmt.setString(6, spec);
+				preparedStmt.setString(7, hosp);
+				preparedStmt.setString(8, dept);
+				preparedStmt.setInt(9, Integer.parseInt(ID));
 
 				// execute the statement
 				preparedStmt.execute();
