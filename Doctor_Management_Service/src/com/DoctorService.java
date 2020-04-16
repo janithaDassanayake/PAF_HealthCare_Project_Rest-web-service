@@ -17,13 +17,15 @@ import org.jsoup.nodes.Document;
 @Path("/DocServ")
 public class DoctorService {
 
-	Doctor itemObj = new Doctor();
+	Doctor docObj = new Doctor();
 
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
-	public String readItems() {
-		return "Hello";
+	public String readDoctors() {
+		//return "Hello";
+		return docObj.readDoctors();
 	}
+	
 	
 }
