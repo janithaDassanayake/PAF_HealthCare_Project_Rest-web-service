@@ -101,7 +101,7 @@ public class Department_Service {
 	}
 	
 	@PUT 
-	@Path("/Doctor") 
+	@Path("/") 
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.TEXT_PLAIN) 
 	public String updateDoctorStatus(String docstatus) { 
