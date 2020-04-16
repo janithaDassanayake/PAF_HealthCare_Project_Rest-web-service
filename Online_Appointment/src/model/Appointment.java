@@ -104,7 +104,6 @@ public class Appointment {
 	public String updateDetails(String AppointmentID, String PatientID,  String DueDate, String ScheduleId)
 	 {
 	 String output = "";
-	 System.out.println("hiss");
 	 try
 	 {
 	 Connection con = dbObj.connect();
