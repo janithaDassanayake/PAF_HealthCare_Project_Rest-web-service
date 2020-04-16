@@ -74,7 +74,7 @@ public class Doctor {
 				}
 
 				// Prepare the html table to be displayed
-				output = "<table border=\"1\"><tr><th>DoctorName</th><th>NIC</th><th>Address</th><th>MobileNo</th><th>Email</th><th>Specialization</th><th>HosptalName</th><th>DepartmentName</th><th>Update</th><th>Remove</th></tr>";
+				output = "<table border=\"1\"><tr><th>DoctorName</th><th>NIC</th><th>Address</th><th>MobileNo</th><th>Email</th><th>Specialization</th><th>HospitalName</th><th>DepartmentName</th><th>Update</th><th>Remove</th></tr>";
 
 				String query = "select * from doctors";
 				Statement stmt = con.createStatement();
@@ -89,7 +89,7 @@ public class Doctor {
 					String mobNo = Integer.toString(rs.getInt("MobileNo"));
 					String email = rs.getString("Email");
 					String spec = rs.getString("Specialization");
-					String hosp = rs.getString("HosptalName");
+					String hosp = rs.getString("HospitalName");
 					String dept = rs.getString("DepartmentName");
 
 					// Add into the html table
