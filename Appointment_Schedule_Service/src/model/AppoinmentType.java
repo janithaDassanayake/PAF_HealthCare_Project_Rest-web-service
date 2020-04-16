@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 
 import beans.AppoinmentTypeBean;
 import util.DBconnection;
@@ -164,5 +166,77 @@ public class AppoinmentType {
 			}
 			
 	
+			//====================================search type by ID ===================================
 	
+			
+
+			//view list of appointment types	
+			public List<AppoinmentTypeBean> viewTypes() {
+				
+				return	viewTypes(0);
+
+			}
+			
+			//show the type by ID
+			public AppoinmentTypeBean ShowTypeById(int id) {
+			List<AppoinmentTypeBean> list =viewTypes(id);
+				if(!list.isEmpty()) {
+					return	list.get(0);
+				}
+				return null;
+			}
+			
+			
+				
+			//view method
+			public List<AppoinmentTypeBean> viewTypes(int id) {
+					List <AppoinmentTypeBean> TypeList = new ArrayList<>();
+					
+				try 
+				{
+					Connection con = dbObj.connect();
+					if (con == null) {
+						
+						System.out.println("Error While reading from database");
+						return TypeList;
+					}
+
+					String query;
+					
+					if(id==0) {
+					query = "select * from appointment_type";
+					}
+					else {
+						query = "select * from appointment_type where appointment_Id="+id;	
+					}
+					Statement stmt = con.createStatement();
+					ResultSet results = stmt.executeQuery(query);
+
+					while (results.next()) {
+						AppoinmentTypeBean type = new AppoinmentTypeBean(
+												results.getInt("appointment_Id"),
+												results.getString("Appointment_Type"),
+												results.getString("Appointment_Name"),
+												results.getString("Appointment_Desc")	
+											);
+						TypeList.add(type);
+					}
+					con.close();
+				}
+				catch (Exception e) {
+					System.out.println("Error While Reading");
+					System.err.println(e.getMessage());
+				}
+				
+				return TypeList;
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
 }

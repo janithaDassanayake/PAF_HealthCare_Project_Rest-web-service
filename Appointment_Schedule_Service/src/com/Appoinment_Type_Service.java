@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -31,48 +32,30 @@ public class Appoinment_Type_Service {
 	
 	// get all types
 	@GET
-	@Path("/appointment-type")
+	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
 	public String readAllTypes() {
 		return appoinmentType.viewAppointmentTypes();
 	}
 
 	
-////	//add types
-//	@POST
-//	@Path("/appointment-type")
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//	@Produces(MediaType.TEXT_PLAIN) 
-//	public String enterType(
-//			@FormParam("appointment_Type") String app_type,
-//			@FormParam("appointment_Name") String app_name,
-//			@FormParam("appointment_Desc") String app_desc) {
-//
-//		String output = aObj.addAppointmentType(app_type, app_name, app_desc);
-//		return output;
-//	}
+	
+	
+	// View a appointment type identified by id
+	@GET
+	@Path("/{appointment_Id}")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public AppoinmentTypeBean ShowTypeById(@PathParam("appointment_Id") int id) {
+		return appoinmentType.ShowTypeById(id);
+	}
 
-//	//add Schedules
-//	@POST
-//	@Path("/appointment-schedule")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.TEXT_PLAIN)
-//	public String enterSchedule(
-//			@FormParam("Date") Date date,
-//			@FormParam("Start_Time") Time stratTime,
-//			@FormParam("End_Time") Time endTime,
-//			@FormParam("D_id") int dId,
-//			@FormParam("H_id") int hId,
-//			@FormParam("App_id") int appId) {
-//
-//		String output = aObj.makeAppoinment(date, stratTime, endTime, dId, hId, appId);
-//		return output;
-//	}
+	
 
 
 	// add types
 	@POST
-	@Path("/appointment-type")
+	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON) 
 	@Produces(MediaType.TEXT_PLAIN)
 	public String enterType(String TypeData) {
@@ -96,7 +79,7 @@ public class Appoinment_Type_Service {
 	
 	// update Types
 		@PUT
-		@Path("/appointment-type")
+		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String updateAppType(String TypeData) {
@@ -125,7 +108,7 @@ public class Appoinment_Type_Service {
 
 		// delete Types
 		@DELETE
-		@Path("/appointment-type")
+		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String deleteDoctor(String TypeData) {
