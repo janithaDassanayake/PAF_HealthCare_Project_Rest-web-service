@@ -100,19 +100,19 @@ public class Department_Service {
 		return output; 
 	}
 	
-	@PUT 
-	@Path("/") 
-	@Consumes(MediaType.APPLICATION_JSON) 
-	@Produces(MediaType.TEXT_PLAIN) 
-	public String updateDoctorStatus(String docstatus) { 
-		//Convert the input string to a JSON object  
-		JsonObject dep_Object = new JsonParser().parse(docstatus).getAsJsonObject(); 
-		
-		 //Read the values from the JSON object  
-		String Status = dep_Object.get("Status").getAsString();
-		
-		String output = departmentObj.updateDoctorStatus(Status); 
-		 
-		return output; 
-	}
+//	@PUT 
+//	@Path("/doctor") 
+//	@Consumes(MediaType.APPLICATION_JSON) 
+//	@Produces(MediaType.TEXT_PLAIN) 
+//	public String updateDoctorStatus(String docstatus) { 
+//		//Convert the input string to a JSON object  
+//		JsonObject doc_Object = new JsonParser().parse(docstatus).getAsJsonObject(); 
+//		
+//		 //Read the values from the JSON object  
+//		String Status = doc_Object.get("Status").getAsString();
+//		
+//		String output = departmentObj.updateDoctorStatus(Status); 
+//		 
+//		return output; 
+//	}
 }
