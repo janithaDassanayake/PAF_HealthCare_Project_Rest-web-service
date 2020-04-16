@@ -44,4 +44,22 @@ public class DoctorService {
 		String output = docObj.insertDoctor(docName, nic, address, mobNo, email, spec, hosp, dept);  
 		return output; 
 	}
+	
+	@DELETE 
+	@Path("/") 
+	@Consumes(MediaType.APPLICATION_XML) 
+	@Produces(MediaType.TEXT_PLAIN) 
+	public String deleteItem(String itemData) {  
+		
+		//Convert the input string to an XML document  
+		Document doc = Jsoup.parse(itemData, "", Parser.xmlParser());     
+		
+		//Read the value from the element <itemID>  
+		String docID = doc.select("DoctorID").text(); 
+	 
+		String output = docObj.deleteDoctor(docID); 
+	 
+		return output; 
+		
+	}
 }
