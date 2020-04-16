@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.AppointmentBean;
 import util.DBConnection;
@@ -135,4 +137,60 @@ public class Appointment {
 		}
 		return output;
 	}
+	
+	//search appointments by ID	
+	public List<AppointmentBean> viewTypes() {
+		
+		return	viewTypes(0);
+
+	}
+	
+	public AppointmentBean ShowTypeById(int id) {
+	List<AppointmentBean> list =viewTypes(id);
+		if(!list.isEmpty()) {
+			return	list.get(0);
+		}
+		return null;
+	}
+			
+	//view method
+	public List<AppointmentBean> viewTypes(int id) {
+		List <AppointmentBean> TypeList = new ArrayList<>();
+		try 
+		{
+			Connection con = dbObj.connect();
+			if (con == null) {
+				System.out.println("Error While reading from database");
+				return TypeList;
+			}
+
+			String query;
+			
+			if(id==0) {
+			query = "select * from appointment_doctor";
+			}
+			else {
+				query = "select * from appointment_doctor where patientId="+id;	
+			}
+			Statement stmt = con.createStatement();
+			ResultSet results = stmt.executeQuery(query);
+
+			while (results.next()) {
+				AppointmentBean type = new AppointmentBean(
+					results.getInt("appointmentid"),
+					results.getInt("patientid"),
+					results.getDate("dueDate"),
+					results.getInt("scheduleid"),
+					results.getBoolean("status")
+				);
+				TypeList.add(type);
+			}
+			con.close();
+		}
+		catch (Exception e) {
+			System.out.println("Error While Reading");
+			System.err.println(e.getMessage());
+		}		
+		return TypeList;
+	}	
 }
