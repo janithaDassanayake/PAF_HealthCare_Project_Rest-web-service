@@ -238,12 +238,12 @@ public class Department {
 
 			String query;
 			
-			if(hosid==0) {
-			query = "SELECT * FROM departments";
-			}
-			else {
-				query = "SELECT * FROM departments where Department_ID="+hosid;	
-			}
+//			if(hosid==0) {
+//			query = "SELECT * FROM departments";
+//			}
+//			else {
+				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+//			}
 			Statement Stmt = con.createStatement();
 			ResultSet result = Stmt.executeQuery(query);
 

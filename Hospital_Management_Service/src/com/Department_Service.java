@@ -91,10 +91,10 @@ public class Department_Service {
 	
 	// View a list of deps by hos ID
 	@GET
-	@Path("/{Department_ID}")
+	@Path("/{Hospital_ID}")
 	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public DepartmentBean ShowDepartments(@PathParam("Department_ID") int hodid) {
+	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hodid) {
 		return departmentObj.ShowDepartments(hodid);
 	}
 }
