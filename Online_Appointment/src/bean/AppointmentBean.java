@@ -1,6 +1,8 @@
 package bean;
 import java.sql.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class AppointmentBean {
 	private int appointmentid;
 	private int patientid;
@@ -8,6 +10,16 @@ public class AppointmentBean {
 	private int scheduleid;
 	private boolean status;
 	
+	public AppointmentBean() {
+		
+	}
+	public AppointmentBean(int appointmentid, int patientid, Date dueDate, int scheduleid, boolean status) {
+		this.appointmentid = appointmentid;
+		this.patientid = patientid;
+		this.dueDate = dueDate;
+		this.scheduleid = scheduleid;
+		this.status = status;
+	}
 	public int getAppointmentid() {
 		return appointmentid;
 	}
