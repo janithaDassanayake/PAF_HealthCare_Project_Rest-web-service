@@ -23,22 +23,9 @@ public class Department_Service {
 	@GET  
 	@Path("/")  
 	@Produces(MediaType.TEXT_HTML)  
-	public String readDepartments()  {   
+	public String readDepartments()  {
 		return departmentObj.readDepartments();
 	}
-	
-//	@POST 
-//	@Path("/") 
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
-//	@Produces(MediaType.TEXT_PLAIN) 
-//	public String insertDepartments(@FormParam("Hospital_ID") String Hospital_ID,
-//							@FormParam("Department_Name") String Department_Name,
-//							@FormParam("Head") String Head,    
-//							@FormParam("Staff_Vacancies") String Staff_Vacancies)
-//	{  
-//		String output = departmentObj.insertDepartments(Hospital_ID, Department_Name, Head, Staff_Vacancies);  
-//		return output; 
-//	}
 	
 	@POST
 	@Path("/")
@@ -100,19 +87,4 @@ public class Department_Service {
 		return output; 
 	}
 	
-//	@PUT 
-//	@Path("/doctor") 
-//	@Consumes(MediaType.APPLICATION_JSON) 
-//	@Produces(MediaType.TEXT_PLAIN) 
-//	public String updateDoctorStatus(String docstatus) { 
-//		//Convert the input string to a JSON object  
-//		JsonObject doc_Object = new JsonParser().parse(docstatus).getAsJsonObject(); 
-//		
-//		 //Read the values from the JSON object  
-//		String Status = doc_Object.get("Status").getAsString();
-//		
-//		String output = departmentObj.updateDoctorStatus(Status); 
-//		 
-//		return output; 
-//	}
 }
