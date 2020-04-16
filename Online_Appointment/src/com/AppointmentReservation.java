@@ -1,5 +1,6 @@
 package com;
 import model.Appointment;
+import bean.AppointmentBean;
 
 import java.sql.Connection;
 import java.sql.Date;

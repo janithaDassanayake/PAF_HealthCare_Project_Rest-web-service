@@ -21,6 +21,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import model.Schedule;
+import bean.AppointmentBean;
 
 @Path("/Schedule")
 public class DoctorSchedule {
