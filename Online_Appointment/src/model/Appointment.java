@@ -9,25 +9,7 @@ public class Appointment {
 	
 	Schedule sch = new Schedule();
 	DBConnection dbObj = new DBConnection();
-	
-//	//A common method to connect to the DB  
-//	public Connection connect() {
-//		Connection con = null;
-//
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			con = DriverManager.getConnection(
-//					"jdbc:mysql://127.0.0.1:3306/healthcaredb?useTimezone=true&serverTimezone=UTC",
-//					"root", "");
-//			// For testing
-//			System.out.print("Successfully connected");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return con;
-//	}
-	
+		
 	//method to insert data
 	public String insertDetails(int PatientID, String DueDate, int ScheduleId) {
 		String output = "";

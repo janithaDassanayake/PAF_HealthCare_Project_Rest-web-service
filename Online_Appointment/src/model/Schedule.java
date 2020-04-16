@@ -1,5 +1,6 @@
 package model;
 
+import bean.ScheduleBean;
 import util.DBConnection;
 
 import java.sql.Connection;
@@ -10,29 +11,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
 
-public class Schedule{
-//	public Connection connect() {
-//		Connection con = null;
-//
-//		try {
-//			Class.forName("com.mysql.cj.jdbc.Driver");
-//			con = DriverManager.getConnection(
-//					"jdbc:mysql://127.0.0.1:3306/healthcaredb?useTimezone=true&serverTimezone=UTC",
-//					"root", "");
-//			// For testing
-//			System.out.print("Successfully connected");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		return con;
-//	}
-	
+public class Schedule{	
 	DBConnection dbObj = new DBConnection();
+	
 	// View Doctor Schedule
 	public String viewAllSchedule() {
 
 		String output = "";
+		ScheduleBean docbean = new ScheduleBean();
 		try {
 			Connection con = dbObj.connect();
 			if (con == null) {
