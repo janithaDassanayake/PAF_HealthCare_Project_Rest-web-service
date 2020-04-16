@@ -20,6 +20,7 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import beans.ScheduleBean;
 import model.AppoinmentSchedule;
 import model.AppoinmentType;
 
@@ -70,7 +71,7 @@ public class Appointment_Schedule_Service {
 				java.util.Date etime = (java.util.Date) formatTime.parse(append);
 				java.sql.Time endTime = convertUtilToSqlTime(etime);
 
-				String output = aObj2.makeAppoinment(sDate, startTime, endTime, dId, hId, appId);
+				String output = aObj2.add_Appoinment_Schedule(sDate, startTime, endTime, dId, hId, appId);
 				result = output;
 
 			} catch (ParseException e) {
@@ -153,9 +154,11 @@ public class Appointment_Schedule_Service {
 			// Convert the input string to a JSON object
 			JsonObject doc = new JsonParser().parse(scheduleData).getAsJsonObject();
 
+			ScheduleBean appSchedule = new ScheduleBean();
 			// Read the value from the element <ID>
-			String id = doc.get("schedule_id").getAsString();
-			String output = aObj2.deleteAppointmentSchedule(id);
+			appSchedule.setSchedule_id(doc.get("schedule_id").getAsInt());
+			
+			String output = aObj2.deleteAppointmentSchedule(appSchedule);
 			return output;
 		}
 		

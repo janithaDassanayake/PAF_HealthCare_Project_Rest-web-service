@@ -100,10 +100,9 @@ public class AppoinmentSchedule {
 		return output;
 	}
 	
-		
-		//====================== Add In To Appointment Scheduling ========================
-		
-		public String makeAppoinment(Date date, Time start_time, Time end_time, int d_id, int h_id, int app_id) {
+	//====================== Add In To Appointment Scheduling ========================
+	
+		public String add_Appoinment_Schedule(Date date, Time start_time, Time end_time, int d_id, int h_id, int app_id) {
 
 			String output = "";
 			try {
@@ -141,8 +140,6 @@ public class AppoinmentSchedule {
 		
 		
 		
-		
-		
 		//============================= Update Appointment Scheduling ==============================
 		
 		public String updateAppointmentType(int schedule_id , Date date, Time startTime, Time endTime, int d_id, int h_id, int app_id) {
@@ -170,9 +167,9 @@ public class AppoinmentSchedule {
 				// execute the statement
 				preparedStmt.execute();
 				con.close();
-				output = "Updated successfully [ ID : "+schedule_id+" ]";
+				output = "Updated successfully Schedule [ ID : "+schedule_id+" ]";
 			} catch (Exception e) {
-				output = "Error while updating the Doctor " + schedule_id;
+				output = "Error while updating the Schedule " + schedule_id;
 				System.err.println(e.getMessage());
 			}
 			return output;
@@ -182,7 +179,7 @@ public class AppoinmentSchedule {
 		
 		//============================= Delete Appointment Schedule ==============================	
 		
-		public String deleteAppointmentSchedule(String s_id) {
+		public String deleteAppointmentSchedule(ScheduleBean appSched) {
 			String output = "";
 			try {
 
@@ -196,16 +193,16 @@ public class AppoinmentSchedule {
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 
 				// binding values
-				preparedStmt.setString(1, s_id);
+				preparedStmt.setInt(1, appSched.getSchedule_id());
 
 				// execute the statement
 				preparedStmt.execute();
 				con.close();
-				output = "Deleted successfully [ Appointment Id : "+s_id +" ]";
+				output = "Deleted successfully [ Schedule ID : "+appSched.getSchedule_id()+" ]";
 
 			} catch (Exception e) {
 
-				output = "Error while deleting the Doctor" + s_id;
+				output = "Error while deleting the Schedule ID" + appSched.getSchedule_id();
 				System.err.println(e.getMessage());
 			}
 
