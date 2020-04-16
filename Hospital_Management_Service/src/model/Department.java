@@ -239,10 +239,10 @@ public class Department {
 			String query;
 			
 			if(hosid==0) {
-			query = "SELECT * FROM hospitals";
+			query = "SELECT * FROM departments";
 			}
 			else {
-				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+				query = "SELECT * FROM departments where Department_ID="+hosid;	
 			}
 			Statement Stmt = con.createStatement();
 			ResultSet result = Stmt.executeQuery(query);
@@ -251,7 +251,9 @@ public class Department {
 				DepartmentBean deps = new DepartmentBean(
 						result.getInt("Hospital_ID"),
 						result.getInt("Department_ID"),
-						result.getString("Department_Name")
+						result.getString("Department_Name"),
+						result.getInt("Head"),
+						result.getInt("Staff_Vacancies")
 									);
 				DepList.add(deps);
 			}
