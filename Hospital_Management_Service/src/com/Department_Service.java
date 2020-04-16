@@ -87,4 +87,12 @@ public class Department_Service {
 		return output; 
 	}
 	
+	// View a list of deps by hos ID
+	@GET
+	@Path("/")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hodid) {
+		return departmentObj.ShowDepartments(hodid);
+	}
 }
