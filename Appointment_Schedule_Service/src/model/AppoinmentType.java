@@ -131,37 +131,38 @@ public class AppoinmentType {
 			}
 
 
-	//============================= Delete Appointment Type ==============================	
-	
-	public String deleteAppointmentTypes(String app_id) {
-		String output = "";
-		try {
+			//============================= Delete Appointment Type ==============================	
+			
+			public String deleteAppointmentTypes(AppoinmentTypeBean TypeBean) {
+				String output = "";
+				try {
 
-			Connection con = dbObj.connect();
-			if (con == null) {
-				return "Error while connecting to the database for deleting.";
+					Connection con = dbObj.connect();
+					if (con == null) {
+						return "Error while connecting to the database for deleting.";
+					}
+
+					// create a prepared statement
+					String query = "DELETE FROM appointment_type WHERE appointment_Id=?";
+					PreparedStatement preparedStmt = con.prepareStatement(query);
+
+					// binding values
+					 preparedStmt.setInt(1, TypeBean.getAppointment_Id());
+					//preparedStmt.setInt(4, appBean.getAppointment_Id());
+					// execute the statement
+					preparedStmt.execute();
+					con.close();
+					output = "Deleted successfully [ Appointment Id : "+TypeBean.getAppointment_Id()+" ]";
+
+				} catch (Exception e) {
+
+					output = "Error while deleting the  Appointment Id :" + TypeBean.getAppointment_Id();
+					System.err.println(e.getMessage());
+				}
+
+				return output;
 			}
-
-			// create a prepared statement
-			String query = "DELETE FROM appointment_type WHERE appointment_Id=?";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-
-			// binding values
-			preparedStmt.setString(1, app_id);
-
-			// execute the statement
-			preparedStmt.execute();
-			con.close();
-			output = "Deleted successfully [ Appointment Id : "+app_id +" ]";
-
-		} catch (Exception e) {
-
-			output = "Error while deleting the Appoinmet Type" + app_id;
-			System.err.println(e.getMessage());
-		}
-
-		return output;
-	}
+			
 	
 	
 }
