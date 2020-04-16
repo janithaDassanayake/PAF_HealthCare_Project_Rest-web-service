@@ -10,21 +10,21 @@ public class HospitalBean {
 	private String Hospital_Email;
 	private String Hospital_Description;
 	private int Open_Hours;
-	
-	public HospitalBean() {
-		
-	}
-	
-	public HospitalBean(int Hospital_ID,String Hospital_Name,String Hospital_Address,String Hospital_City,String Hospital_Phone,String Hospital_Email,String Hospital_Description,int Open_Hours) {
-		this.Hospital_ID = Hospital_ID;
-		this.Hospital_Name = Hospital_Name;
-		this.Hospital_Address = Hospital_Address;
-		this.Hospital_City = Hospital_City;
-		this.Hospital_Phone = Hospital_Phone;
-		this.Hospital_Email = Hospital_Email;
-		this.Hospital_Description = Hospital_Description;
-		this.Open_Hours = Open_Hours;
-	}
+//	
+//	public HospitalBean() {
+//		
+//	}
+//	
+//	public HospitalBean(int Hospital_ID,String Hospital_Name,String Hospital_Address,String Hospital_City,String Hospital_Phone,String Hospital_Email,String Hospital_Description,int Open_Hours) {
+//		this.Hospital_ID = Hospital_ID;
+//		this.Hospital_Name = Hospital_Name;
+//		this.Hospital_Address = Hospital_Address;
+//		this.Hospital_City = Hospital_City;
+//		this.Hospital_Phone = Hospital_Phone;
+//		this.Hospital_Email = Hospital_Email;
+//		this.Hospital_Description = Hospital_Description;
+//		this.Open_Hours = Open_Hours;
+//	}
 	
 	public int getHospital_ID() {
 		return Hospital_ID;

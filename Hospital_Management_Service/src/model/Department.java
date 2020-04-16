@@ -214,7 +214,7 @@ public class Department {
 
 	}
 	
-	//show the type by ID
+	//show the Hospital by ID
 	public DepartmentBean ShowDepartments(int hosid) {
 	List<DepartmentBean> list = viewDeps(hosid);
 		if(!list.isEmpty()) {
@@ -239,19 +239,19 @@ public class Department {
 			String query;
 			
 			if(hosid==0) {
-			query = "SELECT * FROM departments";
+			query = "SELECT * FROM hospitals";
 			}
 			else {
 				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
 			}
 			Statement Stmt = con.createStatement();
-			ResultSet output = Stmt.executeQuery(query);
+			ResultSet result = Stmt.executeQuery(query);
 
-			while (output.next()) {
+			while (result.next()) {
 				DepartmentBean deps = new DepartmentBean(
-						output.getInt("Hospital_ID"),
-						output.getInt("Department_ID"),
-						output.getString("Department_Name")
+						result.getInt("Hospital_ID"),
+						result.getInt("Department_ID"),
+						result.getString("Department_Name")
 									);
 				DepList.add(deps);
 			}

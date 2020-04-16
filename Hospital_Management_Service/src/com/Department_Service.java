@@ -1,20 +1,22 @@
 package com;
 
-import model.Department;
-
 //For REST Service 
-import javax.ws.rs.*; 
-import javax.ws.rs.core.MediaType; 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 //For JSON 
-import com.google.gson.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import bean.DepartmentBean;
-
-//For XML 
-import org.jsoup.*; 
-import org.jsoup.parser.*; 
-import org.jsoup.nodes.Document; 
+import model.Department; 
 
 @Path("/Department") 
 public class Department_Service {
