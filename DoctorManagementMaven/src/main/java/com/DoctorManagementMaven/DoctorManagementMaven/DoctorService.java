@@ -82,7 +82,7 @@ public class DoctorService {
     	Document doc = Jsoup.parse(docData, "", Parser.xmlParser());     
     	
     	//Read the value from the element <itemID>  
-    	String DoctorID = doc.select("itemID").text(); 
+    	String DoctorID = doc.select("DoctorID").text(); 
      
     	String output = docObj.deleteDoctor(DoctorID); 
      
