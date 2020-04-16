@@ -124,4 +124,43 @@ public class Doctor {
 
 		}
 		
+		public String updateDoctor(String ID, String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
+			String output = "";
+
+			try {
+				Connection con = connect();
+
+				if (con == null) {
+					return "Error while connecting to the database for updating.";
+				}
+
+				// create a prepared statement
+				String query = "UPDATE doctors SET docName=?,NIC=?,Address=?,MobileNo=?,Email=?,Specialization=?,HospitalName=?,DepartmentName=?WHERE DoctorID=?";
+
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+
+				// binding values
+				preparedStmt.setString(1, docName);
+				preparedStmt.setString(2, nic);
+				preparedStmt.setString(2, address);
+				preparedStmt.setInt(3, Integer.parseInt(mobNo));
+				preparedStmt.setString(4, email);
+				preparedStmt.setString(4, spec);
+				preparedStmt.setString(4, hosp);
+				preparedStmt.setString(4, dept);
+				preparedStmt.setInt(5, Integer.parseInt(ID));
+
+				// execute the statement
+				preparedStmt.execute();
+				con.close();
+
+				output = "Updated successfully";
+			} catch (Exception e) {
+				output = "Error while updating the item.";
+				System.err.println(e.getMessage());
+			}
+
+			return output;
+		}
+		
 }
