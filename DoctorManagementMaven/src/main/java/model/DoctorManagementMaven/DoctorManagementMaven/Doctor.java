@@ -3,6 +3,8 @@ package model.DoctorManagementMaven.DoctorManagementMaven;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class Doctor {
 
@@ -59,6 +61,67 @@ public class Doctor {
 			}
 
 			return output;
+		}
+		
+		public String readDoctors() {
+			String output = "";
+
+			try {
+				Connection con = connect();
+
+				if (con == null) {
+					return "Error while connecting to the database for reading.";
+				}
+
+				// Prepare the html table to be displayed
+				output = "<table border=\"1\"><tr><th>DoctorName</th><th>NIC</th><th>Address</th><th>MobileNo</th><th>Email</th><th>Specialization</th><th>HosptalName</th><th>DepartmentName</th><th>Update</th><th>Remove</th></tr>";
+
+				String query = "select * from doctors";
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				// iterate through the rows in the result set
+				while (rs.next()) {
+					String docID = Integer.toString(rs.getInt("DoctorID"));
+					String docName = rs.getString("DoctorName");
+					String nic = rs.getString("NIC");
+					String address = rs.getString("Address");
+					String mobNo = Integer.toString(rs.getInt("MobileNo"));
+					String email = rs.getString("Email");
+					String spec = rs.getString("Specialization");
+					String hosp = rs.getString("HosptalName");
+					String dept = rs.getString("DepartmentName");
+
+					// Add into the html table
+					output += "<tr><td>" + docName + "</td>";
+					output += "<td>" + nic + "</td>";
+					output += "<td>" + address + "</td>";
+					output += "<td>" + mobNo + "</td>";
+					output += "<td>" + email + "</td>";
+					output += "<td>" + spec + "</td>";
+					output += "<td>" + hosp + "</td>";
+					output += "<td>" + dept + "</td>";
+
+					// buttons
+					output += "<td><input name=\"btnUpdate\" type=\"button\"        "
+							+ "value=\"Update\" class=\"btn btn-secondary\"></td>"
+							+ "<td><form method=\"post\" action=\"doctors.jsp\">"
+							+ "<input name=\"btnRemove\" type=\"submit\" value=\"Remove\"      "
+							+ "class=\"btn btn-danger\">" + "<input name=\"docID\" type=\"hidden\" value=\"" + docID
+							+ "\">" + "</form></td></tr>";
+				}
+
+				con.close();
+
+				// Complete the html table
+				output += "</table>";
+			} catch (Exception e) {
+				output = "Error while reading the items.";
+				System.err.println(e.getMessage());
+			}
+
+			return output;
+
 		}
 		
 }

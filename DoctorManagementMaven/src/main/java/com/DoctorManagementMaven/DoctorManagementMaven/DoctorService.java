@@ -18,7 +18,7 @@ public class DoctorService {
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Me thiyenne Doctor Service eka";
+        return docObj.readDoctors();
     }
 	
 	@POST 
