@@ -135,7 +135,7 @@ public class Doctor {
 				}
 
 				// create a prepared statement
-				String query = "UPDATE doctors SET docName=?,NIC=?,Address=?,MobileNo=?,Email=?,Specialization=?,HospitalName=?,DepartmentName=?WHERE DoctorID=?";
+				String query = "UPDATE doctors SET DoctorName=?,NIC=?,Address=?,MobileNo=?,Email=?,Specialization=?,HospitalName=?,DepartmentName=?WHERE DoctorID=?";
 
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 
