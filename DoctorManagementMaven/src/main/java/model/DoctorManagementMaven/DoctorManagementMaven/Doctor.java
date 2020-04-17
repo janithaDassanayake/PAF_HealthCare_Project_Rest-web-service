@@ -239,13 +239,13 @@ public class Doctor {
 		//view list of doctors
 		public List<DoctorBean> viewDoctors() {
 			
-			return	viewDoctors(0);
+			return	viewDoctors("NULL");
 
 		}
 		
 		//show the type by ID
-		public DoctorBean ShowDoctorById(int DoctorID) {
-		List<DoctorBean> list =viewDoctors(DoctorID);
+		public DoctorBean ShowDoctorByDept(String DepartmentName) {
+		List<DoctorBean> list =viewDoctors(DepartmentName);
 			if(!list.isEmpty()) {
 				return	list.get(0);
 			}
@@ -253,7 +253,7 @@ public class Doctor {
 		}
 		
 		//view method
-		public List<DoctorBean> viewDoctors(int DoctorID) {
+		public List<DoctorBean> viewDoctors(String DepartmentName) {
 				List <DoctorBean> DoctorList = new ArrayList<DoctorBean>();
 				
 			try 
@@ -267,11 +267,11 @@ public class Doctor {
 
 				String query;
 				
-				if(DoctorID==0) {
+				if(DepartmentName == "NULL") {
 				query = "select * from doctors";
 				}
 				else {
-					query = "select * from doctors where DoctorID="+DoctorID;	
+					query = "select * from doctors where DepartmentName="+DepartmentName;	
 				}
 				Statement stmt = con.createStatement();
 				ResultSet results = stmt.executeQuery(query);

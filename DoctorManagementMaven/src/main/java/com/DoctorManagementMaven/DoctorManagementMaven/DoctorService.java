@@ -105,11 +105,11 @@ public class DoctorService {
 	
 	// View doctors type identified by id
 		@GET
-		@Path("/{DoctorID}")
+		@Path("/{DepartmentName}")
 		// @Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
-		public DoctorBean ShowDoctorById(@PathParam("DoctorID") int id) {
-			return docObj.ShowDoctorById(id);
+		public DoctorBean ShowDoctorByDept(@PathParam("DepartmentName") String name) {
+			return docObj.ShowDoctorByDept(name);
 		}
 	
 	
