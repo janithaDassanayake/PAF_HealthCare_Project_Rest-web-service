@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.DoctorManagementMaven.DoctorManagementMaven.DoctorBean;
 
 public class Doctor {
 
@@ -232,6 +236,69 @@ public class Doctor {
 		
 		//===========================================SEARCH DOCTORS METHOD======================================================
 		
+		//view list of doctors
+		public List<DoctorBean> viewDoctors() {
+			
+			return	viewDoctors(0);
+
+		}
+		
+		//show the type by ID
+		public DoctorBean ShowTypeById(int DoctorID) {
+		List<DoctorBean> list =viewDoctors(DoctorID);
+			if(!list.isEmpty()) {
+				return	list.get(0);
+			}
+			return null;
+		}
+		
+		//view method
+		public List<DoctorBean> viewDoctors(int DoctorID) {
+				List <DoctorBean> DoctorList = new ArrayList<DoctorBean>();
+				
+			try 
+			{
+				Connection con = connect();
+				if (con == null) {
+					
+					System.out.println("Error While reading from database");
+					return DoctorList;
+				}
+
+				String query;
+				
+				if(DoctorID==0) {
+				query = "select * from doctors";
+				}
+				else {
+					query = "select * from doctors where DoctorID="+DoctorID;	
+				}
+				Statement stmt = con.createStatement();
+				ResultSet results = stmt.executeQuery(query);
+
+				while (results.next()) {
+					DoctorBean doctor = new DoctorBean(
+											results.getInt("DoctorID"),
+											results.getString("DoctorName"),
+											results.getString("NIC"),
+											results.getString("Address"),
+											results.getInt("MobileNo"),
+											results.getString("Email"),
+											results.getString("Specialization"),
+											results.getString("HospitalName"),
+											results.getString("DepartmentName")
+										);
+					DoctorList.add(doctor);
+				}
+				con.close();
+			}
+			catch (Exception e) {
+				System.out.println("Error While Reading");
+				System.err.println(e.getMessage());
+			}
+			
+			return DoctorList;
+		}
 		
 		
 }
