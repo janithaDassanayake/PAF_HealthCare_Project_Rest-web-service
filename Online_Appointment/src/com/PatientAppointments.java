@@ -10,13 +10,6 @@ import model.Appointment;
 @Path("/A")
 public class PatientAppointments {
 	Appointment appObj = new Appointment();
-
-//	@GET
-//	@Path("/{patient_Id}")
-//	@Produces(MediaType.TEXT_HTML)
-//	public AppointmentBean readItems(int id) {
-//		return  appObj.ShowTypeById(id);
-//	}
 	
 	@GET
 	@Path("/{patient_Id}")
