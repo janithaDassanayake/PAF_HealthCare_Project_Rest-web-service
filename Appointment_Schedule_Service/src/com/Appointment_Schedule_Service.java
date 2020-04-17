@@ -7,6 +7,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Timer;
+
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -30,8 +32,9 @@ public class Appointment_Schedule_Service {
 	AppoinmentSchedule aObj2 = new AppoinmentSchedule();
 	
 	// get all Schedules
+		@RolesAllowed({"admin","doctors","patient"})
 		@GET
-		@Path("/appointment-schedule")
+		@Path("/")
 		@Produces(MediaType.TEXT_HTML)
 		public String readAllSchedules() {
 			return aObj2.viewAllSchedule();
@@ -40,8 +43,9 @@ public class Appointment_Schedule_Service {
 		
 		
 		// add schedule
+		@RolesAllowed({"admin"})
 		@POST
-		@Path("/appointment-schedule")
+		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String enterSchedule(String scheduleData) {
@@ -87,8 +91,9 @@ public class Appointment_Schedule_Service {
 	
 		
 		// update Schedules
+		@RolesAllowed({"admin"})
 		@PUT
-		@Path("/appointment-schedule")
+		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String updateAppschedule(String TypeData) {
@@ -146,8 +151,9 @@ public class Appointment_Schedule_Service {
 		
 		
 		// delete Schedules
+		@RolesAllowed({"admin"})
 		@DELETE
-		@Path("/appointment-schedule")
+		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String deleteAppointmentSchedule(String scheduleData) {

@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Timer;
+
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -31,6 +33,7 @@ public class Appoinment_Type_Service {
 
 	
 	// get all types
+	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
@@ -42,6 +45,7 @@ public class Appoinment_Type_Service {
 	
 	
 	// View a appointment type identified by id
+	@RolesAllowed({"admin","doctors","patient"})
 	@GET
 	@Path("/{appointment_Id}")
 	// @Consumes(MediaType.APPLICATION_JSON)
@@ -54,6 +58,7 @@ public class Appoinment_Type_Service {
 
 
 	// add types
+	@RolesAllowed({"admin"})
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON) 
@@ -78,6 +83,7 @@ public class Appoinment_Type_Service {
 	
 	
 	// update Types
+		@RolesAllowed({"admin"})
 		@PUT
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
@@ -88,11 +94,6 @@ public class Appoinment_Type_Service {
 			JsonObject djosnObj = new JsonParser().parse(TypeData).getAsJsonObject();
 			AppoinmentTypeBean	appTypeBean = new AppoinmentTypeBean();
 
-			// Read the values from the JSON object
-//			int appId = djosnObj.get("appointment_Id").getAsInt();
-//			String appType = djosnObj.get("appointment_Type").getAsString();
-//			String appName = djosnObj.get("appointment_Name").getAsString();
-//			String appDesc = djosnObj.get("appointment_Desc").getAsString();
 			appTypeBean.setAppointment_Id(djosnObj.get("Appointment_Id").getAsInt());
 			appTypeBean.setAppointment_Type(djosnObj.get("Appointment_Type").getAsString());
 			appTypeBean.setAppointment_Name(djosnObj.get("Appointment_Name").getAsString());
@@ -107,6 +108,7 @@ public class Appoinment_Type_Service {
 
 
 		// delete Types
+		@RolesAllowed({"admin"})
 		@DELETE
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)

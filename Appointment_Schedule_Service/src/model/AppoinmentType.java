@@ -18,7 +18,9 @@ import util.DBconnection;
 public class AppoinmentType {
 	
 	DBconnection dbObj = new DBconnection();
+
 	//===================== View Appointment Types ==========================
+	
 	
 	public String viewAppointmentTypes() {
 
@@ -65,9 +67,11 @@ public class AppoinmentType {
 		return output;
 	}
 	
+	
 	//========================== Add In To Appointment Types =========================
 	
-		public String addAppointmentType(AppoinmentTypeBean TypeBean) {
+		
+	public String addAppointmentType(AppoinmentTypeBean TypeBean) {
 
 			String output = "";
 			try {
@@ -100,8 +104,10 @@ public class AppoinmentType {
 		}
 	
 	
+	
 		//============================= Update Appointment Type ==============================
 		
+	
 			public String updateAppointmentType(AppoinmentTypeBean TypeBean) {
 
 				String output = "";
@@ -134,6 +140,7 @@ public class AppoinmentType {
 
 
 			//============================= Delete Appointment Type ==============================	
+		
 			
 			public String deleteAppointmentTypes(AppoinmentTypeBean TypeBean) {
 				String output = "";
