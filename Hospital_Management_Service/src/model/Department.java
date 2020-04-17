@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.DepartmentBean;
 import bean.HospitalBean;
@@ -204,4 +206,64 @@ public class Department {
 	 
 	 return output; 
 	 }
+	
+	//Search method
+	public List<DepartmentBean> viewDeps() {
+		
+		return	viewDeps(0);
+
+	}
+	
+	//show the Hospital by ID
+	public DepartmentBean ShowDepartments(int hosid) {
+	List<DepartmentBean> list = viewDeps(hosid);
+		if(!list.isEmpty()) {
+			return	list.get(0);
+		}
+		return null;
+	}
+	
+	//view method
+	public List<DepartmentBean> viewDeps(int hosid) {
+			List <DepartmentBean> DepList = new ArrayList<>();
+			
+		try 
+		{
+			Connection con = connect();
+			if (con == null) {
+				
+				System.out.println("Error While reading from database");
+				return DepList;
+			}
+
+			String query;
+			
+//			if(hosid==0) {
+//			query = "SELECT * FROM departments";
+//			}
+//			else {
+				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+//			}
+			Statement Stmt = con.createStatement();
+			ResultSet result = Stmt.executeQuery(query);
+
+			while (result.next()) {
+				DepartmentBean deps = new DepartmentBean(
+						result.getInt("Hospital_ID"),
+						result.getInt("Department_ID"),
+						result.getString("Department_Name"),
+						result.getInt("Head"),
+						result.getInt("Staff_Vacancies")
+									);
+				DepList.add(deps);
+			}
+			con.close();
+		}
+		catch (Exception e) {
+			System.out.println("Error While Reading");
+			System.err.println(e.getMessage());
+		}
+		
+		return DepList;
+	}
 }
