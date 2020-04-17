@@ -2,6 +2,7 @@ package com.DoctorManagementMaven.DoctorManagementMaven;
 
 import model.DoctorManagementMaven.DoctorManagementMaven.Doctor;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -29,6 +30,7 @@ public class DoctorService {
 	
 	//==============================VIEW ALL DOCTORS============================================
 	
+	@RolesAllowed({"admin", "doctors"})
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {

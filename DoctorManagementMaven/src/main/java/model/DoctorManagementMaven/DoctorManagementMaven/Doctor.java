@@ -239,7 +239,7 @@ public class Doctor {
 		//view list of doctors
 		public List<DoctorBean> viewDoctors() {
 			
-			return	viewDoctors("NULL");
+			return	viewDoctors(null);
 
 		}
 		
@@ -267,7 +267,7 @@ public class Doctor {
 
 				String query;
 				
-				if(DepartmentName == "NULL") {
+				if(DepartmentName == null) {
 				query = "select * from doctors";
 				}
 				else {
