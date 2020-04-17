@@ -37,7 +37,35 @@ public class Doctor {
 				String query = " insert into doctors (`DoctorID`,`DoctorName`,`NIC`,`Address`,`MobileNo`, `Email`,`Specialization`,`HospitalName`,`DepartmentName`)"
 						+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+				
+				//int vac = 0;
+				
+				//String q2 = "SELECT d.Staff_Vacancies INTO " + vac + "FROM departments d"
+						//+ "WHERE d.DepartmenaName = " + dept;
+				
+				/*String q1 = "create function getVacancies(@DepartmentName varchar) returns int\r\n" + 
+						"as\r\n" + 
+						"begin\r\n" + 
+						"	declare @vac int\r\n" + 
+						"	select d.Staff_Vacancies\r\n" + 
+						"	from department d \r\n" + 
+						"	where d.Department_Name = @DepartmentName\r\n" + 
+						"	return @tot\r\n" + 
+						"end\r\n" + 
+						"declare @t int\r\n" + 
+						"exec @t = getVacancies " + dept +
+						"print @t";*/
+				
+				//System.out.println(vac);
+				
 				PreparedStatement preparedStmt = con.prepareStatement(query);
+				
+				/*String q3 = "PRINT"
+						+ "SELECT * FROM departments";
+				
+				String q4 = "SELECT * FROM departments d";
+				
+				System.out.println(q4);*/
 
 				// binding values
 				preparedStmt.setInt(1, 0);
