@@ -8,7 +8,9 @@ import java.sql.Statement;
 
 public class Doctor {
 
-	// A common method to connect to the DB
+		//=========================DB CONNECTION=========================================================
+	
+		// A common method to connect to the DB
 		private Connection connect() {
 			Connection con = null;
 
@@ -22,6 +24,8 @@ public class Doctor {
 
 			return con;
 		}	
+		
+		//=================================INSERT DOCTOR METHOD=========================================================
 		
 		public String insertDoctor(String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
 			String output = "";
@@ -91,6 +95,8 @@ public class Doctor {
 			return output;
 		}
 		
+		//=======================================VIEW ALL DOCTORS METHOD=======================================================
+		
 		public String readDoctors() {
 			String output = "";
 
@@ -151,6 +157,8 @@ public class Doctor {
 			return output;
 
 		}
+		
+		//========================================UPDATE DOCTORS METHOD============================================================
 		
 		public String updateDoctor(String ID, String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
 			String output = "";
@@ -221,5 +229,9 @@ public class Doctor {
 
 			return output;
 		}
+		
+		//===========================================SEARCH DOCTORS METHOD======================================================
+		
+		
 		
 }

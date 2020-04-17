@@ -24,11 +24,15 @@ public class DoctorService {
 
 	Doctor docObj = new Doctor();
 	
+	//==============================VIEW ALL DOCTORS============================================
+	
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
         return docObj.readDoctors();
     }
+	
+	//==============================INSERT DOCTORS============================================
 	
 	@POST 
     @Path("/insert") 
@@ -46,6 +50,8 @@ public class DoctorService {
     	String output = docObj.insertDoctor(DoctorName,NIC,Address,MobileNo,Email,Specialization,HospitalName,DepartmentName);  
     	return output; 
     }
+	
+	//==============================UPDATE DOCTORS============================================
 	
 	@PUT 
     @Path("/update") 
@@ -71,6 +77,8 @@ public class DoctorService {
      
     	return output; 
     } 
+	
+	//==============================DELETE DOCTORS============================================
 	
 	@DELETE 
     @Path("/delete") 
