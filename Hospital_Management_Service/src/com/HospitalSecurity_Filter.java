@@ -95,18 +95,18 @@ public class HospitalSecurity_Filter implements ContainerRequestFilter {
 						WebTarget wt;
 
 						if (rolesSet.contains("Doctor")) {
-							wt = client.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/Doctor");
+							wt = client.target("http://localhost:9699/UserAuthifiation/Authifiation").path("usersAuth/Doctor");
 						} 
 						else if (rolesSet.contains("patient")) {
-							wt = client.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/patient");
+							wt = client.target("http://localhost:9699/UserAuthifiation/Authifiation").path("usersAuth/patient");
 						
 						} 
 						else if (rolesSet.contains("admin")) {
-							wt = client.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/admin");
+							wt = client.target("http://localhost:9699/UserAuthifiation/Authifiation").path("usersAuth/admin");
 						
 						} 
 						else {
-							wt = client.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/deny");
+							wt = client.target("http://localhost:9699/UserAuthifiation/Authifiation").path("usersAuth/deny");
 						}
 
 						Invocation.Builder ib = wt.request(MediaType.APPLICATION_JSON);
