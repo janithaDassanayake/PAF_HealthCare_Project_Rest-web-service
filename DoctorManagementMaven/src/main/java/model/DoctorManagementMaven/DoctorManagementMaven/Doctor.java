@@ -21,7 +21,7 @@ public class Doctor {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				// Provide the correct details: DBServer/DBName, username, password
-				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -239,13 +239,13 @@ public class Doctor {
 		//view list of doctors
 		public List<DoctorBean> viewDoctors() {
 			
-			return	viewDoctors(0);
+			return	viewDoctors(null);
 
 		}
 		
 		//show the type by ID
-		public DoctorBean ShowTypeById(int DoctorID) {
-		List<DoctorBean> list =viewDoctors(DoctorID);
+		public DoctorBean ShowDoctorByDept(String DepartmentName) {
+		List<DoctorBean> list =viewDoctors(DepartmentName);
 			if(!list.isEmpty()) {
 				return	list.get(0);
 			}
@@ -253,7 +253,7 @@ public class Doctor {
 		}
 		
 		//view method
-		public List<DoctorBean> viewDoctors(int DoctorID) {
+		public List<DoctorBean> viewDoctors(String DepartmentName) {
 				List <DoctorBean> DoctorList = new ArrayList<DoctorBean>();
 				
 			try 
@@ -267,11 +267,11 @@ public class Doctor {
 
 				String query;
 				
-				if(DoctorID==0) {
+				if(DepartmentName == null) {
 				query = "select * from doctors";
 				}
 				else {
-					query = "select * from doctors where DoctorID="+DoctorID;	
+					query = "select * from doctors where DepartmentName="+DepartmentName;	
 				}
 				Statement stmt = con.createStatement();
 				ResultSet results = stmt.executeQuery(query);
@@ -299,6 +299,4 @@ public class Doctor {
 			
 			return DoctorList;
 		}
-		
-		//==========================================================
 }
