@@ -3,6 +3,8 @@ package com;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Set;
+
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -29,7 +31,7 @@ public class AuthifiationService {
 
 	AuthUserProcess authObject = new AuthUserProcess();
 		
-		@RolesAllowed({ "admin", "doctors","patient"})
+		@RolesAllowed({"admin", "doctors","patient"})
 		@GET
 		@Path("/")
 		@Produces(MediaType.APPLICATION_JSON)
