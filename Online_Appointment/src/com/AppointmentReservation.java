@@ -21,8 +21,6 @@ import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
 
-//for json
-import com.google.gson.*;
 @Path("/Appointment")
 public class AppointmentReservation {
 	Appointment appObj = new Appointment();
