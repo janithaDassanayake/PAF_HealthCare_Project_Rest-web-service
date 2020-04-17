@@ -179,7 +179,7 @@ public class Appointment {
 				AppointmentBean type = new AppointmentBean(
 					results.getInt("appointmentid"),
 					results.getInt("patientid"),
-					results.getDate("dueDate"),
+					results.getString("dueDate"),
 					results.getInt("scheduleid"),
 					results.getBoolean("status")
 				);

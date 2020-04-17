@@ -6,14 +6,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class AppointmentBean {
 	private int appointmentid;
 	private int patientid;
-	private Date dueDate;
+	private String dueDate;
 	private int scheduleid;
 	private boolean status;
 	
 	public AppointmentBean() {
 		
 	}
-	public AppointmentBean(int appointmentid, int patientid, Date dueDate, int scheduleid, boolean status) {
+	public AppointmentBean(int appointmentid, int patientid, String dueDate, int scheduleid, boolean status) {
 		this.appointmentid = appointmentid;
 		this.patientid = patientid;
 		this.dueDate = dueDate;
@@ -32,10 +32,10 @@ public class AppointmentBean {
 	public void setPatientid(int patientid) {
 		this.patientid = patientid;
 	}
-	public Date getDueDate() {
+	public String getDueDate() {
 		return dueDate;
 	}
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		this.dueDate = dueDate;
 	}
 	public int getScheduleid() {

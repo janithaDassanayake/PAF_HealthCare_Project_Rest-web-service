@@ -117,14 +117,5 @@ public class AppointmentReservation {
 	 String output = appObj.deleteDetails(AppointmentID);
 	return output;
 	}
-	
-//	// View a appointment type identified by id
-//	@GET
-//	@Path("/{patient_Id}")
-//	// @Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public AppointmentBean ShowTypeById(@PathParam("patient_Id") int id) {
-//		return appObj.ShowTypeById(id);
-//	}
 }
 
