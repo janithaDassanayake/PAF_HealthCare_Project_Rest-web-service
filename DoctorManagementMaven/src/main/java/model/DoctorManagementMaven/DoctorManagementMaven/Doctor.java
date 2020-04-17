@@ -8,7 +8,9 @@ import java.sql.Statement;
 
 public class Doctor {
 
-	// A common method to connect to the DB
+		//=========================DB CONNECTION=========================================================
+	
+		// A common method to connect to the DB
 		private Connection connect() {
 			Connection con = null;
 
@@ -22,6 +24,8 @@ public class Doctor {
 
 			return con;
 		}	
+		
+		//=================================INSERT DOCTOR METHOD=========================================================
 		
 		public String insertDoctor(String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
 			String output = "";
@@ -37,7 +41,35 @@ public class Doctor {
 				String query = " insert into doctors (`DoctorID`,`DoctorName`,`NIC`,`Address`,`MobileNo`, `Email`,`Specialization`,`HospitalName`,`DepartmentName`)"
 						+ " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+				
+				//int vac = 0;
+				
+				//String q2 = "SELECT d.Staff_Vacancies INTO " + vac + "FROM departments d"
+						//+ "WHERE d.DepartmenaName = " + dept;
+				
+				/*String q1 = "create function getVacancies(@DepartmentName varchar) returns int\r\n" + 
+						"as\r\n" + 
+						"begin\r\n" + 
+						"	declare @vac int\r\n" + 
+						"	select d.Staff_Vacancies\r\n" + 
+						"	from department d \r\n" + 
+						"	where d.Department_Name = @DepartmentName\r\n" + 
+						"	return @tot\r\n" + 
+						"end\r\n" + 
+						"declare @t int\r\n" + 
+						"exec @t = getVacancies " + dept +
+						"print @t";*/
+				
+				//System.out.println(vac);
+				
 				PreparedStatement preparedStmt = con.prepareStatement(query);
+				
+				/*String q3 = "PRINT"
+						+ "SELECT * FROM departments";
+				
+				String q4 = "SELECT * FROM departments d";
+				
+				System.out.println(q4);*/
 
 				// binding values
 				preparedStmt.setInt(1, 0);
@@ -62,6 +94,8 @@ public class Doctor {
 
 			return output;
 		}
+		
+		//=======================================VIEW ALL DOCTORS METHOD=======================================================
 		
 		public String readDoctors() {
 			String output = "";
@@ -124,6 +158,8 @@ public class Doctor {
 
 		}
 		
+		//========================================UPDATE DOCTORS METHOD============================================================
+		
 		public String updateDoctor(String ID, String docName, String nic, String address, String mobNo, String email, String spec, String hosp, String dept ) {
 			String output = "";
 
@@ -142,13 +178,13 @@ public class Doctor {
 				// binding values
 				preparedStmt.setString(1, docName);
 				preparedStmt.setString(2, nic);
-				preparedStmt.setString(2, address);
-				preparedStmt.setInt(3, Integer.parseInt(mobNo));
-				preparedStmt.setString(4, email);
-				preparedStmt.setString(4, spec);
-				preparedStmt.setString(4, hosp);
-				preparedStmt.setString(4, dept);
-				preparedStmt.setInt(5, Integer.parseInt(ID));
+				preparedStmt.setString(3, address);
+				preparedStmt.setInt(4, Integer.parseInt(mobNo));
+				preparedStmt.setString(5, email);
+				preparedStmt.setString(6, spec);
+				preparedStmt.setString(7, hosp);
+				preparedStmt.setString(8, dept);
+				preparedStmt.setInt(9, Integer.parseInt(ID));
 
 				// execute the statement
 				preparedStmt.execute();
@@ -162,5 +198,40 @@ public class Doctor {
 
 			return output;
 		}
+		
+		public String deleteDoctor(String docID) {
+			String output = "";
+
+			try {
+				Connection con = connect();
+
+				if (con == null) {
+					return "Error while connecting to the database for deleting.";
+				}
+
+				// create a prepared statement
+				String query = "delete from doctors where DoctorID=?";
+
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+
+				// binding values
+				preparedStmt.setInt(1, Integer.parseInt(docID));
+
+				// execute the statement
+				preparedStmt.execute();
+				con.close();
+
+				output = "Deleted successfully";
+			} catch (Exception e) {
+				output = "Error while deleting the item.";
+				System.err.println(e.getMessage());
+			}
+
+			return output;
+		}
+		
+		//===========================================SEARCH DOCTORS METHOD======================================================
+		
+		
 		
 }

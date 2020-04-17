@@ -1,4 +1,8 @@
 package bean;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@XmlRootElement
 
 public class DepartmentBean {
 
@@ -7,6 +11,18 @@ public class DepartmentBean {
 	private String Department_Name;
 	private int Head;
 	private int Staff_Vacancies;
+	
+	public DepartmentBean() {
+		
+	}
+	
+	public DepartmentBean(int Hospital_ID, int Department_ID, String Department_Name,int Head, int Staff_Vacancies) {
+		this.Hospital_ID = Hospital_ID;
+		this.Department_ID = Department_ID;
+		this.Department_Name = Department_Name;
+		this.Head = Head;
+		this.Staff_Vacancies = Staff_Vacancies;
+	}
 	
 	public int getDepartment_ID() {
 		return Department_ID;
