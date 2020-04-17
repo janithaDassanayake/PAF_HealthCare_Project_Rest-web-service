@@ -20,7 +20,7 @@ public class Department {
 			Class.forName("com.mysql.jdbc.Driver");
 					 
 			//Provide the correct details: DBServer/DBName, username, password 
-			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb", "root", "");
+			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system", "root", "");
 
 			//For testing          
 			System.out.print("Successfully connected");
