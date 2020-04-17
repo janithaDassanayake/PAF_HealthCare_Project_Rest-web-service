@@ -1,14 +1,16 @@
 package com;
 
-import com.sun.jersey.spi.container.ContainerRequest;
-import com.sun.jersey.spi.container.ContainerRequestFilter;
+import java.io.IOException;
+
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
 
 public class HospitalSecurity_Filter implements ContainerRequestFilter {
 
 	@Override
-	public ContainerRequest filter(ContainerRequest request) {
+	public void filter(ContainerRequestContext requestContext) throws IOException {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }
