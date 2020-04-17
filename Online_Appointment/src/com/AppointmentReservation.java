@@ -1,5 +1,6 @@
 package com;
 import model.Appointment;
+import bean.AppointmentBean;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -20,8 +21,6 @@ import org.jsoup.*;
 import org.jsoup.parser.*;
 import org.jsoup.nodes.Document;
 
-//for json
-import com.google.gson.*;
 @Path("/Appointment")
 public class AppointmentReservation {
 	Appointment appObj = new Appointment();

@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.DepartmentBean;
 import bean.HospitalBean;
@@ -52,7 +54,7 @@ public class Department {
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
 		 // String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE (d.Hospital_ID = h.Hospital_ID) AND (d.Head = s.DoctorID)";
-		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctor s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID ";
+		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctor s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID AND s.Status = 'Accepted'";
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs1 = stmt.executeQuery(query1); 
 		  
@@ -135,39 +137,7 @@ public class Department {
 
 		 return output; 
 	}
-	
-//	public String updateDoctorStatus(String status)  {   
-//		String output = ""; 
-//	 
-//	  try   {   
-//		  Connection con = connect();
-//	 
-//		  if (con == null)    {
-//			  return "Error while connecting to the database for updating."; 
-//		  } 
-//	 
-//	   // create a prepared statement    
-//	   String query = "UPDATE doctor SET status=?      "
-//	   		+ "			WHERE departments.Staff_Vaconcies > 0"; 
-//	 
-//	   PreparedStatement preparedStmt = con.prepareStatement(query); 
-//	 
-//	   // binding values    
-//	   preparedStmt.setString(1, status);  
-//
-//	   // execute the statement    
-//	   preparedStmt.execute();    
-//	   con.close(); 
-//	 
-//	   output = "Updated successfully";   
-//	   }   catch (Exception e)   {    
-//		   output = "Error while updating the Doctor Status.";    
-//		   System.err.println(e.getMessage());   
-//	   } 
-//	 
-//	  return output;  
-//	  }
-	
+
 	public String updateDepartments(DepartmentBean depUpdateBean)  {   
 		String output = ""; 
 	 
@@ -236,4 +206,64 @@ public class Department {
 	 
 	 return output; 
 	 }
+	
+	//Search method
+	public List<DepartmentBean> viewDeps() {
+		
+		return	viewDeps(0);
+
+	}
+	
+	//show the Hospital by ID
+	public DepartmentBean ShowDepartments(int hosid) {
+	List<DepartmentBean> list = viewDeps(hosid);
+		if(!list.isEmpty()) {
+			return	list.get(0);
+		}
+		return null;
+	}
+	
+	//view method
+	public List<DepartmentBean> viewDeps(int hosid) {
+			List <DepartmentBean> DepList = new ArrayList<>();
+			
+		try 
+		{
+			Connection con = connect();
+			if (con == null) {
+				
+				System.out.println("Error While reading from database");
+				return DepList;
+			}
+
+			String query;
+			
+//			if(hosid==0) {
+//			query = "SELECT * FROM departments";
+//			}
+//			else {
+				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+//			}
+			Statement Stmt = con.createStatement();
+			ResultSet result = Stmt.executeQuery(query);
+
+			while (result.next()) {
+				DepartmentBean deps = new DepartmentBean(
+						result.getInt("Hospital_ID"),
+						result.getInt("Department_ID"),
+						result.getString("Department_Name"),
+						result.getInt("Head"),
+						result.getInt("Staff_Vacancies")
+									);
+				DepList.add(deps);
+			}
+			con.close();
+		}
+		catch (Exception e) {
+			System.out.println("Error While Reading");
+			System.err.println(e.getMessage());
+		}
+		
+		return DepList;
+	}
 }

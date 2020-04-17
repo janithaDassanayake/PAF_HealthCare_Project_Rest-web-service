@@ -1,20 +1,22 @@
 package com;
 
-import model.Department;
-
 //For REST Service 
-import javax.ws.rs.*; 
-import javax.ws.rs.core.MediaType; 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 //For JSON 
-import com.google.gson.*;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import bean.DepartmentBean;
-
-//For XML 
-import org.jsoup.*; 
-import org.jsoup.parser.*; 
-import org.jsoup.nodes.Document; 
+import model.Department; 
 
 @Path("/Department") 
 public class Department_Service {
@@ -23,22 +25,9 @@ public class Department_Service {
 	@GET  
 	@Path("/")  
 	@Produces(MediaType.TEXT_HTML)  
-	public String readDepartments()  {   
+	public String readDepartments()  {
 		return departmentObj.readDepartments();
 	}
-	
-//	@POST 
-//	@Path("/") 
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
-//	@Produces(MediaType.TEXT_PLAIN) 
-//	public String insertDepartments(@FormParam("Hospital_ID") String Hospital_ID,
-//							@FormParam("Department_Name") String Department_Name,
-//							@FormParam("Head") String Head,    
-//							@FormParam("Staff_Vacancies") String Staff_Vacancies)
-//	{  
-//		String output = departmentObj.insertDepartments(Hospital_ID, Department_Name, Head, Staff_Vacancies);  
-//		return output; 
-//	}
 	
 	@POST
 	@Path("/")
@@ -100,19 +89,12 @@ public class Department_Service {
 		return output; 
 	}
 	
-//	@PUT 
-//	@Path("/doctor") 
-//	@Consumes(MediaType.APPLICATION_JSON) 
-//	@Produces(MediaType.TEXT_PLAIN) 
-//	public String updateDoctorStatus(String docstatus) { 
-//		//Convert the input string to a JSON object  
-//		JsonObject doc_Object = new JsonParser().parse(docstatus).getAsJsonObject(); 
-//		
-//		 //Read the values from the JSON object  
-//		String Status = doc_Object.get("Status").getAsString();
-//		
-//		String output = departmentObj.updateDoctorStatus(Status); 
-//		 
-//		return output; 
-//	}
+	// View a list of deps by hos ID
+	@GET
+	@Path("/{Hospital_ID}")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hodid) {
+		return departmentObj.ShowDepartments(hodid);
+	}
 }

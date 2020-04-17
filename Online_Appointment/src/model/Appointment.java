@@ -1,34 +1,22 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import bean.AppointmentBean;
+import util.DBConnection;
 
 public class Appointment {
 	
 	Schedule sch = new Schedule();
-	
-	//A common method to connect to the DB  
-	public Connection connect() {
-		Connection con = null;
-
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(
-					"jdbc:mysql://127.0.0.1:3306/healthcaredb?useTimezone=true&serverTimezone=UTC",
-					"root", "");
-			// For testing
-			System.out.print("Successfully connected");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return con;
-	}
-	
+	DBConnection dbObj = new DBConnection();
+		
 	//method to insert data
 	public String insertDetails(int PatientID, String DueDate, int ScheduleId) {
 		String output = "";
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database";
 			}
@@ -58,8 +46,10 @@ public class Appointment {
 	//method to read database
 	public String readDetails() {
 		String output = "";
+		AppointmentBean docbean = new AppointmentBean();
+		
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for reading.";
 			}
@@ -100,7 +90,7 @@ public class Appointment {
 	 String output = "";
 	 try
 	 {
-	 Connection con = connect();
+	 Connection con = dbObj.connect();
 	 if (con == null)
 	 {return "Error while connecting to the database for updating."; }
 	 // create a prepared statement
@@ -128,7 +118,7 @@ public class Appointment {
 	public String deleteDetails(String AppointmentID) {
 		String output = "";
 		try {
-			Connection con = connect();
+			Connection con = dbObj.connect();
 			if (con == null) {
 				return "Error while connecting to the database for deleting.";
 			}
@@ -147,4 +137,60 @@ public class Appointment {
 		}
 		return output;
 	}
+	
+	//search appointments by ID	
+	public List<AppointmentBean> viewTypes() {
+		
+		return	viewTypes(0);
+
+	}
+	
+	public AppointmentBean ShowTypeById(int id) {
+	List<AppointmentBean> list =viewTypes(id);
+		if(!list.isEmpty()) {
+			return	list.get(0);
+		}
+		return null;
+	}
+			
+	//view method
+	public List<AppointmentBean> viewTypes(int id) {
+		List <AppointmentBean> TypeList = new ArrayList<>();
+		try 
+		{
+			Connection con = dbObj.connect();
+			if (con == null) {
+				System.out.println("Error While reading from database");
+				return TypeList;
+			}
+
+			String query;
+			
+			if(id==0) {
+			query = "select * from appointment_doctor";
+			}
+			else {
+				query = "select * from appointment_doctor where patientId="+id;	
+			}
+			Statement stmt = con.createStatement();
+			ResultSet results = stmt.executeQuery(query);
+
+			while (results.next()) {
+				AppointmentBean type = new AppointmentBean(
+					results.getInt("appointmentid"),
+					results.getInt("patientid"),
+					results.getString("dueDate"),
+					results.getInt("scheduleid"),
+					results.getBoolean("status")
+				);
+				TypeList.add(type);
+			}
+			con.close();
+		}
+		catch (Exception e) {
+			System.out.println("Error While Reading");
+			System.err.println(e.getMessage());
+		}		
+		return TypeList;
+	}	
 }
