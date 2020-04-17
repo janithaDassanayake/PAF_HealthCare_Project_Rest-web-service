@@ -21,7 +21,7 @@ public class Doctor {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				// Provide the correct details: DBServer/DBName, username, password
-				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -244,7 +244,7 @@ public class Doctor {
 		}
 		
 		//show the type by ID
-		public DoctorBean ShowTypeById(int DoctorID) {
+		public DoctorBean ShowDoctorById(int DoctorID) {
 		List<DoctorBean> list =viewDoctors(DoctorID);
 			if(!list.isEmpty()) {
 				return	list.get(0);
@@ -299,6 +299,4 @@ public class Doctor {
 			
 			return DoctorList;
 		}
-		
-		//==========================================================
 }
