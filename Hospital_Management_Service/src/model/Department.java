@@ -207,10 +207,11 @@ public class Department {
 	 return output; 
 	 }
 	
-	//Search method
+	//_____________________Search method_____________________________
 	public List<DepartmentBean> viewDeps() {
 		
 		return	viewDeps(0);
+		
 
 	}
 	
@@ -223,7 +224,7 @@ public class Department {
 		return null;
 	}
 	
-	//view method
+	//view departments list related to hospital
 	public List<DepartmentBean> viewDeps(int hosid) {
 			List <DepartmentBean> DepList = new ArrayList<>();
 			
@@ -236,14 +237,8 @@ public class Department {
 				return DepList;
 			}
 
-			String query;
-			
-//			if(hosid==0) {
-//			query = "SELECT * FROM departments";
-//			}
-//			else {
-				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
-//			}
+			String query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+
 			Statement Stmt = con.createStatement();
 			ResultSet result = Stmt.executeQuery(query);
 
@@ -254,16 +249,18 @@ public class Department {
 						result.getString("Department_Name"),
 						result.getInt("Head"),
 						result.getInt("Staff_Vacancies")
-									);
+				);
 				DepList.add(deps);
 			}
+			
 			con.close();
+		
 		}
 		catch (Exception e) {
 			System.out.println("Error While Reading");
 			System.err.println(e.getMessage());
 		}
-		
 		return DepList;
 	}
+
 }

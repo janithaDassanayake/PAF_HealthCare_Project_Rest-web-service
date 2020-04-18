@@ -95,9 +95,9 @@ public class Department_Service {
 	}
 	
 	// View a list of deps by hos ID
+	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/{Hospital_ID}")
-	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hodid) {
 		return departmentObj.ShowDepartments(hodid);
