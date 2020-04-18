@@ -25,7 +25,7 @@ public class DBConnectionUtil {
 
 			 Class.forName("com.mysql.jdbc.Driver"); 
 			 
-			 conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/payments", "root", ""); //path for the database
+			 conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system", "root", ""); //path for the database
 			
 			 
 			 

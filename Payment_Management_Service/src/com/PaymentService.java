@@ -39,7 +39,7 @@ public class PaymentService {
 		PaymentBean pBean = new PaymentBean();
 
 		
-		// Convert the input string to a JSON object
+				// Convert the input string to a JSON object
 				JsonObject jsonObj = new JsonParser().parse(psData).getAsJsonObject();
 				
 				pBean.setAppointment_id(jsonObj.get("appointment_id").getAsInt());
@@ -59,7 +59,7 @@ public class PaymentService {
 	@Produces(MediaType.TEXT_HTML)
 	public String readAllPayments()
 	{
-	return payment.viewAllPayments();
+		return payment.viewAllPayments();
 	}
 
 	
@@ -67,9 +67,10 @@ public class PaymentService {
 	@RolesAllowed({"patient","admin"})
 	@GET
 	@Path("/get/{payment_id}")
-	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_HTML)
 	public String ShowPaymentById(@PathParam("payment_id") int id) {
+		
 		return payment.viewPaymentsOfPaymentById(id);
+		
 	}
 }
