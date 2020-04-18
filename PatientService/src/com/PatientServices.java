@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
+import javax.annotation.security.RolesAllowed;
 import javax.swing.text.Document;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -34,6 +35,7 @@ public class PatientServices {
 	Patient patient = new Patient();
 
 	// All Patient Details
+	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/patientdetails")
 	@Produces(MediaType.TEXT_HTML)
@@ -42,6 +44,7 @@ public class PatientServices {
 	}
 
 	//View Emergency details
+	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/patientEmergency")
 	@Produces(MediaType.TEXT_HTML)
@@ -51,6 +54,7 @@ public class PatientServices {
 	
 	
 	//View no appoinment Patients
+	@RolesAllowed({"admin"})
 	@GET
 	@Path("/show-nonPatients")
 	@Produces(MediaType.TEXT_HTML)
@@ -59,6 +63,7 @@ public class PatientServices {
 	}
 	
 	// Add new Patients
+	@RolesAllowed({"admin","patient"})
 	@POST
 	@Path("/add-Patient")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -87,6 +92,7 @@ public class PatientServices {
 	
 
 	// Update
+	@RolesAllowed({"admin","patient"})
 	@PUT
 	@Path("/update-patient")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -141,6 +147,7 @@ public class PatientServices {
 	
 	
 	//delete
+	@RolesAllowed({"admin"})
 	@DELETE
 	@Path("/delete-patient")
 	@Consumes(MediaType.APPLICATION_XML)
