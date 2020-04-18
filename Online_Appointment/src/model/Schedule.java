@@ -33,7 +33,7 @@ public class Schedule{
 					+ "<th>Start Time</th>" 
 					+ "<th>End Time</th></tr>";
 
-			String query = "select s.Schedule_id,t.Appointment_Type,d.dname,d.hname,s.Date,s.Start_Time,s.End_Time from doctor d join appointment_scheduling s on s.D_id=d.did join appointment_type t on t.appointment_Id=s.App_id order by t.Appointment_Type";
+			String query = "select s.Schedule_id,t.Appointment_Type,d.DoctorName,d.HospitalName,s.Date,s.Start_Time,s.End_Time from doctors d join appointment_scheduling s on s.D_id=d.DoctorID join appointment_type t on t.appointment_Id=s.App_id order by t.Appointment_Type";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
@@ -41,8 +41,8 @@ public class Schedule{
 			while (rs.next()) {
 				String schedule_id = rs.getString("Schedule_id");
 				String app_type = rs.getString("Appointment_Type");
-				String d_name = rs.getString("dname");
-				String h_name = rs.getString("hname");
+				String d_name = rs.getString("DoctorName");
+				String h_name = rs.getString("HospitalName");
 				String date = rs.getString("Date");
 				String start_time = rs.getString("Start_Time");
 				String end_time = rs.getString("End_Time");

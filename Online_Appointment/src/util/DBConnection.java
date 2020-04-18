@@ -10,7 +10,7 @@ public class DBConnection {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
 				con = DriverManager.getConnection(
-						"jdbc:mysql://127.0.0.1:3306/healthcaredb?useTimezone=true&serverTimezone=UTC",
+						"jdbc:mysql://127.0.0.1:3306/health-system?useTimezone=true&serverTimezone=UTC",
 						"root", "");
 				// For testing
 				System.out.print("Successfully connected");
