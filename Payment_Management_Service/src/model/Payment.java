@@ -43,6 +43,35 @@ public class Payment {
 		
 	}  
 	
+	public void totalCal(int schedule_id,PaymentBean paymentBean ) {
 	
+		try {
+			Connection con = dbCon.connect();
+			if (con == null) {
+				System.out.println("Error While reading from database");}
+				String query = "select p.id,((p.doc_charge+p.hosp_charge)*(tax+100)/100) as total FROM schedule s left outer join payment_schemes p on s.d_id=p.doc_id and s.h_id=p.hospital_id where schedule_id='1'";
+			java.sql.Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+	
+			// iterate through the rows in the result set
+		
+	
+			paymentBean.setTotal_charge(rs.getDouble("total"));
+			paymentBean.setPaymentScheme_id(rs.getInt("id"));				
+			
+			con.close();
+	
+	
+		} catch (Exception e) {
+			
+			System.err.println(e.getMessage());
+		}
+	
+	}
+		
+	
+	
+	
+		
 	
 }
