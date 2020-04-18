@@ -237,7 +237,14 @@ public class Department {
 				return DepList;
 			}
 
-			String query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+			String query;
+			
+			if(hosid == 0) {
+				query = "select * from departments";
+			}
+			else {
+				query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+			}
 
 			Statement Stmt = con.createStatement();
 			ResultSet result = Stmt.executeQuery(query);
@@ -261,6 +268,17 @@ public class Department {
 			System.err.println(e.getMessage());
 		}
 		return DepList;
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	public List<DepartmentBean> DepartmentsList_By_HosID(String hid) {
+		List<DepartmentBean> DepsBeanlist = new ArrayList<>();
+		for (DepartmentBean i : viewDeps()) {
+			if (hid.equals(i.getHospital_ID())) {				
+				DepsBeanlist.add(i);
+			}
+		}
+		return DepsBeanlist;
 	}
 
 }
