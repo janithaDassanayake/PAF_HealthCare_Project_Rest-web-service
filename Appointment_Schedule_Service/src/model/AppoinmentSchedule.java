@@ -55,18 +55,7 @@ public class AppoinmentSchedule {
 			// iterate through the rows in the result set
 			while (rs.next()) {
 				
-				/*String schedule_id = rs.getString("Schedule_id");
-				String appointment_name = rs.getString("Appointment_Name");
-				String date = rs.getString("Date");
-				String start_time = rs.getString("Start_Time");
-				String end_time = rs.getString("End_Time");
-				String d_id = rs.getString("D_id");
-				String h_id = rs.getString("H_id");
-				String app_id = rs.getString("App_id");*/
 				
-//				appRead.setAppointment_Id(rs.getInt("Appointment_Id"));
-//				appRead.setAppointment_Type(rs.getString("Appointment_Type"));
-//				
 				String docname = rs.getString("DoctorName");
 				String Hosname = rs.getString("Hospital_Name");
 				appScheduling.setSchedule_id(rs.getInt("Schedule_id"));
@@ -91,11 +80,6 @@ public class AppoinmentSchedule {
 				output += "<td>" + appScheduling.getD_id()+ "</td>";
 				output += "<td>" + appScheduling.getH_id()+ "</td>";
 				output += "<td>" + appScheduling.getApp_id()+ "</td>";
-//				output += "<td>" + start_time + "</td>";
-//				output += "<td>" + end_time + "</td>";
-//				output += "<td>" + d_id + "</td>";
-//				output += "<td>" + h_id + "</td>";
-//				output += "<td>" + app_id + "</td>";
 			}
 
 			con.close();
