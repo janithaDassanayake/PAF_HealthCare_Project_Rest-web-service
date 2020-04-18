@@ -76,6 +76,45 @@ public class PaymentScheme {
 		
 		
 	}
-	
+	public String insertPaymentScheme(PaymentSchemeBean psBean) {
+		
+		String output = "";
+		
+		try {
+			
+			Connection con = dbCon.connect();
+			
+			if(con == null) {return "Error while connecting to the database for inserting.";}
+			
+			String query = "insert into payment_schemes(id, doc_id, hospital_id, doc_charge, hosp_charge, tax)"
+					+ "values(?, ?, ?, ?, ?, ?)"; // changed
+			
+			
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			
+			//value binding
+			preparedStatement.setInt(1, 0);
+			preparedStatement.setInt(2, psBean.getDoc_id());
+			preparedStatement.setInt(3, psBean.getHospital_id());
+			preparedStatement.setDouble(4, psBean.getDoc_charge());
+			preparedStatement.setDouble(5, psBean.getHosp_charge());
+			preparedStatement.setDouble(6, psBean.getTax()); // changed
+			
+			preparedStatement.execute();
+			con.close();
+			
+			output = "Inserted successfully"; 
+		} catch (Exception e) {
+		
+			 output = "Error while inserting the Scheme.";
+			 System.err.println(e.getMessage()); 
+			 
+		}
+		
+		
+		return output;
+		
+	}
 
+	
 }
