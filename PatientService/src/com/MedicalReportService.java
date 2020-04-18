@@ -2,6 +2,7 @@ package com;
 
 import java.sql.Date;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -30,6 +31,7 @@ public class MedicalReportService {
 	MedicalReport report = new MedicalReport();
 
 //Add Details To report
+	@RolesAllowed({"admin","doctors"})
 	@POST
 	@Path("/add-report")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -48,6 +50,7 @@ public class MedicalReportService {
 	
 	
 //delete Report
+	@RolesAllowed({"admin","doctors"})
 	@DELETE
 	@Path("/delete-report")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -62,7 +65,8 @@ public class MedicalReportService {
 		return output;
 	}
 	
-	
+	@RolesAllowed({"admin","doctors"})
+	//Get Report by Apoinment ID
 	@GET
 	@Path("/{aID}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -70,25 +74,6 @@ public class MedicalReportService {
 		return report.viewReport(id);
 	}
 	
-/*
-	
-	//View Patient by Appointment ID
-	@GET
-	@Path("/{aID}")
-	@Produces(MediaType.TEXT_HTML)
-	public String viewReportDetails(@FormParam("aID") int aID) {
-		return report.viewReport(aID);
-	}
-	
-	/*
-	@GET
-	@Path("/{appointment_Id}")
-	// @Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public AppoinmentTypeBean ShowTypeById(@PathParam("appointment_Id") int id) {
-		return appoinmentType.ShowTypeById(id);
-	}
-	
-	*/
+
 	
 }
