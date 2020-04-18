@@ -10,10 +10,14 @@ import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 //For REST Service
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 //For JSON
 import com.google.gson.*;
 //For XML
@@ -24,7 +28,8 @@ import org.jsoup.nodes.Document;
 @Path("/Appointment")
 public class AppointmentReservation {
 	Appointment appObj = new Appointment();
-
+		
+	@RolesAllowed({"patient","admin"})
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
@@ -32,11 +37,12 @@ public class AppointmentReservation {
 		return  appObj.readDetails();
 	}
 	
+	@RolesAllowed({"patient"})
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String insertDetails(@FormParam("patientId") int PatientID,
+	public String insertDetails(@FormParam("patientId") String PatientID,
 	 @FormParam("dueDate") String DueDate,
 	 @FormParam("scheduleId") int ScheduleId,
 	 @FormParam("status") boolean Status) {
@@ -63,6 +69,7 @@ public class AppointmentReservation {
 			return result;
 		}
 	
+	@RolesAllowed({"patient"})
 	@PUT
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -103,6 +110,7 @@ public class AppointmentReservation {
 				return sDate;
 			}
 	
+	@RolesAllowed({"patient"})
 	@DELETE
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_XML)

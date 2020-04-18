@@ -13,7 +13,7 @@ public class Appointment {
 	DBConnection dbObj = new DBConnection();
 		
 	//method to insert data
-	public String insertDetails(int PatientID, String DueDate, int ScheduleId) {
+	public String insertDetails(String PatientID, String DueDate, int ScheduleId) {
 		String output = "";
 		try {
 			Connection con = dbObj.connect();
@@ -26,7 +26,7 @@ public class Appointment {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
 			preparedStmt.setInt(1, 0);
-			preparedStmt.setInt(2, PatientID);
+			preparedStmt.setString(2, PatientID);
 			preparedStmt.setString(3, DueDate);
 			preparedStmt.setInt(4, ScheduleId);
 			preparedStmt.setBoolean(5, false);
@@ -62,7 +62,7 @@ public class Appointment {
 			// iterate through the rows in the result set
 			while (rs.next()) {
 				String AppointmentID = Integer.toString(rs.getInt("appointmentId"));
-				String PatientID = Integer.toString(rs.getInt("patientId"));
+				String PatientID = rs.getString("patientId");
 				String DueDate =rs.getString("dueDate");
 				String ScheduleId = Integer.toString(rs.getInt("scheduleId"));
 				String Status = rs.getString("status");
@@ -97,7 +97,7 @@ public class Appointment {
 	 String query = "UPDATE appointment_doctor SET patientId=?,dueDate=?,ScheduleId=?WHERE appointmentId=?"; 
 	 PreparedStatement preparedStmt = con.prepareStatement(query);
 	 // binding values
-	 preparedStmt.setInt(1, Integer.parseInt(PatientID));
+	 preparedStmt.setString(1, PatientID);
 	 preparedStmt.setString(2, DueDate);
 	 preparedStmt.setString(3, ScheduleId); 
 	 preparedStmt.setInt(4, Integer.parseInt(AppointmentID));
@@ -108,7 +108,7 @@ public class Appointment {
 	 }
 	 catch (Exception e)
 	 {
-	 output = "Error while updating the details.";
+	 output = "Error while updating the details.Can't update a child row";
 	 System.err.println(e.getMessage());
 	 }
 	 return output;
@@ -139,14 +139,15 @@ public class Appointment {
 	}
 	
 	//search appointments by ID	
-	public List<AppointmentBean> viewTypes() {
-		
-		return	viewTypes(0);
-
+	
+	// view list of appointments
+	public List<AppointmentBean> viewAppointments() {		
+		return	viewAppointments(null);
 	}
 	
-	public AppointmentBean ShowTypeById(int id) {
-	List<AppointmentBean> list =viewTypes(id);
+	// show appointments by ID
+	public AppointmentBean ShowAppointmentById(String id) {
+	List<AppointmentBean> list =viewAppointments(id);
 		if(!list.isEmpty()) {
 			return	list.get(0);
 		}
@@ -154,19 +155,19 @@ public class Appointment {
 	}
 			
 	//view method
-	public List<AppointmentBean> viewTypes(int id) {
-		List <AppointmentBean> TypeList = new ArrayList<>();
+	public List<AppointmentBean> viewAppointments(String id) {
+		List <AppointmentBean> AppList = new ArrayList<>();
 		try 
 		{
 			Connection con = dbObj.connect();
 			if (con == null) {
 				System.out.println("Error While reading from database");
-				return TypeList;
+				return AppList;
 			}
 
 			String query;
 			
-			if(id==0) {
+			if(id==null) {
 			query = "select * from appointment_doctor";
 			}
 			else {
@@ -178,12 +179,12 @@ public class Appointment {
 			while (results.next()) {
 				AppointmentBean type = new AppointmentBean(
 					results.getInt("appointmentid"),
-					results.getInt("patientid"),
+					results.getString("patientid"),
 					results.getString("dueDate"),
 					results.getInt("scheduleid"),
 					results.getBoolean("status")
 				);
-				TypeList.add(type);
+				AppList.add(type);
 			}
 			con.close();
 		}
@@ -191,6 +192,16 @@ public class Appointment {
 			System.out.println("Error While Reading");
 			System.err.println(e.getMessage());
 		}		
-		return TypeList;
-	}	
+		return AppList;
+	}
+	
+	public List<AppointmentBean> View_Appointments_By_given_ID(String pid) {
+		List<AppointmentBean> ScheduleBeanlist = new ArrayList<>();
+		for (AppointmentBean sch : viewAppointments()) {
+			if (pid.equals(sch.getPatientid())) {				
+				ScheduleBeanlist.add(sch);
+			}
+		}
+		return ScheduleBeanlist;
+	}
 }
