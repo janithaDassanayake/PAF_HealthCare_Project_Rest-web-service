@@ -213,7 +213,7 @@ public class Department {
 	
 	//view departments list related to hospital
 	public List<DepartmentBean> viewDeps(int hosid) {
-			List <DepartmentBean> DepList = new ArrayList<>();
+			List <DepartmentBean> depList = new ArrayList<>();
 			
 		try 
 		{
@@ -221,7 +221,7 @@ public class Department {
 			if (con == null) {
 				
 				System.out.println("Error While reading from database");
-				return DepList;
+				return depList;
 			}
 
 			String query;
@@ -244,7 +244,7 @@ public class Department {
 						result.getInt("Head"),
 						result.getInt("Staff_Vacancies")
 				);
-				DepList.add(deps);
+				depList.add(deps);
 			}
 			
 			con.close();
@@ -253,17 +253,17 @@ public class Department {
 			System.out.println("Error While Reading");
 			System.err.println(e.getMessage());
 		}
-		return DepList;
+		return depList;
 	}
 	
 	public List<DepartmentBean> ShowDepartments(String hid) {
-		List<DepartmentBean> DepsBeanlist = new ArrayList<>();
+		List<DepartmentBean> depsBeanlist = new ArrayList<>();
 		for (DepartmentBean i : viewDeps()) {
 			if (hid.equals(i.getHospital_ID())) {				
-				DepsBeanlist.add(i );
+				depsBeanlist.add(i );
 			}
 		}
-		return DepsBeanlist;
+		return depsBeanlist;
 	}
 
 }
