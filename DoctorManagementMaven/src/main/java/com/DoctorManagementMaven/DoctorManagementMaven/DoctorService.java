@@ -54,8 +54,8 @@ public class DoctorService {
     						@FormParam("HospitalName") String HospitalName,
     						@FormParam("DepartmentName") String DepartmentName) 
     {  
-    	String output = docObj.insertDoctor(DoctorName,NIC,Address,MobileNo,Email,Specialization,HospitalName,DepartmentName);  
-    	return output; 
+    	return docObj.insertDoctor(DoctorName,NIC,Address,MobileNo,Email,Specialization,HospitalName,DepartmentName);  
+ 
     }
 	
 	//==============================UPDATE DOCTORS============================================
@@ -80,9 +80,8 @@ public class DoctorService {
     	String HospitalName = docObject.get("HospitalName").getAsString(); 
     	String DepartmentName = docObject.get("DepartmentName").getAsString(); 
      
-        String output = docObj.updateDoctor(DoctorID, DoctorName, NIC, Address, MobileNo, Email, Specialization, HospitalName, DepartmentName); 
+        return docObj.updateDoctor(DoctorID, DoctorName, NIC, Address, MobileNo, Email, Specialization, HospitalName, DepartmentName); 
      
-    	return output; 
     } 
 	
 	//==============================DELETE DOCTORS============================================
@@ -99,24 +98,15 @@ public class DoctorService {
     	//Read the value from the element <itemID>  
     	String DoctorID = doc.select("DoctorID").text(); 
      
-    	String output = docObj.deleteDoctor(DoctorID); 
+    	return docObj.deleteDoctor(DoctorID); 
      
-    	return output; 
+
     	
     }
 	
 	//==========================SEARCH DOCTOR====================================================
-	
-		// View doctors type identified by id
-		/*@GET
-		@Path("/{DepartmentName}")
-		// @Consumes(MediaType.APPLICATION_JSON)
-		@Produces(MediaType.APPLICATION_JSON)
-		public DoctorBean ShowDoctorByDept(@PathParam("DepartmentName") String name) {
-			return docObj.ShowDoctorByDept(name);
-		}*/
-	
-		// View a schedule by given by day
+
+		// View doctors by department
 
 		//@RolesAllowed({ "admin", "doctors" })
 		@GET

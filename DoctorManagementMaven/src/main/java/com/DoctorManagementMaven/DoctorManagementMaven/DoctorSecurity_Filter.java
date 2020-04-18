@@ -33,10 +33,10 @@ import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 
 @Provider
-public class DoctorSecurity_Filter {
+public class DoctorSecurity_Filter implements ContainerRequestFilter{
 
-	//implements ContainerRequestFilter
-	/*public static final String AUTH_HEADER_KEY = "Authorization";
+	
+	public static final String AUTH_HEADER_KEY = "Authorization";
 	public static final String AUTH_HEADER_PREFIX = "Basic ";
 
 	@Context
@@ -44,7 +44,6 @@ public class DoctorSecurity_Filter {
 
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-		// TODO Auto-generated method stub
 
 		List<String> AUTHENTICATION_HEADER = requestContext.getHeaders().get(AUTH_HEADER_KEY);
 
@@ -130,5 +129,5 @@ public class DoctorSecurity_Filter {
 
 		requestContext.abortWith(unauthoriazedStatus);
 
-	}*/
+	}
 }
