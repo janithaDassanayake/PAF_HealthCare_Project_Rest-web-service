@@ -149,6 +149,41 @@ public class PaymentScheme {
 	}
 	
 	
+	public String updatePaymentScheme(PaymentSchemeBean psBean) {
+		String output = "";
+		
+		try {
+			
+			Connection con = dbCon.connect();
+			
+			if(con == null) {return "Error while connecting to the database for updating";}
+			
+			String query = "UPDATE payment_schemes SET  doc_id=?, hospital_id=?, doc_charge=?, hosp_charge=?, tax=?"
+					+ "WHERE id = ?";
+			
+			PreparedStatement preparedStatement = con.prepareStatement(query);
 
+			preparedStatement.setInt(1, psBean.getDoc_id());
+			preparedStatement.setInt(2, psBean.getHospital_id());			
+			preparedStatement.setDouble(3, psBean.getDoc_charge());
+			preparedStatement.setDouble(4, psBean.getHosp_charge());
+			preparedStatement.setDouble(5, psBean.getTax());
+			preparedStatement.setInt(6, psBean.getId());
+			
+			System.out.println("test");
+			
+		preparedStatement.execute();
+		con.close();
+		
+		output = "Update Succesfully";
+			
+		} catch (Exception e) {
+			
+			 output = "Error while updating the item.";
+			 System.err.println(e.getMessage()); 
+		}
+		
+		return output;
+	}
 	
 }
