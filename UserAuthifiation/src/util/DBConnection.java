@@ -19,6 +19,7 @@ public class DBConnection {
 			// For testing
 			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system", "root", "");
 			System.out.print("Successfully connected");
+			
 
 		} catch (Exception e) {
 
