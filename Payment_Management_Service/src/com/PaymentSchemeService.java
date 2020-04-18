@@ -58,7 +58,24 @@ public class PaymentSchemeService {
 		
 	}
 	
+	@DELETE
+	@Path("/delete")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletePaymentScheme(String psData) {
+		String output = "";
+		
+		JsonObject doc = new JsonParser().parse(psData).getAsJsonObject();
+		
+		PaymentSchemeBean psBean = new PaymentSchemeBean();
+		
+		psBean.setId(doc.get("id").getAsInt());
+		
+		output = psObj.deletePayementScheme(psBean);
+			return output;
+	}
 	
+
 	
 	
 }
