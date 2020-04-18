@@ -100,9 +100,7 @@ public class Department_Service {
 	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/{Hospital_ID}")
-	public List<DepartmentBean> ShowDepartments(@PathParam("Hospital_ID") String id) {
-		List<DepartmentBean> list;
-		list = departmentObj.DepartmentsList_By_HosID(id);
-		return list;
+	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hosid) {
+		return departmentObj.ShowDepartments(hosid);
 	}
 }
