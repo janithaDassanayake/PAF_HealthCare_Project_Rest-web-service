@@ -1,16 +1,13 @@
 package model;
-
-import java.awt.List;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.sql.*;
 
-import com.mysql.jdbc.PreparedStatement;
-import com.mysql.jdbc.Statement;
+import util.DBConnectionUtil;
 
 import beans.PaymentBean;
-import util.DBConnectionUtil;
+
 
 /**
  * 
@@ -44,23 +41,26 @@ public class Payment {
 	}  
 	
 	public void totalCal(int schedule_id,PaymentBean paymentBean ) {
-	
+	System.out.println("test"+schedule_id);
 		try {
 			Connection con = dbCon.connect();
 			if (con == null) {
 				System.out.println("Error While reading from database");}
-				String query = "select p.id,((p.doc_charge+p.hosp_charge)*(tax+100)/100) as total FROM schedule s left outer join payment_schemes p on s.d_id=p.doc_id and s.h_id=p.hospital_id where schedule_id='1'";
-			java.sql.Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-	
-			// iterate through the rows in the result set
-		
-	
-			paymentBean.setTotal_charge(rs.getDouble("total"));
-			paymentBean.setPaymentScheme_id(rs.getInt("id"));				
+				String query = "select p.id,((p.doc_charge+p.hosp_charge)*(tax+100)/100) as total FROM schedule s left outer join payment_schemes p on s.d_id=p.doc_id and s.h_id=p.hospital_id where schedule_id="+schedule_id;
+				java.sql.Statement statement = con.createStatement();
+				
+				ResultSet rs = statement.executeQuery(query);
+				
+				while(rs.next()) {
+
+					paymentBean.setTotal_charge(rs.getDouble("total"));
+					paymentBean.setPaymentScheme_id(rs.getInt("id"));	
+				}
+				
+				con.close();
+				System.out.println("id"+paymentBean.getPaymentScheme_id()+" total "+paymentBean.getTotal_charge());
 			
-			con.close();
-	
+		
 	
 		} catch (Exception e) {
 			
@@ -68,41 +68,53 @@ public class Payment {
 		}
 	
 	}
+
+	
+public String insertPayment(PaymentBean pBean , int schedule_id ) {
 		
-	public String addPayment(int appointment_id,int schedule_id ) {
-		PaymentBean paymenntBean=new PaymentBean(); 
-		paymenntBean.setAppointment_id(appointment_id);
-		totalCal(schedule_id,paymenntBean);
 		String output = "";
+		totalCal(schedule_id, pBean);
+	
 		try {
-
+			
 			Connection con = dbCon.connect();
-			if (con == null) {
-				return "Error while connecting to the database";
-			}
-
-			// create a prepared statement
-			String query = "insert into payment_tbl (appointment_id,paymentScheme_id,total_charge) values (?,?,?)";
-			java.sql.PreparedStatement preparedStmt = con.prepareStatement(query);
-
-	// binding values
-	preparedStmt.setInt(1, paymenntBean.getAppointment_id());
-			preparedStmt.setInt(2, paymenntBean.getPaymentScheme_id());
-			preparedStmt.setDouble(3, paymenntBean.getTotal_charge());
-
-			// execute the statement
-			preparedStmt.execute();
+			
+			if(con == null) {return "Error while connecting to the database for inserting.";}
+			
+			System.out.println("test query" + pBean.getAppointment_id());
+			
+			String query = "insert into payment_tbl (appointment_id,paymentScheme_id,total_charge) values (?,?,?)"; // changed
+			
+			
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			
+			
+			
+			//value binding
+			preparedStatement.setInt(1, pBean.getAppointment_id());
+			preparedStatement.setInt(2, pBean.getPaymentScheme_id());
+			preparedStatement.setDouble(3, pBean.getTotal_charge());
+			
+			System.out.println(pBean.getAppointment_id()+pBean.getPayment_id()+pBean.getTotal_charge());
+			
+			preparedStatement.execute();
 			con.close();
-			output = "Inserted successfully";
-
+			
+			output = "Inserted successfully"; 
 		} catch (Exception e) {
-			output = "Error while inserting";
-			System.err.println(e.getMessage());
+		
+			 output = "Error while inserting the Scheme.";
+			 System.err.println(e.getMessage()); 
+			 
 		}
-
+		
+		
 		return output;
+		
 	}
-
+	
+	
+	
 	
 
 	public String viewAllPayments() {
@@ -143,7 +155,7 @@ public class Payment {
 				output += "<td>"+pBean.getPaymentScheme_id()+"</td>";
 				output += "<td>"+pBean.getTotal_charge()+"</td>";
 			}
-			
+			con.close();
 		} catch (Exception e) {
 			 output = "Error while reading the payments.";
 			 System.err.println(e.getMessage()); 
