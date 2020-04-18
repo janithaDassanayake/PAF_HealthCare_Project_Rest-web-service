@@ -69,9 +69,42 @@ public class Payment {
 	
 	}
 		
+	public String addPayment(int appointment_id,int schedule_id ) {
+		PaymentBean paymenntBean=new PaymentBean(); 
+		paymenntBean.setAppointment_id(appointment_id);
+		totalCal(schedule_id,paymenntBean);
+		String output = "";
+		try {
+
+			Connection con = dbCon.connect();
+			if (con == null) {
+				return "Error while connecting to the database";
+			}
+
+			// create a prepared statement
+			String query = "insert into payment_tbl (appointment_id,paymentScheme_id,total_charge) values (?,?,?)";
+			java.sql.PreparedStatement preparedStmt = con.prepareStatement(query);
+
+	// binding values
+	preparedStmt.setInt(1, paymenntBean.getAppointment_id());
+			preparedStmt.setInt(2, paymenntBean.getPaymentScheme_id());
+			preparedStmt.setDouble(3, paymenntBean.getTotal_charge());
+
+			// execute the statement
+			preparedStmt.execute();
+			con.close();
+			output = "Inserted successfully";
+
+		} catch (Exception e) {
+			output = "Error while inserting";
+			System.err.println(e.getMessage());
+		}
+
+		return output;
+	}
+
 	
-	
-	
+
 		
 	
 }
