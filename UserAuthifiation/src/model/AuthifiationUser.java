@@ -26,7 +26,7 @@ public class AuthifiationUser {
      			
      			
      		}
-     		// create a prepared statement
+     		
      		String query = "SELECT * FROM AuthUser where username='"+username+"' and password='"+password+"'";
      		
      		PreparedStatement preparedStatement = connection.prepareStatement(query);

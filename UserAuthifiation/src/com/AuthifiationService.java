@@ -46,7 +46,23 @@ public class AuthifiationService {
 		}
 		
 		
-		@RolesAllowed({"admin", "doctors"})
+		
+		
+		@RolesAllowed({"patient","admin"})
+		@GET
+		@Path("/patient")
+		@Produces(MediaType.APPLICATION_JSON)
+		
+		public boolean checkPatient() {
+		 
+			return true;
+					
+		}
+		
+		
+
+		
+		@RolesAllowed({"admin"})
 		@GET
 		@Path("/{userId}")
 		@Produces(MediaType.APPLICATION_JSON)
@@ -58,6 +74,8 @@ public class AuthifiationService {
 			return	Response.noContent().build();
 			}
 		
+		
+	
 		
 
 		@RolesAllowed({"admin"})
@@ -72,16 +90,34 @@ public class AuthifiationService {
 			
 		} 
 	
+	
 		
-		@RolesAllowed({"patient","admin"})
+		
+		@RolesAllowed({"doctors","admin"})
 		@GET
-		@Path("/patient")
+		@Path("/doctors")
 		@Produces(MediaType.APPLICATION_JSON)
-		public boolean checkPatient() {
+		public boolean checkDoc() {
 		 
 			return true;
 					
 		}
+		
+		
+		
+		@RolesAllowed({"admin"})
+		@GET
+		@Path("/admin")
+		@Produces(MediaType.APPLICATION_JSON)
+		public boolean checkAdmin() {
+		 
+			return true;
+					
+		}
+		
+	
+		
+		
 		
 		
 
