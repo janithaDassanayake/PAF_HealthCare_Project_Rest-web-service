@@ -44,7 +44,6 @@ public class DoctorSecurity_Filter implements ContainerRequestFilter{
 
 	@Override
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-		// TODO Auto-generated method stub
 
 		List<String> AUTHENTICATION_HEADER = requestContext.getHeaders().get(AUTH_HEADER_KEY);
 
