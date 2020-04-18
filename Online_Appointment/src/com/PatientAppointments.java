@@ -1,5 +1,8 @@
 package com;
 
+import java.util.List;
+
+import javax.annotation.security.RolesAllowed;
 //For REST Service
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,11 +14,14 @@ import model.Appointment;
 public class PatientAppointments {
 	Appointment appObj = new Appointment();
 	
+	@RolesAllowed({"patient"})
 	@GET
-	@Path("/{patient_Id}")
+	@Path("/{patientid}")
 	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public AppointmentBean ShowTypeById(@PathParam("patient_Id") int id) {
-		return appObj.ShowTypeById(id);
+	public List<AppointmentBean> ShowAppointmentById(@PathParam("patientid") String id) {
+		List<AppointmentBean> list;
+		list = appObj.View_Appointments_By_given_ID(id);
+		return list;
 	}
 }

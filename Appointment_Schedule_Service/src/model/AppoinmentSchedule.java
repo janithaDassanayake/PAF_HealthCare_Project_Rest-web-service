@@ -91,7 +91,7 @@ public class AppoinmentSchedule {
 	}
 
 	// ====================== Add In To Appointment Scheduling
-	// ========================
+	
 
 	public String add_Appoinment_Schedule(String date, Time start_time, Time end_time, int d_id, int h_id, int app_id) {
 
@@ -130,7 +130,7 @@ public class AppoinmentSchedule {
 	}
 
 	// ============================= Update Appointment Scheduling
-	// ==============================
+
 
 	public String updateAppointmentSchedule(int schedule_id, String date, Time startTime, Time endTime, int d_id,
 			int h_id, int app_id) {
@@ -167,7 +167,7 @@ public class AppoinmentSchedule {
 	}
 
 	// ============================= Delete Appointment Schedule
-	// ==============================
+
 
 	public String deleteAppointmentSchedule(ScheduleBean appSched) {
 		String output = "";
@@ -201,7 +201,7 @@ public class AppoinmentSchedule {
 
 	// ==============================get schedule by id ===========================
 
-	// view list of appointment types
+	// view list of Schedule
 	public List<ScheduleBean> viewschedule() {
 
 		return viewschedule(0);
@@ -256,15 +256,16 @@ public class AppoinmentSchedule {
 		return TypeList;
 	}
 
+	
 	public List<ScheduleBean> View_Shedules_By_given_Day(String day) {
 
 		List<ScheduleBean> ScheduleBeanlist = new ArrayList<>();
 
-		for (ScheduleBean sch : viewschedule()) {
+		for (ScheduleBean Schedule : viewschedule()) {
 
-			if (day.equals(sch.getDate())) {
+			if (day.equals(Schedule.getDate())) {
 
-				ScheduleBeanlist.add(sch);
+				ScheduleBeanlist.add(Schedule);
 			}
 		}
 

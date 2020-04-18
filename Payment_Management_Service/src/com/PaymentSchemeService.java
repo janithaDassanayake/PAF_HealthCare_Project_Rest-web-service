@@ -1,5 +1,6 @@
-package com;
+ package com;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -24,10 +25,13 @@ import model.PaymentScheme;
 @Path("/PaymentScheme")
 public class PaymentSchemeService {
 
-	PaymentScheme psObj = new PaymentScheme();
+	PaymentScheme psObj = new PaymentScheme(); //Payment Scheme object which is used in all the methods
 	
-	PaymentSchemeBean psBean = new PaymentSchemeBean();
+	PaymentSchemeBean psBean = new PaymentSchemeBean(); //Payment Scheme bean object which is used in all the methods
 	
+	
+	//view all schemes service 
+	@RolesAllowed({"admin"})
 	@GET
 	@Path("/getAll")
 	@Produces(MediaType.TEXT_HTML)
@@ -35,6 +39,9 @@ public class PaymentSchemeService {
 		return psObj.viewAllPaymentSchemes();
 	}
 
+
+	//insert schemes service method
+	@RolesAllowed({"admin"})
 	@POST
 	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -58,6 +65,9 @@ public class PaymentSchemeService {
 		
 	}
 	
+	
+	//delete service of payment schemes
+	@RolesAllowed({"admin"})
 	@DELETE
 	@Path("/delete")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -76,7 +86,8 @@ public class PaymentSchemeService {
 	}
 	
 
-	
+	//update service schemes 
+	@RolesAllowed({"admin"})
 	@PUT
 	@Path("/update")
 	@Consumes(MediaType.APPLICATION_JSON)

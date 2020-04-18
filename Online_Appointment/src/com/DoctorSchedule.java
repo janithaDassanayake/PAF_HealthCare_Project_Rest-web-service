@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Timer;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -28,6 +29,7 @@ public class DoctorSchedule {
 
 	Schedule aObj = new Schedule();
 
+	@RolesAllowed({"patient","admin","doctors"})
 	// get doctors' Schedules
 	@GET
 	@Path("/")
