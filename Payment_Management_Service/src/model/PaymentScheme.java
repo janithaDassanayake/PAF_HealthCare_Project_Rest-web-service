@@ -8,13 +8,20 @@ import java.sql.Statement;
 import beans.PaymentSchemeBean;
 import util.DBConnectionUtil;
 
+/**
+ * 
+ * @author Ishanka
+ * Payment scheme class
+ * here implemented all the operations of  PaymentScheme
+ *
+ */
 public class PaymentScheme {
+	
 	
 	DBConnectionUtil dbCon = new DBConnectionUtil(); // DB connection object for all methods
 	
-	/*
-	 * view all the payment schemes
-	 */
+	
+	//--------------------------------view all the payment schemes-------------------------------
 	public String viewAllPaymentSchemes() {
 		
 		String output = "";
@@ -23,15 +30,11 @@ public class PaymentScheme {
 		
 		try {
 			
-			System.out.println("test");
-			
 			Connection con = dbCon.connect();
 			
-			if (con == null) {
-				return "Error While connection to database";
-			}
+			if (con == null) { return "Error While connection to database"; }
 			
-			
+			//html table output headings
 			output = "<table border=\"1\">"
 					+ "<tr>"
 					+ "<th>ID</th>"
@@ -40,11 +43,13 @@ public class PaymentScheme {
 					+ "<th>Doctor's Charge</th>"
 					+ "<th>Hospital's Charge</th>"
 					+ "<th>Tax</th>"
-					+ "</tr>"; // changed
+					+ "</tr>"; 
 			
 			
 			String query = "SELECT * FROM payment_schemes";
+			
 			Statement statement = con.createStatement();
+			
 			ResultSet rs = statement.executeQuery(query);
 		
 			while(rs.next()) {
@@ -76,6 +81,8 @@ public class PaymentScheme {
 		
 		
 	}
+	
+	//-------------------------------------insert a payment scheme--------------------------------
 	public String insertPaymentScheme(PaymentSchemeBean psBean) {
 		
 		String output = "";
@@ -87,7 +94,7 @@ public class PaymentScheme {
 			if(con == null) {return "Error while connecting to the database for inserting.";}
 			
 			String query = "insert into payment_schemes(id, doc_id, hospital_id, doc_charge, hosp_charge, tax)"
-					+ "values(?, ?, ?, ?, ?, ?)"; // changed
+					+ "values(?, ?, ?, ?, ?, ?)"; 
 			
 			
 			PreparedStatement preparedStatement = con.prepareStatement(query);
@@ -104,6 +111,7 @@ public class PaymentScheme {
 			con.close();
 			
 			output = "Inserted successfully"; 
+			
 		} catch (Exception e) {
 		
 			 output = "Error while inserting the Scheme.";
@@ -115,16 +123,17 @@ public class PaymentScheme {
 		return output;
 		
 	}
+	
+	//------------------------------delete a payment scheme----------------------------------
 	public String deletePayementScheme(PaymentSchemeBean psBean){
 	
 		String output = "";
 		
 		try{
+			
 		Connection con = dbCon.connect();
 		
-		if(con == null) {
-			System.out.println("Error while connecting to the database for deleting.");
-		}
+		if(con == null) { System.out.println("Error while connecting to the database for deleting."); }
 
 		
 		String query = "DELETE FROM payment_schemes WHERE id = ?";
@@ -145,11 +154,14 @@ public class PaymentScheme {
 			System.out.println("Error while deleting");
 			System.err.println(e.getMessage());
 		}
+		
 		return output;
 	}
 	
 	
+	//------------------------------------ update the payment scheme data-------------------------------------------------------
 	public String updatePaymentScheme(PaymentSchemeBean psBean) {
+		
 		String output = "";
 		
 		try {
@@ -170,7 +182,6 @@ public class PaymentScheme {
 			preparedStatement.setDouble(5, psBean.getTax());
 			preparedStatement.setInt(6, psBean.getId());
 			
-			System.out.println("test");
 			
 		preparedStatement.execute();
 		con.close();
