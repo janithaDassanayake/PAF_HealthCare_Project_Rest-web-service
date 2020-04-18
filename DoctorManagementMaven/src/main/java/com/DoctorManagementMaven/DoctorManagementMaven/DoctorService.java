@@ -107,16 +107,18 @@ public class DoctorService {
 	
 	//==========================SEARCH DOCTOR====================================================
 	
-		// View doctors type identified by id
-		/*@GET
-		@Path("/{DepartmentName}")
-		// @Consumes(MediaType.APPLICATION_JSON)
+	
+		// View a schedule by given by Schedule id
+		/*@RolesAllowed({"admin","doctors"})
+		@GET
+		@Path("{MobileNo}")
 		@Produces(MediaType.APPLICATION_JSON)
-		public DoctorBean ShowDoctorByDept(@PathParam("DepartmentName") String name) {
-			return docObj.ShowDoctorByDept(name);
+		public DoctorBean readDoctorByPhone(@PathParam("MobileNo") int phone) {
+			return docObj.ShowDoctorByPhone(phone);
 		}*/
 	
-		// View a schedule by given by day
+	
+		// View doctors by department
 
 		//@RolesAllowed({ "admin", "doctors" })
 		@GET
