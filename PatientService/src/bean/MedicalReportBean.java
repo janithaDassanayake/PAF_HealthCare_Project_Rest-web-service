@@ -4,11 +4,9 @@ import java.sql.Date;
 
 public class MedicalReportBean {
 
-	//private String patientID;
 	private int aID;
 	private int padId;
 	private Date date;
-	//private String firstName;
 	private String diagnosis;
 	private String disabilities;
 	private String surgery;

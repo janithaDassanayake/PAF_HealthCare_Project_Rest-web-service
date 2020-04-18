@@ -1,14 +1,12 @@
 package model;
 
-import java.sql.CallableStatement;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.SimpleDateFormat;
 
-import com.mysql.jdbc.PreparedStatement;
+
+
 
 import bean.MedicalReportBean;
 import bean.PatientDetailsBean;
