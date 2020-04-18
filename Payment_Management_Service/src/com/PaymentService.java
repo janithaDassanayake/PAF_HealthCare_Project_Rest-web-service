@@ -1,5 +1,6 @@
 package com;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -25,7 +26,10 @@ public class PaymentService {
 	
 	Payment payment = new Payment(); // Payment object 
 
+
+
 	//insert Payment service
+	@RolesAllowed({"patient"})
 	@POST
 	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -49,6 +53,7 @@ public class PaymentService {
 	}
 		
 	// get all payments service
+	@RolesAllowed({"admin"})
 	@GET
 	@Path("/get")
 	@Produces(MediaType.TEXT_HTML)
@@ -59,6 +64,7 @@ public class PaymentService {
 
 	
 	//get payment by its id
+	@RolesAllowed({"patient","admin"})
 	@GET
 	@Path("/get/{payment_id}")
 	// @Consumes(MediaType.APPLICATION_JSON)
