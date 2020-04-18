@@ -18,25 +18,60 @@ public class Payment {
 	
 	DBConnectionUtil dbCon = new DBConnectionUtil();
 	
-	public ArrayList<Payment> viewPaymentsOfPatient(int pid){
+	public String viewPaymentsOfPaymentById(int pid){
+		System.out.println("sda"+pid);
+String output = "";
 		
-		ArrayList <Payment> paymentList = new ArrayList<>();
+		PaymentBean pBean = new PaymentBean();
 		
 		try {
 			
 			Connection con = dbCon.connect();
 			
-			if(con == null) {System.out.println("Error While reading from database");}
+			if(con == null) {return "Error While connection to database";}
 			
-			String query = "SELECT * FROM payments_tbl WHERE pa";
 			
-		}catch(Exception e) {
 			
+			output = "<table border=\"1\">"
+					+ "<tr>"
+					+ "<th>Payment ID</th>"
+					+ "<th>Appoinment ID</th>"
+					+ "<th>Payment Scheme ID</th>"
+					+ "<th>Doctor ID</th>"
+					+ "<th>Hospital ID</th>"
+					+ "<th>Total Charge</th>"
+					+ "</tr>";
+			
+			String query = "select p.payment_id,p.appointment_id,p.paymentScheme_id,p.total_charge,ps.doc_id,ps.hospital_id from payment_tbl p  left outer join payment_schemes ps on p.paymentScheme_id=ps.id where p.payment_id="+pid;
+
+			java.sql.Statement statement = con.createStatement();
+			
+			ResultSet rs = statement.executeQuery(query);
+			
+			while(rs.next()) {
+				pBean.setPayment_id(rs.getInt("payment_id"));
+				pBean.setAppointment_id(rs.getInt("appointment_id"));
+				pBean.setPaymentScheme_id(rs.getInt("paymentScheme_id"));
+				pBean.setTotal_charge(rs.getDouble("total_charge"));
+				
+				
+				output += "<tr><td>"+pBean.getPayment_id()+" </td>";
+				output += "<td>"+pBean.getPayment_id()+"</td>";
+				output += "<td>"+pBean.getPaymentScheme_id()+"</td>";
+				
+				output += "<td>"+rs.getInt("doc_id") +"</td>";
+				output += "<td>"+rs.getInt("hospital_id") +"</td>";
+				output += "<td>"+pBean.getTotal_charge()+"</td>";
+				
+			}
+			con.close();
+		} catch (Exception e) {
+			 output = "Error while reading the payments.";
+			 System.err.println(e.getMessage()); 
 		}
 		
 		
-		
-		return paymentList; 
+		return output;
 		
 	}  
 	
