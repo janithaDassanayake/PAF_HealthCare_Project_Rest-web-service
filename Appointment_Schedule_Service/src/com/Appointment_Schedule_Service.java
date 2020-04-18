@@ -60,7 +60,6 @@ public class Appointment_Schedule_Service {
 	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/schedule/{schedule_id}")
-	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ScheduleBean readScheduleByGiven_ID(@PathParam("schedule_id") int S_id) {
 		return aObj2.Show_schedule_By_Id(S_id);
@@ -89,14 +88,11 @@ public class Appointment_Schedule_Service {
 		int appId = djosnObj.get("App_id").getAsInt();
 
 		// ==================convert util time to sql time=====================
-		// DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 
 		DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 
 		try {
-			// java.util.Date date = (java.util.Date) format.parse(appdate);
-			// java.sql.Date sDate = convertUtilToSql(date);
-
 			java.util.Date stime = (java.util.Date) formatTime.parse(appstart);
 			java.sql.Time startTime = convertUtilToSqlTime(stime);
 
@@ -142,9 +138,6 @@ public class Appointment_Schedule_Service {
 		DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 
 		try {
-			// java.util.Date date = (java.util.Date) format.parse(appdate);
-			// java.sql.Date sDate = convertUtilToSql(date);
-
 			java.util.Date stime = (java.util.Date) formatTime.parse(appstart);
 			java.sql.Time startTime = convertUtilToSqlTime(stime);
 
