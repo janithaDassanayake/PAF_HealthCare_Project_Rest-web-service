@@ -170,8 +170,6 @@ public class Patient {
 				prestmt.setString(22, currentMedication);
 				prestmt.setInt(23, age);
 
-				
-				
 				prestmt.execute();
 				con.close();
 				output = "insert Sucessfully";
