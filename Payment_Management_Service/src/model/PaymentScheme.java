@@ -115,6 +115,40 @@ public class PaymentScheme {
 		return output;
 		
 	}
+	public String deletePayementScheme(PaymentSchemeBean psBean){
+	
+		String output = "";
+		
+		try{
+		Connection con = dbCon.connect();
+		
+		if(con == null) {
+			System.out.println("Error while connecting to the database for deleting.");
+		}
+
+		
+		String query = "DELETE FROM payment_schemes WHERE id = ?";
+		
+		PreparedStatement preparedStatement = con.prepareStatement(query);
+		
+		preparedStatement.setInt(1, psBean.getId());
+		
+		preparedStatement.execute();
+		
+		con.close();
+		
+		output = "Succefully Deleted, Payment Scheme ID : " +psBean.getId();
+				
+		}
+		catch (Exception e) {
+
+			System.out.println("Error while deleting");
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+	
+	
 
 	
 }
