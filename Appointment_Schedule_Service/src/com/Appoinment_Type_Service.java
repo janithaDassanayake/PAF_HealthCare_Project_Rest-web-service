@@ -48,7 +48,6 @@ public class Appoinment_Type_Service {
 	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/{appointment_Id}")
-	// @Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public AppoinmentTypeBean ShowTypeById(@PathParam("appointment_Id") int id) {
 		return appoinmentType.ShowTypeById(id);
