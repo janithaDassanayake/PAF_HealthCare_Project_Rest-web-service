@@ -72,17 +72,7 @@ public class AuthifiationService {
 			
 		} 
 	
-		
-		@RolesAllowed({"patient","admin"})
-		@GET
-		@Path("/patient")
-		@Produces(MediaType.APPLICATION_JSON)
-		public boolean checkPatient() {
-		 
-			return true;
-					
-		}
-		
+	
 		
 
 }

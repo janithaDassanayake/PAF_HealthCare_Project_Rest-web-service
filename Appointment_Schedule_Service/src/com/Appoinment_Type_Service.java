@@ -45,7 +45,7 @@ public class Appoinment_Type_Service {
 	
 	
 	// View a appointment type identified by id
-	@RolesAllowed({"admin","doctors","patient"})
+	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/{appointment_Id}")
 	// @Consumes(MediaType.APPLICATION_JSON)

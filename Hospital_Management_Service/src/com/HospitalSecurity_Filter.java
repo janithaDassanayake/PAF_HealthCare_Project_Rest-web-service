@@ -33,7 +33,7 @@ import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 
 @Provider
-public class Schedule_Security_Filter implements ContainerRequestFilter {
+public class HospitalSecurity_Filter implements ContainerRequestFilter {
 
 	public static final String AUTH_HEADER_KEY = "Authorization";
 	public static final String AUTH_HEADER_PREFIX = "Basic ";
@@ -53,7 +53,7 @@ public class Schedule_Security_Filter implements ContainerRequestFilter {
 			// Access denied for all
 			if (m.isAnnotationPresent(DenyAll.class)) {
 				Response unauthoriazedStatus = Response.status(Response.Status.UNAUTHORIZED)
-						.entity("{\"Attention 1!\" : \"You are not authorized to Use this service\"}").build();
+						.entity("{\"Attention 2!\" : \"You are not authorized to Use this service\"}").build();
 
 				requestContext.abortWith(unauthoriazedStatus);
 
@@ -99,14 +99,14 @@ public class Schedule_Security_Filter implements ContainerRequestFilter {
 					WebTarget wt;
 
 					if (rolesSet.contains("admin")) {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth");
+						wt = c.target("http://localhost:8081/UserAuthifiation/Authifiation").path("usersAuth");
 					} else if (rolesSet.contains("patient")) {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth");
+						wt = c.target("http://localhost:8081/UserAuthifiation/Authifiation").path("usersAuth");
 
 					} else if (rolesSet.contains("doctors")) {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth");
+						wt = c.target("http://localhost:8081/UserAuthifiation/Authifiation").path("usersAuth");
 					} else {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/deny");
+						wt = c.target("http://localhost:8081/UserAuthifiation/Authifiation").path("usersAuth/deny");
 					}
 
 					Invocation.Builder ib = wt.request(MediaType.APPLICATION_JSON);

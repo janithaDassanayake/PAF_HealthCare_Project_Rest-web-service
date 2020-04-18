@@ -1,4 +1,4 @@
-package com;
+package com.DoctorManagementMaven.DoctorManagementMaven;
 
 import java.lang.reflect.Method;
 
@@ -33,9 +33,10 @@ import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
 
 @Provider
-public class Schedule_Security_Filter implements ContainerRequestFilter {
+public class DoctorSecurity_Filter {
 
-	public static final String AUTH_HEADER_KEY = "Authorization";
+	//implements ContainerRequestFilter
+	/*public static final String AUTH_HEADER_KEY = "Authorization";
 	public static final String AUTH_HEADER_PREFIX = "Basic ";
 
 	@Context
@@ -53,7 +54,7 @@ public class Schedule_Security_Filter implements ContainerRequestFilter {
 			// Access denied for all
 			if (m.isAnnotationPresent(DenyAll.class)) {
 				Response unauthoriazedStatus = Response.status(Response.Status.UNAUTHORIZED)
-						.entity("{\"Attention 1!\" : \"You are not authorized to Use this service\"}").build();
+						.entity("{\"Attention 2!\" : \"You are not authorized to Use this service\"}").build();
 
 				requestContext.abortWith(unauthoriazedStatus);
 
@@ -115,7 +116,7 @@ public class Schedule_Security_Filter implements ContainerRequestFilter {
 
 					if (r.getStatus() != 200) {
 						Response unauthoriazedStatus = Response.status(Response.Status.UNAUTHORIZED)
-								.entity("{\"Attention 2\" : \"You are not authorized to Use this service\"}").build();
+								.entity("{\"Attention 3\" : \"You are not authorized to Use this service\"}").build();
 						requestContext.abortWith(unauthoriazedStatus);
 					}
 					return;
@@ -129,6 +130,5 @@ public class Schedule_Security_Filter implements ContainerRequestFilter {
 
 		requestContext.abortWith(unauthoriazedStatus);
 
-	}
-
+	}*/
 }

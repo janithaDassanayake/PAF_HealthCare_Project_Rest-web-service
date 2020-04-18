@@ -6,24 +6,43 @@ import java.sql.Time;
 public class ScheduleBean {
 	
 	private int Schedule_id;
-	private Date Date;
+	private String Date;
 	private Time Start_Time;
 	private Time End_Time;
 	private int D_id;
 	private int H_id;
 	private int App_id;
 	
+
+	public ScheduleBean() {
+		
+	}
 	
+	
+
+	public ScheduleBean(int schedule_id, String date, Time start_Time, Time end_Time, int d_id, int h_id, int app_id) {
+		Schedule_id = schedule_id;
+		Date = date;
+		Start_Time = start_Time;
+		End_Time = end_Time;
+		D_id = d_id;
+		H_id = h_id;
+		App_id = app_id;
+	}
+
+
+
+
 	public int getSchedule_id() {
 		return Schedule_id;
 	}
 	public void setSchedule_id(int schedule_id) {
 		Schedule_id = schedule_id;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return Date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		Date = date;
 	}
 	public Time getStart_Time() {

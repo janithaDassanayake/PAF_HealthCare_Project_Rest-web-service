@@ -21,7 +21,7 @@ public class Doctor {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				// Provide the correct details: DBServer/DBName, username, password
-				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
+				con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -236,69 +236,79 @@ public class Doctor {
 		
 		//===========================================SEARCH DOCTORS METHOD======================================================
 		
-		//view list of doctors
-		public List<DoctorBean> viewDoctors() {
-			
-			return	viewDoctors(0);
+		// view list of appointment types
+		public List<DoctorBean> viewDoctor() {
+
+			return viewDoctor(0);
 
 		}
-		
-		//show the type by ID
-		public DoctorBean ShowTypeById(int DoctorID) {
-		List<DoctorBean> list =viewDoctors(DoctorID);
-			if(!list.isEmpty()) {
-				return	list.get(0);
+
+		// show the type by ID
+		public DoctorBean Show_schedule_By_Id(int id) {
+			List<DoctorBean> list = viewDoctor(id);
+			if (!list.isEmpty()) {
+				return list.get(0);
 			}
 			return null;
 		}
-		
-		//view method
-		public List<DoctorBean> viewDoctors(int DoctorID) {
-				List <DoctorBean> DoctorList = new ArrayList<DoctorBean>();
-				
-			try 
-			{
+
+		// view method
+		public List<DoctorBean> viewDoctor(int id) {
+			List<DoctorBean> DocList = new ArrayList<>();
+
+			try {
 				Connection con = connect();
 				if (con == null) {
-					
+
 					System.out.println("Error While reading from database");
-					return DoctorList;
+					return DocList;
 				}
 
 				String query;
-				
-				if(DoctorID==0) {
-				query = "select * from doctors";
-				}
-				else {
-					query = "select * from doctors where DoctorID="+DoctorID;	
+
+				if (id == 0) {
+					query = "select * from doctors";
+				} else {
+					query = "select * from doctors where DoctorID=" + id;
 				}
 				Statement stmt = con.createStatement();
 				ResultSet results = stmt.executeQuery(query);
 
 				while (results.next()) {
-					DoctorBean doctor = new DoctorBean(
-											results.getInt("DoctorID"),
-											results.getString("DoctorName"),
-											results.getString("NIC"),
-											results.getString("Address"),
-											results.getInt("MobileNo"),
-											results.getString("Email"),
-											results.getString("Specialization"),
-											results.getString("HospitalName"),
-											results.getString("DepartmentName")
-										);
-					DoctorList.add(doctor);
+					DoctorBean doctor = new DoctorBean(results.getInt("DoctorID"), 
+									results.getString("DoctorName"),
+									results.getString("NIC"),
+									results.getString("Address"),
+									results.getInt("MobileNo"),
+									results.getString("Email"), 
+									results.getString("Specialization"),
+									results.getString("HospitalName"),
+									results.getString("DepartmentName")
+
+					);
+					DocList.add(doctor);
 				}
 				con.close();
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				System.out.println("Error While Reading");
 				System.err.println(e.getMessage());
 			}
-			
-			return DoctorList;
+
+			return DocList;
 		}
-		
-		//==========================================================
+
+		public List<DoctorBean> ViewDoctorByDept(String deptName) {
+
+			List<DoctorBean> DoctorBeanList = new ArrayList<>();
+
+			for (DoctorBean sch : viewDoctor()) {
+
+				if (deptName.equals(sch.getDepartmentName())) {
+
+					DoctorBeanList.add(sch);
+				}
+			}
+
+			return DoctorBeanList;
+		}
 }
