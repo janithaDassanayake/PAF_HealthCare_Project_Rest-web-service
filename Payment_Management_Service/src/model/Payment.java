@@ -105,6 +105,54 @@ public class Payment {
 
 	
 
+	public String viewAllPayments() {
+		String output = "";
 		
+		PaymentBean pBean = new PaymentBean();
+		
+		try {
+			
+			Connection con = dbCon.connect();
+			
+			if(con == null) {return "Error While connection to database";}
+			
+			
+			
+			output = "<table border=\"1\">"
+					+ "<tr>"
+					+ "<th>ID</th>"
+					+ "<th>Appoinment ID</th>"
+					+ "<th>Payment Scheme ID</th>"
+					+ "<th>Total Charge</th>"
+					+ "</tr>";
+			
+			String query = "SELECT * FROM payment_tbl";
+
+			java.sql.Statement statement = con.createStatement();
+			
+			ResultSet rs = statement.executeQuery(query);
+			
+			while(rs.next()) {
+				pBean.setPayment_id(rs.getInt("payment_id"));
+				pBean.setAppointment_id(rs.getInt("appointment_id"));
+				pBean.setPaymentScheme_id(rs.getInt("paymentScheme_id"));
+				pBean.setTotal_charge(rs.getDouble("total_charge"));
+				
+				output += "<tr><td>"+pBean.getPayment_id()+" </td>";
+				output += "<td>"+pBean.getPayment_id()+"</td>";
+				output += "<td>"+pBean.getPaymentScheme_id()+"</td>";
+				output += "<td>"+pBean.getTotal_charge()+"</td>";
+			}
+			
+		} catch (Exception e) {
+			 output = "Error while reading the payments.";
+			 System.err.println(e.getMessage()); 
+		}
+		
+		
+		return output;
+	}
+	
+			
 	
 }
