@@ -44,10 +44,10 @@ public class Department_Service {
 	
 		DepartmentBean dep_Bean = new DepartmentBean();
 		
-		dep_Bean.setHospital_ID(depjosnObj.get("Hospital_ID").getAsInt());
-		dep_Bean.setDepartment_Name(depjosnObj.get("Department_Name").getAsString());
-		dep_Bean.setHead(depjosnObj.get("Head").getAsInt());
-		dep_Bean.setStaff_Vacancies(depjosnObj.get("Staff_Vacancies").getAsInt());
+		dep_Bean.setHospital_ID(depjosnObj.get("hospitalID").getAsInt());
+		dep_Bean.setDepartment_Name(depjosnObj.get("departmentName").getAsString());
+		dep_Bean.setHead(depjosnObj.get("head").getAsInt());
+		dep_Bean.setStaff_Vacancies(depjosnObj.get("staffVacancies").getAsInt());
 		
 		// Read the values from the JSON object
 		String output = departmentObj.insertDepartments(dep_Bean);
@@ -66,11 +66,11 @@ public class Department_Service {
 		DepartmentBean dep_bean = new DepartmentBean();
 		
 		 //Read the values from the JSON object  
-		dep_bean.setDepartment_ID(dep_Object.get("Department_ID").getAsInt());
-		dep_bean.setHospital_ID(dep_Object.get("Hospital_ID").getAsInt());
-		dep_bean.setDepartment_Name(dep_Object.get("Department_Name").getAsString());
-		dep_bean.setHead(dep_Object.get("Head").getAsInt());
-		dep_bean.setStaff_Vacancies(dep_Object.get("Staff_Vacancies").getAsInt());
+		dep_bean.setDepartment_ID(dep_Object.get("departmentID").getAsInt());
+		dep_bean.setHospital_ID(dep_Object.get("hospitalID").getAsInt());
+		dep_bean.setDepartment_Name(dep_Object.get("departmentName").getAsString());
+		dep_bean.setHead(dep_Object.get("head").getAsInt());
+		dep_bean.setStaff_Vacancies(dep_Object.get("staffVacancies").getAsInt());
 		
 		String output = departmentObj.updateDepartments(dep_bean); 
 		 
@@ -88,8 +88,8 @@ public class Department_Service {
 		DepartmentBean depDel_bean = new DepartmentBean();
 		
 		//Read the value from the elements  
-		depDel_bean.setDepartment_ID(doc.get("Department_ID").getAsInt());
-		depDel_bean.setHospital_ID(doc.get("Hospital_ID").getAsInt());
+		depDel_bean.setDepartment_ID(doc.get("departmentID").getAsInt());
+		depDel_bean.setHospital_ID(doc.get("hospitalID").getAsInt());
 		
 		String output = departmentObj.deleteDepartments(depDel_bean); 
 		 
@@ -99,8 +99,8 @@ public class Department_Service {
 	// View a list of departments by hospital ID
 	@RolesAllowed({"admin","doctors"})
 	@GET
-	@Path("/{Hospital_ID}")
-	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hosid) {
+	@Path("/{hospitalID}")
+	public DepartmentBean ShowDepartments(@PathParam("hospitalID") int hosid) {
 		return departmentObj.ShowDepartments(hosid);
 	}
 }

@@ -2,91 +2,76 @@ package bean;
 
 public class HospitalBean {
 
-	private int Hospital_ID;
-	private String Hospital_Name;
-	private String Hospital_Address;
-	private String Hospital_City;
-	private String Hospital_Phone;
-	private String Hospital_Email;
-	private String Hospital_Description;
-	private int Open_Hours;
-//	
-//	public HospitalBean() {
-//		
-//	}
-//	
-//	public HospitalBean(int Hospital_ID,String Hospital_Name,String Hospital_Address,String Hospital_City,String Hospital_Phone,String Hospital_Email,String Hospital_Description,int Open_Hours) {
-//		this.Hospital_ID = Hospital_ID;
-//		this.Hospital_Name = Hospital_Name;
-//		this.Hospital_Address = Hospital_Address;
-//		this.Hospital_City = Hospital_City;
-//		this.Hospital_Phone = Hospital_Phone;
-//		this.Hospital_Email = Hospital_Email;
-//		this.Hospital_Description = Hospital_Description;
-//		this.Open_Hours = Open_Hours;
-//	}
+	private int hospitalID;
+	private String hospitalName;
+	private String hospitalAddress;
+	private String hospitalCity;
+	private String hospitalPhone;
+	private String hospitalEmail;
+	private String hospitalDescription;
+	private int openHours;
 	
 	public int getHospital_ID() {
-		return Hospital_ID;
+		return hospitalID;
 	}
 	
 	public String getHospital_Name() {
-		return Hospital_Name;
+		return hospitalName;
 	}
 	
 	public String getHospital_Address() {
-		return Hospital_Address;
+		return hospitalAddress;
 	}
 	
 	public String getHospital_City() {
-		return Hospital_City;
+		return hospitalCity;
 	}
 	
 	public String getHospital_Phone() {
-		return Hospital_Phone;
+		return hospitalPhone;
 	}
 	
 	public String getHospital_Email() {
-		return Hospital_Email;
+		return hospitalEmail;
 	}
 	
 	public String getHospital_Description() {
-		return Hospital_Description;
+		return hospitalDescription;
 	}
 	
 	public int getOpen_Hours() {
-		return Open_Hours;
+		return openHours;
 	}
 	
-	public void setHospital_ID(int Hospital_ID) {
-		this.Hospital_ID = Hospital_ID;
+	public void setHospital_ID(int hospitalID) {
+		this.hospitalID = hospitalID;
 	}
 	
-	public void setHospital_Name(String Hospital_Name) {
-		this.Hospital_Name = Hospital_Name;
+	public void setHospital_Name(String hospitalName) {
+		this.hospitalName = hospitalName;
 	}
 	
-	public void setHospital_Address(String Hospital_Address) {
-		this.Hospital_Address = Hospital_Address;
+	public void setHospital_Address(String hospitalAddress) {
+		this.hospitalAddress = hospitalAddress;
 	}
 	
-	public void setHospital_City(String Hospital_City) {
-		this.Hospital_City = Hospital_City;
+	public void setHospital_City(String hospitalCity) {
+		this.hospitalCity = hospitalCity;
 	}
 	
-	public void setHospital_Phone(String Hospital_Phone) {
-		this.Hospital_Phone = Hospital_Phone;
+	public void setHospital_Phone(String hospitalPhone) {
+		this.hospitalPhone = hospitalPhone;
 	}
 	
-	public void setHospital_Email(String Hospital_Email) {
-		this.Hospital_Email = Hospital_Email;
+	public void setHospital_Email(String hospitalEmail) {
+		this.hospitalEmail = hospitalEmail;
 	}
 	
-	public void setHospital_Description(String Hospital_Description) {
-		this.Hospital_Description = Hospital_Description;
+	public void setHospital_Description(String hospitalDescription) {
+		this.hospitalDescription = hospitalDescription;
 	}
 	
-	public void setOpen_Hours(int Open_Hours) {
-		this.Open_Hours = Open_Hours;
+	public void setOpen_Hours(int openHours) {
+		this.openHours = openHours;
 	}
 }
