@@ -1,5 +1,7 @@
 package com;
 
+import java.util.List;
+
 import javax.annotation.security.RolesAllowed;
 //For REST Service 
 import javax.ws.rs.Consumes;
@@ -94,12 +96,11 @@ public class Department_Service {
 		return output; 
 	}
 	
-	// View a list of deps by hos ID
+	// View a list of departments by hospital ID
 	@RolesAllowed({"admin","doctors"})
 	@GET
 	@Path("/{Hospital_ID}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hodid) {
-		return departmentObj.ShowDepartments(hodid);
+	public DepartmentBean ShowDepartments(@PathParam("Hospital_ID") int hosid) {
+		return departmentObj.ShowDepartments(hosid);
 	}
 }

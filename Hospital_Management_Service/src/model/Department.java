@@ -30,9 +30,9 @@ public class Department {
 		}
 				
 		return con; 
-		}
+	}
 	
-		//Read Department Details
+	//Read Department Details
 	public String readDepartments() {  
 		String output = "";  
 
@@ -41,52 +41,40 @@ public class Department {
 		
 		try {  
 			Connection con = connect();
+			
 			if (con == null)  {   
 				return "Error while connecting to the database for reading.";  
 			} 
 
-		// Prepare the html table to be displayed   
-		output = "<table border=\"1\"><tr><th>Department ID</th>"    +""
+			// Prepare the html table to be displayed   
+			output = "<table border=\"1\"><tr><th>Department ID</th>"    +""
 				+ "<th>Department Name</th><th>Hospital Name</th>"    + ""
 				+ "<th>Head of Department</th>"    + ""
 				+ "<th>Number of Staff Vaconcies</th>";
-		//+ ""
-		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
-		 // String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE (d.Hospital_ID = h.Hospital_ID) AND (d.Head = s.DoctorID)";
-		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctors s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID AND s.Status = 'Accepted'";
-		  Statement stmt = con.createStatement();   
-		  ResultSet rs1 = stmt.executeQuery(query1); 
+			
+			String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctors s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID AND s.Status = 'Accepted'";
+			Statement stmt = con.createStatement();   
+			ResultSet rs1 = stmt.executeQuery(query1); 
 		  
-		  // iterate through the rows in the result set   
-		  while (rs1.next())   {
-			  depReadbean.setDepartment_ID(rs1.getInt("Department_ID"));
-			  depReadbean.setDepartment_Name(rs1.getString("Department_Name"));
-			  hospReadbean.setHospital_Name(rs1.getString("Hospital_Name"));
-			  //depReadbean.setHead(rs1.getInt("Head"));
-			  String DoctorName = rs1.getString("DoctorName");
-			  depReadbean.setStaff_Vacancies(rs1.getInt("Staff_Vacancies"));
+			// iterate through the rows in the result set   
+			while (rs1.next())   {
+				depReadbean.setDepartment_ID(rs1.getInt("Department_ID"));
+				depReadbean.setDepartment_Name(rs1.getString("Department_Name"));
+				hospReadbean.setHospital_Name(rs1.getString("Hospital_Name"));
+				String DoctorName = rs1.getString("DoctorName");
+				depReadbean.setStaff_Vacancies(rs1.getInt("Staff_Vacancies"));
 			  
 
-		   // Add into the html table    
-		  output += "<tr><td>" + depReadbean.getDepartment_ID() + "</td>"; 
-		  output += "<td>" + depReadbean.getDepartment_Name() + "</td>";
-		  output += "<td>" + hospReadbean.getHospital_Name() + "</td>";
-		  //output += "<td>" + depReadbean.getHead() + "</td>";
-		  output += "<td>" + DoctorName + "</td>";
-		  output += "<td>" + depReadbean.getStaff_Vacancies() + "</td>";
+				// Add into the html table    
+				output += "<tr><td>" + depReadbean.getDepartment_ID() + "</td>"; 
+				output += "<td>" + depReadbean.getDepartment_Name() + "</td>";
+				output += "<td>" + hospReadbean.getHospital_Name() + "</td>";
+				output += "<td>" + DoctorName + "</td>";
+				output += "<td>" + depReadbean.getStaff_Vacancies() + "</td>";
 		   
 
-//		   // buttons    
-//		  output += "<td><input name=\"btnUpdate\" "     + " "
-//		  		+ "type=\"button\" value=\"Update\"></td>"     + ""
-//		  				+ "<td><form method=\"post\" action=\"departments.jsp\">"     + ""
-//		  						+ "<input name=\"btnRemove\" "     + " "
-//		  								+ "type=\"submit\" value=\"Remove\">"     + ""
-//		  										+ "<input name=\"Department_ID\" type=\"hidden\" "     + " "
-//		  												+ "value=\"" + 
-//		  												Department_ID + "\">" + "</form></td></tr>";   
-		  } 
+			}
 
 		  con.close(); 
 
@@ -118,7 +106,6 @@ public class Department {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values 
-			//preparedStmt.setInt(1, 0);   
 			preparedStmt.setInt(1, depBean.getHospital_ID());
 			preparedStmt.setString(2, depBean.getDepartment_Name());    
 			preparedStmt.setInt(3, depBean.getHead());
@@ -141,32 +128,34 @@ public class Department {
 	public String updateDepartments(DepartmentBean depUpdateBean)  {   
 		String output = ""; 
 	 
-	  try   {   
-		  Connection con = connect();
+		try   {   
+			Connection con = connect();
 	 
-		  if (con == null)    {
-			  return "Error while connecting to the database for updating."; 
-		  } 
+			if (con == null)    {
+				return "Error while connecting to the database for updating."; 
+			} 
 	 
-	   // create a prepared statement    
-	   String query = "UPDATE departments SET Hospital_ID=?,Department_Name=?,Head=?,Staff_Vacancies=?      "
-	   		+ "			WHERE Department_ID=?"; 
+			// create a prepared statement    
+			String query = "UPDATE departments SET Hospital_ID=?,Department_Name=?,Head=?,Staff_Vacancies=?      "
+					+ "			WHERE Department_ID=?"; 
 	 
-	   PreparedStatement preparedStmt = con.prepareStatement(query); 
+			PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
-	   // binding values    
-	   preparedStmt.setInt(1, depUpdateBean.getHospital_ID());
-	   preparedStmt.setString(2, depUpdateBean.getDepartment_Name());    
-	   preparedStmt.setInt(3, depUpdateBean.getHead());
-	   preparedStmt.setInt(4, depUpdateBean.getStaff_Vacancies());
-	   preparedStmt.setInt(5, depUpdateBean.getDepartment_ID());
+			// binding values    
+			preparedStmt.setInt(1, depUpdateBean.getHospital_ID());
+			preparedStmt.setString(2, depUpdateBean.getDepartment_Name());    
+			preparedStmt.setInt(3, depUpdateBean.getHead());
+			preparedStmt.setInt(4, depUpdateBean.getStaff_Vacancies());
+			preparedStmt.setInt(5, depUpdateBean.getDepartment_ID());
 	 
-	   // execute the statement    
-	   preparedStmt.execute();    
-	   con.close(); 
+			// execute the statement    
+			preparedStmt.execute();    
+			
+			con.close(); 
 	 
-	   output = "Updated successfully";   
-	   }   catch (Exception e)   {    
+			output = "Updated successfully";   
+			
+	   } catch (Exception e)   {    
 		   output = "Error while updating the Departments Details.";    
 		   System.err.println(e.getMessage());   
 	   } 
@@ -174,48 +163,46 @@ public class Department {
 	  return output;  
 	  }
 	
-	public String deleteDepartments(DepartmentBean depDeleteBean) {  
+	//departments delete operation
+	 public String deleteDepartments(DepartmentBean depDeleteBean) {  
 		String output = ""; 
 	 
-	 try  {   
-		 Connection con = connect();
+		try  {   
+			Connection con = connect();
 	 
-	  if (con == null)   {    
-		  return "Error while connecting to the database for deleting.";   
-	  } 
+			if (con == null)   {    
+				return "Error while connecting to the database for deleting.";   
+			} 
 	 
-	  // create a prepared statement   
-	  String query = "DELETE FROM departments WHERE Department_ID=? && Hospital_ID=?"; 
+			// create a prepared statement   
+			String query = "DELETE FROM departments WHERE Department_ID=? && Hospital_ID=?"; 
 	 
-	  PreparedStatement preparedStmt = con.prepareStatement(query); 
+			PreparedStatement preparedStmt = con.prepareStatement(query); 
 	 
-	  // binding values   
-	  preparedStmt.setInt(1, depDeleteBean.getDepartment_ID());
-	  preparedStmt.setInt(2, depDeleteBean.getHospital_ID());
+			// binding values   
+			preparedStmt.setInt(1, depDeleteBean.getDepartment_ID());
+			preparedStmt.setInt(2, depDeleteBean.getHospital_ID());
 	  
-	  // execute the statement   
-	  preparedStmt.execute();   
-	  con.close(); 
+			// execute the statement   
+			preparedStmt.execute();   
+			con.close(); 
 	 
-	  output = "Deleted successfully";  
-	  }  catch (Exception e)  {   
+			output = "Deleted successfully";  
+	  }catch (Exception e)  {   
 		  output = "Error while deleting the departments.";   
-		  System.err.println(e.getMessage());  
-		  
-	 } 
+		  System.err.println(e.getMessage());    
+	  } 
 	 
 	 return output; 
 	 }
 	
-	//_____________________Search method_____________________________
+	//Search method
 	public List<DepartmentBean> viewDeps() {
 		
 		return	viewDeps(0);
-		
-
 	}
 	
-	//show the Hospital by ID
+	//show the Departments by HospitalID
 	public DepartmentBean ShowDepartments(int hosid) {
 	List<DepartmentBean> list = viewDeps(hosid);
 		if(!list.isEmpty()) {
@@ -237,7 +224,14 @@ public class Department {
 				return DepList;
 			}
 
-			String query = "SELECT * FROM departments where Hospital_ID="+hosid;	
+			String query;
+			
+			if(hosid == 0) {
+				query = "select * from departments";
+			}
+			else {
+				query = "SELECT * FROM departments where Hospital_ID= "+hosid;	
+			}
 
 			Statement Stmt = con.createStatement();
 			ResultSet result = Stmt.executeQuery(query);
@@ -255,12 +249,21 @@ public class Department {
 			
 			con.close();
 		
-		}
-		catch (Exception e) {
+		}catch (Exception e) {
 			System.out.println("Error While Reading");
 			System.err.println(e.getMessage());
 		}
 		return DepList;
+	}
+	
+	public List<DepartmentBean> ShowDepartments(String hid) {
+		List<DepartmentBean> DepsBeanlist = new ArrayList<>();
+		for (DepartmentBean i : viewDeps()) {
+			if (hid.equals(i.getHospital_ID())) {				
+				DepsBeanlist.add(i );
+			}
+		}
+		return DepsBeanlist;
 	}
 
 }
