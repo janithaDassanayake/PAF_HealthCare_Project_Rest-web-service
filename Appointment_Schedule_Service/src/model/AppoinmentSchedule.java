@@ -34,14 +34,21 @@ public class AppoinmentSchedule {
 			// Prepare the html table to be displayed
 			output = "<table border=\"1\"><tr><th>Schedule Id</th>"
 					+ "<th>appoinment Type</th>" 
-					+ "<th>Date</th>" 
+					+ "<th>Doctor Name</th>" 
+					+ "<th>Hospital Name</th>" 
+					+ "<th>Day</th>" 
 					+ "<th>Start Time</th>" 
 					+ "<th>End Time</th>"
 					+ "<th>Doctor Id</th>"
 					+ "<th>Hostpital Id</th>"
 					+ "<th>Appointment Id</th></tr>";
 
-			String query = "select s.Schedule_id,a.Appointment_Name,s.Date,s.Start_Time,s.End_Time,s.D_id,s.H_id,s.App_id from appointment_scheduling s inner join appointment_type a on s.App_id=a.appointment_Id  ";
+		//	String query = "select s.Schedule_id,a.Appointment_Name,s.Date,s.Start_Time,s.End_Time,s.D_id,s.H_id,s.App_id from appointment_scheduling s inner join appointment_type a on s.App_id=a.appointment_Id  ";
+			
+			String query = "select s.Schedule_id,a.Appointment_Type,d.DoctorName,h.Hospital_Name,s.Date,s.Start_Time,s.End_Time,s.D_id,s.H_id,s.App_id "
+					+ "from appointment_scheduling s ,appointment_type a , doctor d, hostpital h "
+					+ "WHERE s.App_id=a.appointment_Id AND s.D_id=d.Doctor_Id AND s.H_id=h.hospital_Id";
+			
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
@@ -60,12 +67,13 @@ public class AppoinmentSchedule {
 //				appRead.setAppointment_Id(rs.getInt("Appointment_Id"));
 //				appRead.setAppointment_Type(rs.getString("Appointment_Type"));
 //				
-				
+				String docname = rs.getString("DoctorName");
+				String Hosname = rs.getString("Hospital_Name");
 				appScheduling.setSchedule_id(rs.getInt("Schedule_id"));
 				
-				TypeRead.setAppointment_Name(rs.getString("Appointment_Name"));
+				TypeRead.setAppointment_Type(rs.getString("Appointment_Type"));
 				
-				appScheduling.setDate(rs.getDate("Date"));
+				appScheduling.setDate(rs.getString("Date"));
 				appScheduling.setStart_Time(rs.getTime("Start_Time"));
 				appScheduling.setEnd_Time(rs.getTime("End_Time"));
 				appScheduling.setD_id(rs.getInt("D_id"));
@@ -74,7 +82,9 @@ public class AppoinmentSchedule {
 
 				// Add into the html table
             	output += "<tr><td>" + appScheduling.getSchedule_id() + "</td>";
- 				output += "<td>" + TypeRead.getAppointment_Name()+ "</td>";
+ 				output += "<td>" + TypeRead.getAppointment_Type()+ "</td>";
+ 				output += "<td>" + docname+ "</td>";
+ 				output += "<td>" + Hosname+ "</td>";
 				output += "<td>" + appScheduling.getDate() + "</td>";
 				output += "<td>" + appScheduling.getStart_Time() + "</td>";
 				output += "<td>" + appScheduling.getEnd_Time()+ "</td>";
@@ -102,7 +112,7 @@ public class AppoinmentSchedule {
 	
 	//====================== Add In To Appointment Scheduling ========================
 	
-		public String add_Appoinment_Schedule(Date date, Time start_time, Time end_time, int d_id, int h_id, int app_id) {
+		public String add_Appoinment_Schedule(String date, Time start_time, Time end_time, int d_id, int h_id, int app_id) {
 
 			String output = "";
 			try {
@@ -118,7 +128,7 @@ public class AppoinmentSchedule {
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 
 				// binding values
-				preparedStmt.setDate(1, date);
+				preparedStmt.setString(1, date);
 				preparedStmt.setTime(2, start_time);
 				preparedStmt.setTime(3, end_time);
 				preparedStmt.setInt(4, d_id);
@@ -142,7 +152,7 @@ public class AppoinmentSchedule {
 		
 		//============================= Update Appointment Scheduling ==============================
 		
-		public String updateAppointmentType(int schedule_id , Date date, Time startTime, Time endTime, int d_id, int h_id, int app_id) {
+		public String updateAppointmentSchedule(int schedule_id , String date, Time startTime, Time endTime, int d_id, int h_id, int app_id) {
 
 			String output = "";
 
@@ -157,7 +167,7 @@ public class AppoinmentSchedule {
 
 				// binding values
 
-				preparedStmt.setDate(1, date);
+				preparedStmt.setString(1, date);
 				preparedStmt.setTime(2, startTime);
 				preparedStmt.setTime(3, endTime);
 				preparedStmt.setInt(4, d_id);

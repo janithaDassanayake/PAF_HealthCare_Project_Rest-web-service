@@ -99,12 +99,12 @@ public class Schedule_Security_Filter implements ContainerRequestFilter {
 					WebTarget wt;
 
 					if (rolesSet.contains("admin")) {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth");
+						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/admin");
 					} else if (rolesSet.contains("patient")) {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth");
+						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/patient");
 
 					} else if (rolesSet.contains("doctors")) {
-						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth");
+						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/doctors");
 					} else {
 						wt = c.target("http://localhost:8080/UserAuthifiation/Authifiation").path("usersAuth/deny");
 					}

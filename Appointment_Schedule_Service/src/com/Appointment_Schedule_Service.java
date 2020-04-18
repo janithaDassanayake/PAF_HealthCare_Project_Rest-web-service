@@ -62,13 +62,13 @@ public class Appointment_Schedule_Service {
 			int appId = djosnObj.get("App_id").getAsInt();
 
 			// ==================convert util time to sql time=====================
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			//DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 			DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 
 			try {
-				java.util.Date date = (java.util.Date) format.parse(appdate);
-				java.sql.Date sDate = convertUtilToSql(date);
+				//java.util.Date date = (java.util.Date) format.parse(appdate);
+				//java.sql.Date sDate = convertUtilToSql(date);
 
 				java.util.Date stime = (java.util.Date) formatTime.parse(appstart);
 				java.sql.Time startTime = convertUtilToSqlTime(stime);
@@ -76,7 +76,7 @@ public class Appointment_Schedule_Service {
 				java.util.Date etime = (java.util.Date) formatTime.parse(append);
 				java.sql.Time endTime = convertUtilToSqlTime(etime);
 
-				String output = aObj2.add_Appoinment_Schedule(sDate, startTime, endTime, dId, hId, appId);
+				String output = aObj2.add_Appoinment_Schedule(appdate, startTime, endTime, dId, hId, appId);
 				result = output;
 
 			} catch (ParseException e) {
@@ -112,13 +112,13 @@ public class Appointment_Schedule_Service {
 			int appId = sjosnObj.get("App_id").getAsInt();
 
 			// ==================convert util time to sql time=====================
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			//DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
 			DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 
 			try {
-				java.util.Date date = (java.util.Date) format.parse(appdate);
-				java.sql.Date sDate = convertUtilToSql(date);
+				//java.util.Date date = (java.util.Date) format.parse(appdate);
+				//java.sql.Date sDate = convertUtilToSql(date);
 
 				java.util.Date stime = (java.util.Date) formatTime.parse(appstart);
 				java.sql.Time startTime = convertUtilToSqlTime(stime);
@@ -126,8 +126,7 @@ public class Appointment_Schedule_Service {
 				java.util.Date etime = (java.util.Date) formatTime.parse(append);
 				java.sql.Time endTime = convertUtilToSqlTime(etime);
 
-				String output = aObj2.updateAppointmentType(Integer.parseInt(sId), sDate, startTime, endTime, dId, hId,
-						appId);
+				String output = aObj2.updateAppointmentSchedule(Integer.parseInt(sId), appdate, startTime, endTime, dId, hId,appId);
 				result = output;
 
 			} catch (ParseException e) {

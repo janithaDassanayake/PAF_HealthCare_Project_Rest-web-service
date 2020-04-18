@@ -6,7 +6,7 @@ import java.sql.Time;
 public class ScheduleBean {
 	
 	private int Schedule_id;
-	private Date Date;
+	private String Date;
 	private Time Start_Time;
 	private Time End_Time;
 	private int D_id;
@@ -20,10 +20,10 @@ public class ScheduleBean {
 	public void setSchedule_id(int schedule_id) {
 		Schedule_id = schedule_id;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return Date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		Date = date;
 	}
 	public Time getStart_Time() {
