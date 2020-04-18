@@ -35,6 +35,30 @@ public class PaymentSchemeService {
 		return psObj.viewAllPaymentSchemes();
 	}
 
+	@POST
+	@Path("/insert")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insertPaymentScheme(String psData) {
+		
+		// Convert the input string to a JSON object
+				JsonObject jsonObj = new JsonParser().parse(psData).getAsJsonObject();
+				
+				psBean.setDoc_id(jsonObj.get("doc_id").getAsInt());
+				psBean.setHospital_id(jsonObj.get("hospital_id").getAsInt());
+				psBean.setDoc_charge(jsonObj.get("doc_charge").getAsDouble());
+				psBean.setHosp_charge(jsonObj.get("hosp_charge").getAsDouble());
+				psBean.setTax(jsonObj.get("tax").getAsDouble());
+				
+				String output = psObj.insertPaymentScheme(psBean);
+				
+				
+				return output;
+		
+		
+	}
+	
+	
 	
 	
 }
