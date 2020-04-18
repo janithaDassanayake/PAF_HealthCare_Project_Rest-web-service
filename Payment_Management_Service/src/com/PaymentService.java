@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -23,14 +24,15 @@ import model.Payment;
 public class PaymentService {
 	
 	Payment payment = new Payment();
-	
-	PaymentBean pBean = new PaymentBean();
 
 	@POST
 	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String insertPayment(String psData) {
+				
+		PaymentBean pBean = new PaymentBean();
+
 		
 		// Convert the input string to a JSON object
 				JsonObject jsonObj = new JsonParser().parse(psData).getAsJsonObject();
@@ -53,4 +55,12 @@ public class PaymentService {
 	return payment.viewAllPayments();
 	}
 
+	
+	@GET
+	@Path("/get/{payment_id}")
+	// @Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_HTML)
+	public String ShowPaymentById(@PathParam("payment_id") int id) {
+		return payment.viewPaymentsOfPaymentById(id);
+	}
 }
