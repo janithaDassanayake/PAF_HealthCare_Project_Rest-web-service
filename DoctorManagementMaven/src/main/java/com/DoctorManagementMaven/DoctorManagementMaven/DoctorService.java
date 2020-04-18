@@ -2,6 +2,8 @@ package com.DoctorManagementMaven.DoctorManagementMaven;
 
 import model.DoctorManagementMaven.DoctorManagementMaven.Doctor;
 
+import java.util.List;
+
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -30,7 +32,7 @@ public class DoctorService {
 	
 	//==============================VIEW ALL DOCTORS============================================
 	
-	@RolesAllowed({"admin", "doctors"})
+	//@RolesAllowed({"admin", "doctors"})
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
@@ -105,14 +107,27 @@ public class DoctorService {
 	
 	//==========================SEARCH DOCTOR====================================================
 	
-	// View doctors type identified by id
-		@GET
+		// View doctors type identified by id
+		/*@GET
 		@Path("/{DepartmentName}")
 		// @Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
 		public DoctorBean ShowDoctorByDept(@PathParam("DepartmentName") String name) {
 			return docObj.ShowDoctorByDept(name);
-		}
+		}*/
 	
+		// View a schedule by given by day
+
+		//@RolesAllowed({ "admin", "doctors" })
+		@GET
+		@Path("/{DepartmentName}")
+		// @Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public List<DoctorBean> readDoctorByDept(@PathParam("DepartmentName") String deptName) {
+			List<DoctorBean> list;
+			list = docObj.ViewDoctorByDept(deptName);
+			return list;
+
+		}
 	
 }
