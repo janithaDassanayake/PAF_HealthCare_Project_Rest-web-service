@@ -20,7 +20,7 @@ public class Department {
 			Class.forName("com.mysql.jdbc.Driver");
 					 
 			//Provide the correct details: DBServer/DBName, username, password 
-			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/healthcaredb", "root", "");
+			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system", "root", "");
 
 			//For testing          
 			System.out.print("Successfully connected");
@@ -54,7 +54,7 @@ public class Department {
 		//				+ "<th>Update</th><th>Remove</th></tr>"; 
 
 		 // String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d,hospitals h,doctor s WHERE (d.Hospital_ID = h.Hospital_ID) AND (d.Head = s.DoctorID)";
-		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctor s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID AND s.Status = 'Accepted'";
+		String query1 = "select d.Department_ID,d.Department_Name,h.Hospital_Name,s.DoctorName,d.Staff_Vacancies FROM departments d, doctors s,hospitals h WHERE d.Hospital_ID = h.Hospital_ID AND d.Head = s.DoctorID AND s.Status = 'Accepted'";
 		  Statement stmt = con.createStatement();   
 		  ResultSet rs1 = stmt.executeQuery(query1); 
 		  

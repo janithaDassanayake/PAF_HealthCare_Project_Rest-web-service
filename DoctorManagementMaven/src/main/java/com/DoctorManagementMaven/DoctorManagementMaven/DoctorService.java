@@ -2,6 +2,7 @@ package com.DoctorManagementMaven.DoctorManagementMaven;
 
 import model.DoctorManagementMaven.DoctorManagementMaven.Doctor;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -9,6 +10,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -19,6 +21,8 @@ import org.jsoup.parser.Parser;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import bean.DoctorManagementMaven.DoctorManagementMaven.DoctorBean;
+
 @Path("DoctorService")
 public class DoctorService {
 
@@ -26,6 +30,7 @@ public class DoctorService {
 	
 	//==============================VIEW ALL DOCTORS============================================
 	
+	@RolesAllowed({"admin", "doctors"})
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
@@ -97,6 +102,17 @@ public class DoctorService {
     	return output; 
     	
     }
+	
+	//==========================SEARCH DOCTOR====================================================
+	
+	// View doctors type identified by id
+		@GET
+		@Path("/{DepartmentName}")
+		// @Consumes(MediaType.APPLICATION_JSON)
+		@Produces(MediaType.APPLICATION_JSON)
+		public DoctorBean ShowDoctorByDept(@PathParam("DepartmentName") String name) {
+			return docObj.ShowDoctorByDept(name);
+		}
 	
 	
 }

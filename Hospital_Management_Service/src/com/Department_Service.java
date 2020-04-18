@@ -1,5 +1,6 @@
 package com;
 
+import javax.annotation.security.RolesAllowed;
 //For REST Service 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -22,6 +23,7 @@ import model.Department;
 public class Department_Service {
 	Department departmentObj = new Department();
 	
+	@RolesAllowed({"admin","doctors","patient"})
 	@GET  
 	@Path("/")  
 	@Produces(MediaType.TEXT_HTML)  
@@ -29,6 +31,7 @@ public class Department_Service {
 		return departmentObj.readDepartments();
 	}
 	
+	@RolesAllowed({"admin","doctors"})
 	@POST
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON) 
@@ -50,6 +53,7 @@ public class Department_Service {
 
 	}
 	
+	@RolesAllowed({"admin","doctors"})
 	@PUT 
 	@Path("/") 
 	@Consumes(MediaType.APPLICATION_JSON) 
@@ -71,6 +75,7 @@ public class Department_Service {
 		return output; 
 	}
 	
+	@RolesAllowed({"admin","doctors"})
 	@DELETE 
 	@Path("/") 
 	@Consumes(MediaType.APPLICATION_JSON)
