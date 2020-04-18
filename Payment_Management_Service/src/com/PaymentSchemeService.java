@@ -36,6 +36,7 @@ public class PaymentSchemeService {
 	@Path("/getAll")
 	@Produces(MediaType.TEXT_HTML)
 	public String readPaymentSchemes() {
+
 		return psObj.viewAllPaymentSchemes();
 	}
 
@@ -73,6 +74,7 @@ public class PaymentSchemeService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String deletePaymentScheme(String psData) {
+
 		String output = "";
 		
 		JsonObject doc = new JsonParser().parse(psData).getAsJsonObject();
@@ -82,7 +84,8 @@ public class PaymentSchemeService {
 		psBean.setId(doc.get("id").getAsInt());
 		
 		output = psObj.deletePayementScheme(psBean);
-			return output;
+
+		return output;
 	}
 	
 
