@@ -23,8 +23,9 @@ import model.Payment;
 @Path("/Payment")
 public class PaymentService {
 	
-	Payment payment = new Payment();
+	Payment payment = new Payment(); // Payment object 
 
+	//insert Payment service
 	@POST
 	@Path("/insert")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -47,6 +48,7 @@ public class PaymentService {
 		
 	}
 		
+	// get all payments service
 	@GET
 	@Path("/get")
 	@Produces(MediaType.TEXT_HTML)
@@ -56,6 +58,7 @@ public class PaymentService {
 	}
 
 	
+	//get payment by its id
 	@GET
 	@Path("/get/{payment_id}")
 	// @Consumes(MediaType.APPLICATION_JSON)
