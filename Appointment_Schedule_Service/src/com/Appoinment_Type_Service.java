@@ -112,7 +112,7 @@ public class Appoinment_Type_Service {
 		@Path("/")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
-		public String deleteDoctor(String TypeData) {
+		public String deletetype(String TypeData) {
 			// Convert the input string to a JSON object
 			JsonObject doc = new JsonParser().parse(TypeData).getAsJsonObject();
 
