@@ -45,7 +45,8 @@ public class Hospital {
 					+ "<th>Hospital Address</th><th>Hospital City</th>"    + ""
 					+ "<th>Hospital Phone</th><th>Hospital Email</th>"    + ""
 					+ "<th>Hospital Description</th><th>Open Hours</th>";
-
+//			+ ""
+//							+ "<th>Update</th><th>Remove</th></tr>"; 
 
 			  String query = "select * from hospitals";   
 			  Statement stmt = con.createStatement();   
@@ -72,6 +73,15 @@ public class Hospital {
 			  output += "<td>" + hosReadbean.getHospital_Description() + "</td>";		  
 			  output += "<td>" + hosReadbean.getOpen_Hours() + "</td>"; 
 
+//			   // buttons    
+//			  output += "<td><input name=\"btnUpdate\" "     + " "
+//			  		+ "type=\"button\" value=\"Update\"></td>"     + ""
+//			  				+ "<td><form method=\"post\" action=\"hospitals.jsp\">"     + ""
+//			  						+ "<input name=\"btnRemove\" "     + " "
+//			  								+ "type=\"submit\" value=\"Remove\">"     + ""
+//			  										+ "<input name=\"Hospital_ID\" type=\"hidden\" "     + " "
+//			  												+ "value=\"" + 
+//			  										Hospital_ID + "\">" + "</form></td></tr>";   
 			  } 
 
 			  con.close(); 
@@ -88,7 +98,7 @@ public class Hospital {
 		}
 	
 	//Insert Hospitals
-	public String insertHospitals(HospitalBean hosBean) {
+	public String insertHospitals(HospitalBean hos_bean) {
 		String output = "";
 
 		try {
@@ -104,13 +114,14 @@ public class Hospital {
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
 			// binding values 
-			preparedStmt.setString(1, hosBean.getHospital_Name());   
-			preparedStmt.setString(2, hosBean.getHospital_Address());    
-			preparedStmt.setString(3, hosBean.getHospital_City());
-			preparedStmt.setString(4, hosBean.getHospital_Phone());
-			preparedStmt.setString(5, hosBean.getHospital_Email());
-			preparedStmt.setString(6, hosBean.getHospital_Description());
-			preparedStmt.setInt(7, hosBean.getOpen_Hours());  
+			//preparedStmt.setInt(1, 0);   
+			preparedStmt.setString(1, hos_bean.getHospital_Name());   
+			preparedStmt.setString(2, hos_bean.getHospital_Address());    
+			preparedStmt.setString(3, hos_bean.getHospital_City());
+			preparedStmt.setString(4, hos_bean.getHospital_Phone());
+			preparedStmt.setString(5, hos_bean.getHospital_Email());
+			preparedStmt.setString(6, hos_bean.getHospital_Description());
+			preparedStmt.setInt(7, hos_bean.getOpen_Hours());  
 
 			//execute the statement   
 			preparedStmt.execute();   

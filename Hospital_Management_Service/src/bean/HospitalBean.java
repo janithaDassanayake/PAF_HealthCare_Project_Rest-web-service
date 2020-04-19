@@ -10,7 +10,7 @@ public class HospitalBean {
 	private String hospitalEmail;
 	private String hospitalDescription;
 	private int openHours;
-	
+
 	public int getHospital_ID() {
 		return hospitalID;
 	}
