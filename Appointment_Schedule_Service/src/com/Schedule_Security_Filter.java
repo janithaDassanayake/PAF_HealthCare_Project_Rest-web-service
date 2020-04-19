@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
+
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.container.ContainerRequestContext;
@@ -27,7 +27,6 @@ import javax.ws.rs.ext.Provider;
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.glassfish.jersey.jackson.JacksonFeature;
-import org.json.JSONObject;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;

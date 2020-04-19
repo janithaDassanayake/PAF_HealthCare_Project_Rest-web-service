@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -37,13 +36,9 @@ public class AppoinmentSchedule {
 					+ "<th>End Time</th>" + "<th>Doctor Id</th>" + "<th>Hostpital Id</th>"
 					+ "<th>Appointment Id</th></tr>";
 
-			// String query = "select
-			// s.Schedule_id,a.Appointment_Name,s.Date,s.Start_Time,s.End_Time,s.D_id,s.H_id,s.App_id
-			// from appointment_scheduling s inner join appointment_type a on
-			// s.App_id=a.appointment_Id ";
 
 			String query = "select s.Schedule_id,a.Appointment_Type,d.DoctorName,h.Hospital_Name,s.Date,s.Start_Time,s.End_Time,s.D_id,s.H_id,s.App_id "
-					+ "from appointment_scheduling s ,appointment_type a , doctor d, hostpital h "
+					+ "from appointment_scheduling s ,appointment_type a , doctors d, hostpitals h "
 					+ "WHERE s.App_id=a.appointment_Id AND s.D_id=d.Doctor_Id AND s.H_id=h.hospital_Id";
 
 			Statement stmt = con.createStatement();

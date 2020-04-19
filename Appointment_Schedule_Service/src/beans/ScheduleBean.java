@@ -1,6 +1,5 @@
 package beans;
 
-import java.sql.Date;
 import java.sql.Time;
 
 public class ScheduleBean {

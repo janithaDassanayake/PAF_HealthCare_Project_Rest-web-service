@@ -133,7 +133,7 @@ public class Appointment_Schedule_Service {
 		int appId = sjosnObj.get("App_id").getAsInt();
 
 		// ==================convert util time to sql time=====================
-		// DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
 
 		DateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 

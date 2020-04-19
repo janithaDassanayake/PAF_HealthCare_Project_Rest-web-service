@@ -12,8 +12,6 @@ public class DBconnection {
 		try {
 
 			Class.forName("com.mysql.jdbc.Driver");
-			//con = DriverManager.getConnection("jdbc:mysql://localhost/health-system", "root", "");
-			//con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "");
 			// For testing
 			con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/health-system", "root", "");
 			System.out.print("Successfully connected");
