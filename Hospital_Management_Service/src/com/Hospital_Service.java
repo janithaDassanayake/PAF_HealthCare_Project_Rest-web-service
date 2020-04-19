@@ -21,7 +21,7 @@ import org.jsoup.nodes.Document;
 public class Hospital_Service {  
 	Hospital hospitalObj = new Hospital();
 	
-	@RolesAllowed({"patient"})
+	@RolesAllowed({"admin","doctors","patient"})
 	@GET  
 	@Path("/")  
 	@Produces(MediaType.TEXT_HTML)  
