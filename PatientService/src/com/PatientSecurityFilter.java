@@ -43,7 +43,6 @@ public class PatientSecurityFilter {
 	private ResourceInfo resourceInfo;
 
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-		// TODO Auto-generated method stub
 
 		List<String> AUTHENTICATION_HEADER = requestContext.getHeaders().get(AUTH_HEADER_KEY);
 
