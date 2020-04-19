@@ -1,5 +1,4 @@
 package bean;
-import java.sql.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
