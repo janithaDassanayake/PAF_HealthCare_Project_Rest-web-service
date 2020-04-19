@@ -78,7 +78,7 @@ public class AppoinmentSchedule {
 			output += "</tr></table>";
 
 		} catch (Exception e) {
-			output = "Error while reading the Doctors Details.";
+			output = "Error while reading the Schedule Details.";
 			System.err.println(e.getMessage());
 		}
 

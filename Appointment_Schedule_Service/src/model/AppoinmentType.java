@@ -57,7 +57,7 @@ public class AppoinmentType {
 			output += "</table>";
 
 		} catch (Exception e) {
-			output = "Error while reading the Doctors Details.";
+			output = "Error while reading the appoinmentTypes Details.";
 			System.err.println(e.getMessage());
 		}
 
